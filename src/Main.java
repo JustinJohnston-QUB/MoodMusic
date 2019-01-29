@@ -124,16 +124,16 @@ public class Main
 	        		toProcess.path = "index.html";	
 
 	        	//Uncomment this code to see an example dynamic page or an example dynamic page that responds to a form
-	        	if(exampleDynamicPage.process(toProcess))
-	        {
-		        	//example page is processed
-	        }
-		        else
+//		        if(exampleDynamicPage.process(toProcess))
+//		        {
+//		        	//example page is processed
+//		        }
+//		        else
 		        if(testFormPage.process(toProcess))
 		        {
-	        	//testForm page is processed
-	        }
-	        else
+		        	//testForm page is processed
+		        }
+		        else
 		        {
 			        String asFilepath = fileStoreInterface.decodeFilePath(toProcess.path);
 			        if((asFilepath!=null)&&fileStoreInterface.exists(asFilepath))
