@@ -77,7 +77,7 @@ public class Main
 		//An example dynamic page
 //		ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
 		//An example dynamic page that responds to a form in html
-//		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
+		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
 
 		
 		//this variable indicates that the program should keep running
@@ -129,11 +129,11 @@ public class Main
 //		        	//example page is processed
 //		        }
 //		        else
-//		        if(testFormPage.process(toProcess))
-//		        {
-//		        	//testForm page is processed
-//		        }
-//		        else
+		        if(testFormPage.process(toProcess))
+		        {
+		        	//testForm page is processed
+		        }
+		        else
 		        {
 			        String asFilepath = fileStoreInterface.decodeFilePath(toProcess.path);
 			        if((asFilepath!=null)&&fileStoreInterface.exists(asFilepath))
