@@ -1,0 +1,91 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>Test Page</title>
+		<link rel = "stylesheet" type = "text/css" href = "/css/test.css"></link>
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+	<div class = "container-fluid">
+	<!-- Top of the page menu and image -->
+			<nav class="navbar navbar-default">
+				  <div class="container-fluid">
+					<div class="navbar-header">
+					  <a class="navbar-brand" href="#">Test Site with Bootstrap</a>
+					</div>
+					<ul class="nav navbar-nav">
+					  <li class="active"><a href="#">Home</a></li>
+					  <li><a href="#">Page 1</a></li>
+					  <li><a href="#">Page 2</a></li>
+					  <li><a href="#">Page 3</a></li>
+					</ul>
+				  </div>
+			</nav>
+
+		<!-- title -->
+		<div class = "row">
+			<div class="jumbotron">
+				<div class = "row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-2">
+						<img src = "./images/test.jpg" width = "100%"class="img-rounded" alt = "Queens Logo">
+					</div>
+					<div class="col-sm-8">
+						<h1 class= "title"> HTML Test Page</h1>
+					</div>
+				</div>	
+			</div>	
+		</div>			
+		<!-- 2 columns -->
+		<div class = "row">
+			 <div class="col-sm-2"></div>
+			<div class="col-sm-4" href = "#HTML">
+				<div class="well well-sm">
+					<h2>HTML</h2>
+					<p>HTML is used to structure a web page and its content. HTML is not a programming language, it
+						is a markup language that defines the structure of your content.<br><br>
+						HTML is made up of individual elements that are combined to form an entire HTML page.</p>
+				</div>
+			</div>
+			<div class="col-sm-4" href = "#CSS">
+				<div class="well well-sm">
+					<h2>CSS</h2>
+					<p>CSS (Cascading Style Sheets) is used to describe how HTML elements are displayed (it is not a
+						programming language). CSS fixes the problem that HTML was never intended to contain
+						formatting for web pages. It does this by storing these formats in a CSS file that can be
+						referenced by the HTML page. CSS saves a lot of work because if all your HTML files reference
+						the same CSS they will inherit the same structuring.</p>
+				</div>		
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+		<!-- bottom row -->
+		<div class = "row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4" href = "#Forms">
+				<div class="well well-sm">
+				<h2>Forms</h2>
+				<p>The HTML form element defines a form that is used to collect user input. The form
+					element can be used for multiple purposes i.e. login/signup page, contact us page etc.</p>
+				<br>
+				<p>An example below lets you enter your name and password</p>
+				<!-- The form -->
+				<form align = "center" action = "first.html" method = "get">
+					Username:<br>
+					<input type="text" name="firstname"><br>
+					Password:<br>
+					<input type="password" name="psw"><br><br>
+					<input type="submit" value="Submit" onclick="alert('DOES NOT WORK!')">
+				</form>
+				</div>
+			</div>	
+			<div class="col-sm-4"></div>
+		</div>
+	</div>
+	</body>
+</html>

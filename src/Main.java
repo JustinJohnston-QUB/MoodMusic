@@ -30,7 +30,7 @@ public class Main
 			//programs with databases (like this one) can store their settings in the database
 			//some programs even read properties stored by the operating system in system variables
 	public static void main(String[] commandLineParameters) throws Exception 
-	{		
+	{	
 		//Creates a *DatabaseInterface* object
 			//when this object is created it will attempt to access the database file
 			//it will fix it if there were any problems (e.g. because the webserver crashed while it was writing data)
@@ -75,9 +75,9 @@ public class Main
 		registerShutdownHook(databaseInterface);
 		
 		//An example dynamic page
-//		ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
+	ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
 		//An example dynamic page that responds to a form in html
-//		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
+		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
 
 		
 		//this variable indicates that the program should keep running
@@ -124,16 +124,16 @@ public class Main
 	        		toProcess.path = "index.html";	
 
 	        	//Uncomment this code to see an example dynamic page or an example dynamic page that responds to a form
-//		        if(exampleDynamicPage.process(toProcess))
-//		        {
-//		        	//example page is processed
-//		        }
-//		        else
-//		        if(testFormPage.process(toProcess))
-//		        {
-//		        	//testForm page is processed
-//		        }
-//		        else
+	        	if(exampleDynamicPage.process(toProcess))
+	        {
+		        	//example page is processed
+	        }
+		        else
+		        if(testFormPage.process(toProcess))
+		        {
+	        	//testForm page is processed
+	        }
+	        else
 		        {
 			        String asFilepath = fileStoreInterface.decodeFilePath(toProcess.path);
 			        if((asFilepath!=null)&&fileStoreInterface.exists(asFilepath))
