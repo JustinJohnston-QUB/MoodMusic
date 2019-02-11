@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 
+import model.Tshirt;
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
+import views.Checkout;
 import views.ExampleView;
+import views.Store;
 import views.TestForm;
 import web.Base64;
 import web.WebInterface;
@@ -75,7 +78,9 @@ public class Main
 		registerShutdownHook(databaseInterface);
 		
 		//An example dynamic page
-	ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
+		ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
+		Store storepage = new Store(databaseInterface, fileStoreInterface);
+		Checkout checkout = new Checkout(databaseInterface, fileStoreInterface);
 		//An example dynamic page that responds to a form in html
 		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
 
@@ -124,14 +129,18 @@ public class Main
 	        		toProcess.path = "index.html";	
 
 	        	//Uncomment this code to see an example dynamic page or an example dynamic page that responds to a form
-//		        if(exampleDynamicPage.process(toProcess))
-//		        {
-//		        	//example page is processed
-//		        }
-//		        else
-		        if(testFormPage.process(toProcess))
+		        if(exampleDynamicPage.process(toProcess))
 		        {
-		        	//testForm page is processed
+		        	//example page is processed
+		        }
+		        else
+		        if(storepage.process(toProcess))
+		        {
+		        	
+		        }
+		        else
+		        if(checkout.process(toProcess)) {
+		        	
 		        }
 		        else
 		        {

@@ -1,5 +1,6 @@
 package views;
 
+import model.Tshirt;
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import web.WebRequest;
@@ -16,8 +17,11 @@ public class Store extends DynamicWebPage
 	{
         if(toProcess.path.equalsIgnoreCase("store.html"))
         {
-        	//Lab 1 Task 4
-        	//Change this string so that it contains HTML from a page you created in Pingendo 
+        	Tshirt newTshirt = new Tshirt();
+        	newTshirt.price = "£1.00";
+        	newTshirt.title = "Budget T-Shirt";
+        	newTshirt.filePathToImage = "../images/tshirt4.jpeg";
+        	
         	String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
         			"<html>\r\n" + 
         			"\r\n" + 
@@ -33,7 +37,7 @@ public class Store extends DynamicWebPage
         			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\r\n" + 
         			"        <i class=\"fa d-inline fa-lg fa-circle-o\"></i>\r\n" + 
         			"        <b>CornDogMusic</b>\r\n" + 
-        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar5\">\r\n" + 
+        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar5\" style=\"\">\r\n" + 
         			"        <span class=\"navbar-toggler-icon\"></span>\r\n" + 
         			"      </button>\r\n" + 
         			"      <div class=\"collapse navbar-collapse\" id=\"navbar5\">\r\n" + 
@@ -59,19 +63,20 @@ public class Store extends DynamicWebPage
         			"  <div class=\"py-5\">\r\n" + 
         			"    <div class=\"container\">\r\n" + 
         			"      <div class=\"row\">\r\n" + 
-        			"        <div class=\"col-md-4  \" style=\"\">\r\n" + 
-        			"          <a href = \"checkout.html\">\r\n" + 
-        			"            <img class=\"img-fluid d-block mx-auto\" src=\"../images/tshirt4.jpeg\" >\r\n" + 
+        			"        <div class=\"col-md-2  \" style=\"\">\r\n" + 
+        			"          <a href=\"checkout.html\">\r\n" + 
         			"          </a>\r\n" + 
         			"          <div class=\"row\">\r\n" + 
         			"            <div class=\"col-md-12\">\r\n" + 
-        			"              <h2 class=\"\">Budget T-Shirt<br>£15.00</h2>\r\n" + 
         			"            </div>\r\n" + 
         			"          </div>\r\n" + 
         			"        </div>\r\n" + 
-        			"        <div class=\"col-md-4\" style=\"\">\r\n" + 
-        			"          <a href = \"checkout.html\">\r\n" + 
-        			"          	<img class=\"img-fluid d-block\" src=\"../images/tshirt2.jpg\">\r\n" + 
+        			"        <div class=\"col-md-2\"><img class=\"img-fluid d-block mx-auto\" src=\"../images/tshirt4.jpeg\">\r\n" + 
+        			"          <h2 class=\"\">Budget T-Shirt<br>£15.00</h2>\r\n" + 
+        			"        </div>\r\n" + 
+        			"        <div class=\"col-md-2\" style=\"\">\r\n" + 
+        			"          <a href=\"checkout.html\">\r\n" + 
+        			"            <img class=\"img-fluid d-block\" src=\"../images/tshirt2.jpg\">\r\n" + 
         			"          </a>\r\n" + 
         			"          <div class=\"row\">\r\n" + 
         			"            <div class=\"col-md-12\" style=\"\">\r\n" + 
@@ -79,21 +84,36 @@ public class Store extends DynamicWebPage
         			"            </div>\r\n" + 
         			"          </div>\r\n" + 
         			"        </div>\r\n" + 
-        			"        <div class=\"col-md-4\" style=\"\">\r\n" + 
-        			"          <a href = \"checkout.html\"><img class=\"img-fluid d-block\" src=\"../images/tshirt3.jpg\"></a>\r\n" + 
+        			"        <div class=\"col-md-2\" style=\"\"><img class=\"../images/tshirt3.jpg\">\r\n" + 
         			"          <div class=\"row\">\r\n" + 
         			"            <div class=\"col-md-12\">\r\n" + 
-        			"              <h2 class=\"\">Premium T-Shirt<br>£60.00</h2>\r\n" + 
+        			"              <a href=\"checkout.html\">\r\n" + 
+        			"                <img class=\"img-fluid d-block\" src=\"../images/tshirt3.jpg\">\r\n" + 
+        			"              </a>\r\n" + 
+        			"              <h2 class=\"\">Premium T-Shirt<br>£120.00</h2>\r\n" + 
+        			"            </div>\r\n" + 
+        			"          </div>\r\n" + 
+        			"        </div><a href=\"checkout.html\" style=\"\">\r\n" + 
+        			"        </a>\r\n" + 
+        			"        <div class=\"col-md-2\">"
+        			+ "<a href = \"checkout.html\">"
+        					+ "<img class=\"img-fluid d-block\" src=\"../images/tshirt1.png\">"
+        					+ "</a>\r\n" + 
+        			"          <div class=\"row\">\r\n" + 
+        			"            <div class=\"col-md-12\">\r\n" + 
+        			"              <h2 class=\"\">Designer<br>&nbsp;T-shirt<br>£999.99</h2>\r\n" + 
         			"            </div>\r\n" + 
         			"          </div>\r\n" + 
         			"        </div>\r\n" + 
-        			"      </div>\r\n" + 
-        			"    </div>\r\n" + 
-        			"  </div>\r\n" + 
-        			"  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\r\n" + 
-        			"  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\r\n" + 
-        			"  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\" style=\"\"></script>\r\n" + 
-        			"  <pingendo onclick=\"window.open('https://pingendo.com/', '_blank')\" style=\"cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white\">Made with Pingendo Free&nbsp;&nbsp;<img src=\"https://pingendo.com/site-assets/Pingendo_logo_big.png\" class=\"d-block\" alt=\"Pingendo logo\" height=\"16\"></pingendo>\r\n" + 
+        			"      </div><a href=\"checkout.html\">\r\n" + 
+        			"      </a>\r\n" + 
+        			"    </div><a href=\"checkout.html\">\r\n" + 
+        			"    </a>\r\n" + 
+        			"  </div><a href=\"checkout.html\">\r\n" + 
+        			"    <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\r\n" + 
+        			"    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\r\n" + 
+        			"    <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\" style=\"\" ></script>\r\n" + 
+        			"  </a>\r\n" + 
         			"</body>\r\n" + 
         			"\r\n" + 
         			"</html>";
