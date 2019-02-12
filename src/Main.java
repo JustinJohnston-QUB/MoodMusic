@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import views.ExampleView;
+import views.Store;
 import views.TestForm;
+import views.Webapp;
 import web.Base64;
 import web.WebInterface;
 import web.WebRequest;
@@ -78,8 +80,8 @@ public class Main
 	ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
 		//An example dynamic page that responds to a form in html
 		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
-
-		
+		Webapp iwebapp = new Webapp(databaseInterface,fileStoreInterface);
+		Store store= new Store(databaseInterface,fileStoreInterface);
 		//this variable indicates that the program should keep running
 			//by setting this variable to false the program will exit
 		boolean shouldKeepRunning = true;
@@ -124,16 +126,21 @@ public class Main
 	        		toProcess.path = "index.html";	
 
 	        	//Uncomment this code to see an example dynamic page or an example dynamic page that responds to a form
-//		        if(exampleDynamicPage.process(toProcess))
-//		        {
-//		        	//example page is processed
-//		        }
-//		        else
-		        if(testFormPage.process(toProcess))
+		        if(exampleDynamicPage.process(toProcess))
+		        {
+		        	//example page is processed
+		        }
+		        else
+		        if(iwebapp.process(toProcess))
 		        {
 		        	//testForm page is processed
 		        }
 		        else
+			        if (store.process(toProcess))
+			        {
+			        	//testForm page is processed
+			        }
+			        else
 		        {
 			        String asFilepath = fileStoreInterface.decodeFilePath(toProcess.path);
 			        if((asFilepath!=null)&&fileStoreInterface.exists(asFilepath))
