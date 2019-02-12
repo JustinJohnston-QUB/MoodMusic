@@ -35,43 +35,25 @@ public class HomePage extends DynamicWebPage
         			"\r\n" + 
         			"        <body>\r\n" + 
         			"\r\n" + 
-        			"          <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n" + 
-        			"            <a class=\"navbar-brand\" href=\"#\">LOGO</a>\r\n" + 
-        			"            <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarTogglerDemo02\" aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n" + 
-        			"              <span class=\"navbar-toggler-icon\"></span>\r\n" + 
-        			"            </button>\r\n" + 
-        			"          \r\n" + 
-        			"            <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\">\r\n" + 
-        			"              <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">\r\n" + 
-        			"                <li class=\"nav-item active\">\r\n" + 
-        			"                  <a class=\"nav-link\" href=\"#\"><p class=\"text-primary\">Home</p><span class=\"sr-only\">(current)</span></a>\r\n" + 
-        			"                </li>\r\n" + 
-        			"                <li class=\"nav-item\">\r\n" + 
-        			"                  <a class=\"nav-link\" href=\"#\"><p class=\"text-primary\">Browse Songs</p></a>\r\n" + 
-        			"                </li>\r\n" + 
-        			"                <li class=\"nav-item\">\r\n" + 
-        			"                    <a class=\"nav-link\" href=\"#\"><p class=\"text-primary\">Request Songs</p></a>\r\n" + 
-        			"                  </li>\r\n" + 
-        			"                  <li class=\"nav-item\">\r\n" + 
-        			"                      <a class=\"nav-link\" href=\"#\"><p class=\"text-primary\">Store</p></a>\r\n" + 
-        			"                    </li>  \r\n" + 
-        			"                    <li class=\"nav-item\">\r\n" + 
-        			"                        <a class=\"nav-link\" href=\"#\"><p class=\"text-primary\">About Us</p></a>\r\n" + 
-        			"                      </li>\r\n" + 
-        			"                      <li class=\"nav-item\">\r\n" + 
-        			"                          <a class=\"nav-link\" href=\"#\"><p class=\"text-primary\">Contact Us</p></a>\r\n" + 
-        			"                        </li>  \r\n" + 
-        			"\r\n" + 
-        			"\r\n" + 
-        			"                        \r\n" + 
-        			"              </ul>\r\n" + 
-        			"              <a href=\"#\" class=\"btn btn-primary\">Listen</a>\r\n" + 
-        			"              <form class=\"form-inline my-2 my-lg-0\">\r\n" + 
-        			"                <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\">\r\n" + 
-        			"                <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n" + 
-        			"              </form>\r\n" + 
-        			"            </div>\r\n" + 
-        			"          </nav>\r\n" + 
+        			"  <nav class=\"navbar navbar-expand-lg navbar-light\">\r\n" + 
+        			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\r\n" + 
+        			"        <i class=\"fa d-inline fa-lg fa-circle-o\"></i>\r\n" + 
+        			"        <b>CornDogMusic</b>\r\n" + 
+        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar5\">\r\n" + 
+        			"        <span class=\"navbar-toggler-icon\"></span>\r\n" + 
+        			"      </button>\r\n" + 
+        			"      <div class=\"collapse navbar-collapse\" id=\"navbar5\">\r\n" + 
+        			"        <ul class=\"navbar-nav mr-auto\">\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"homepage.html\">Home</a> </li>\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"webapp.html\">Music</a> </li>\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"store.html\">Store</a> </li>\r\n" + 
+        			"        </ul>\r\n" + 
+        			"        <ul class=\"navbar-nav ml-auto\">\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"aboutus\">About us</a> </li>\r\n" + 
+        			"        </ul> <a class=\"btn btn-outline-primary navbar-btn ml-md-2\" href=\"account.html\">Account</a>\r\n" + 
+        			"      </div>\r\n" + 
+        			"    </div>\r\n" + 
+        			"  </nav>\r\n" + 
         			"\r\n" + 
         			"                      <div class=\"row\">\r\n" + 
         			"\r\n" + 

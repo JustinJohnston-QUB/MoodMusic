@@ -38,15 +38,16 @@ public class Webapp extends DynamicWebPage
         			"      </button>\r\n" + 
         			"      <div class=\"collapse navbar-collapse\" id=\"navbar5\">\r\n" + 
         			"        <ul class=\"navbar-nav mr-auto\">\r\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"index.html\">Home</a> </li>\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"homepage.html\">Home</a> </li>\r\n" + 
         			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"webapp.html\">Music</a> </li>\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"store.html\">Store</a> </li>\r\n" + 
         			"        </ul>\r\n" + 
         			"        <ul class=\"navbar-nav ml-auto\">\r\n" + 
         			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"aboutus\">About us</a> </li>\r\n" + 
         			"        </ul> <a class=\"btn btn-outline-primary navbar-btn ml-md-2\" href=\"account.html\">Account</a>\r\n" + 
         			"      </div>\r\n" + 
         			"    </div>\r\n" + 
-        			"  </nav>\r\n" + 
+        			"  </nav>\r\n" +  
         			"  <div class=\"py-0 pt-3\">\n" + 
         			"    <div class=\"container\">\n" + 
         			"      <div class=\"row\">\n" + 

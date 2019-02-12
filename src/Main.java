@@ -132,18 +132,15 @@ public class Main
 		        {
 		        	//example page is processed
 		        }
-		        else
-		        if(iwebapp.process(toProcess))
+		        else if(iwebapp.process(toProcess))
 		        {
 		        	//testForm page is processed
 		        }
-		        else {
-			        if (store.process(toProcess))
+		        else if (store.process(toProcess))
 			        {
 			        	//testForm page is processed
 			        }
-			        else
-			            if (ihomepage.process(toProcess))
+			        else if (ihomepage.process(toProcess))
 				        {
 				        	//testForm page is processed
 				        }
