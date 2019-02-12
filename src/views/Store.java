@@ -72,7 +72,7 @@ public class Store extends DynamicWebPage
         			"          </div>\r\n" + 
         			"        </div>\r\n" + 
         			"        <div class=\"col-md-2\"><img class=\"img-fluid d-block mx-auto\" src=\"../images/tshirt4.jpeg\">\r\n" + 
-        			"          <h2 class=\"\">Budget T-Shirt<br>£15.00</h2>\r\n" + 
+        			"          <h2 class=\"\">Budget T-Shirt<br>&pound15.00</h2>\r\n" + 
         			"        </div>\r\n" + 
         			"        <div class=\"col-md-2\" style=\"\">\r\n" + 
         			"          <a href=\"checkout.html\">\r\n" + 
@@ -80,7 +80,7 @@ public class Store extends DynamicWebPage
         			"          </a>\r\n" + 
         			"          <div class=\"row\">\r\n" + 
         			"            <div class=\"col-md-12\" style=\"\">\r\n" + 
-        			"              <h2 class=\"\">T-Shirt<br>£40.00</h2>\r\n" + 
+        			"              <h2 class=\"\">T-Shirt<br>&pound40.00</h2>\r\n" + 
         			"            </div>\r\n" + 
         			"          </div>\r\n" + 
         			"        </div>\r\n" + 
@@ -90,7 +90,7 @@ public class Store extends DynamicWebPage
         			"              <a href=\"checkout.html\">\r\n" + 
         			"                <img class=\"img-fluid d-block\" src=\"../images/tshirt3.jpg\">\r\n" + 
         			"              </a>\r\n" + 
-        			"              <h2 class=\"\">Premium T-Shirt<br>£120.00</h2>\r\n" + 
+        			"              <h2 class=\"\">Premium T-Shirt<br>&pound120.00</h2>\r\n" + 
         			"            </div>\r\n" + 
         			"          </div>\r\n" + 
         			"        </div><a href=\"checkout.html\" style=\"\">\r\n" + 
@@ -101,7 +101,7 @@ public class Store extends DynamicWebPage
         					+ "</a>\r\n" + 
         			"          <div class=\"row\">\r\n" + 
         			"            <div class=\"col-md-12\">\r\n" + 
-        			"              <h2 class=\"\">Designer<br>&nbsp;T-shirt<br>£999.99</h2>\r\n" + 
+        			"              <h2 class=\"\">Designer<br>&nbsp;T-shirt<br>&pound999.99</h2>\r\n" + 
         			"            </div>\r\n" + 
         			"          </div>\r\n" + 
         			"        </div>\r\n" + 
