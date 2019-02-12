@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import views.ExampleView;
+import views.HomePage;
 import views.Store;
 import views.TestForm;
 import views.Webapp;
@@ -81,6 +82,7 @@ public class Main
 		//An example dynamic page that responds to a form in html
 		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
 		Webapp iwebapp = new Webapp(databaseInterface,fileStoreInterface);
+		HomePage ihomepage= new HomePage(databaseInterface,fileStoreInterface);
 		Store store= new Store(databaseInterface,fileStoreInterface);
 		//this variable indicates that the program should keep running
 			//by setting this variable to false the program will exit
@@ -135,12 +137,17 @@ public class Main
 		        {
 		        	//testForm page is processed
 		        }
-		        else
+		        else {
 			        if (store.process(toProcess))
 			        {
 			        	//testForm page is processed
 			        }
 			        else
+			            if (ihomepage.process(toProcess))
+				        {
+				        	//testForm page is processed
+				        }
+				        else
 		        {
 			        String asFilepath = fileStoreInterface.decodeFilePath(toProcess.path);
 			        if((asFilepath!=null)&&fileStoreInterface.exists(asFilepath))
