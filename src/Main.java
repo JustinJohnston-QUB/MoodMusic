@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
+import views.AboutUsView;
 import views.ExampleView;
 import views.HomePage;
 import views.Store;
@@ -81,6 +82,7 @@ public class Main
 	ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
 		//An example dynamic page that responds to a form in html
 		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
+		AboutUsView aboutUsPage = new AboutUsView(databaseInterface, fileStoreInterface);
 		Webapp iwebapp = new Webapp(databaseInterface,fileStoreInterface);
 		HomePage ihomepage= new HomePage(databaseInterface,fileStoreInterface);
 		Store store= new Store(databaseInterface,fileStoreInterface);
@@ -144,7 +146,9 @@ public class Main
 				        {
 				        	//testForm page is processed
 				        }
-				        else
+			        else if(aboutUsPage.process(toProcess))
+			        {}
+			        	else
 		        {
 			        String asFilepath = fileStoreInterface.decodeFilePath(toProcess.path);
 			        if((asFilepath!=null)&&fileStoreInterface.exists(asFilepath))
