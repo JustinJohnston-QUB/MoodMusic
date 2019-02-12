@@ -29,23 +29,24 @@ public class Webapp extends DynamicWebPage
         			"</head>\n" + 
         			"\n" + 
         			"<body >\n" + 
-        			"  <nav class=\"navbar navbar-expand-md navbar-light\">\n" + 
-        			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\n" + 
-        			"        <i class=\"fa d-inline fa-lg fa-stop-circle\"></i>\n" + 
-        			"        <b> BRAND</b>\n" + 
-        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar4\">\n" + 
-        			"        <span class=\"navbar-toggler-icon\"></span>\n" + 
-        			"      </button>\n" + 
-        			"      <div class=\"collapse navbar-collapse\" id=\"navbar4\">\n" + 
-        			"        <ul class=\"navbar-nav ml-auto\">\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Features</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Pricing</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">About</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">FAQ</a> </li>\n" + 
-        			"        </ul> <a class=\"btn navbar-btn ml-md-2 btn-light\">Contact us</a>\n" + 
-        			"      </div>\n" + 
-        			"    </div>\n" + 
-        			"  </nav>\n" + 
+        			"  <nav class=\"navbar navbar-expand-lg navbar-light\">\r\n" + 
+        			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\r\n" + 
+        			"        <i class=\"fa d-inline fa-lg fa-circle-o\"></i>\r\n" + 
+        			"        <b>CornDogMusic</b>\r\n" + 
+        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar5\">\r\n" + 
+        			"        <span class=\"navbar-toggler-icon\"></span>\r\n" + 
+        			"      </button>\r\n" + 
+        			"      <div class=\"collapse navbar-collapse\" id=\"navbar5\">\r\n" + 
+        			"        <ul class=\"navbar-nav mr-auto\">\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"index.html\">Home</a> </li>\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"webapp.html\">Music</a> </li>\r\n" + 
+        			"        </ul>\r\n" + 
+        			"        <ul class=\"navbar-nav ml-auto\">\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"aboutus\">About us</a> </li>\r\n" + 
+        			"        </ul> <a class=\"btn btn-outline-primary navbar-btn ml-md-2\" href=\"account.html\">Account</a>\r\n" + 
+        			"      </div>\r\n" + 
+        			"    </div>\r\n" + 
+        			"  </nav>\r\n" + 
         			"  <div class=\"py-0 pt-3\">\n" + 
         			"    <div class=\"container\">\n" + 
         			"      <div class=\"row\">\n" + 
