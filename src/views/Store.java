@@ -23,100 +23,128 @@ public class Store extends DynamicWebPage
         	newTshirt.filePathToImage = "../images/tshirt4.jpeg";
         	
         	String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
-        			"<html>\r\n" + 
-        			"\r\n" + 
+        			"<html lang=\"en\">\r\n" + 
         			"<head>\r\n" + 
-        			"  <meta charset=\"utf-8\">\r\n" + 
-        			"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
-        			"  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" type=\"text/css\">\r\n" + 
-        			"  <link rel=\"stylesheet\" href=\"https://static.pingendo.com/bootstrap/bootstrap-4.2.1.css\">\r\n" + 
-        			"</head>\r\n" + 
+        			"  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\r\n" + 
+        			"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1.0\"/>\r\n" + 
+        			"  <title>Starter Template - Materialize</title>\r\n" + 
         			"\r\n" + 
+        			"  <!-- CSS  -->\r\n" + 
+        			"  <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\r\n" + 
+        			"  <link href=\"css/materialize.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/>\r\n" + 
+        			"  <link href=\"css/style.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/>\r\n" + 
+        			"</head>\r\n" + 
         			"<body>\r\n" + 
-        			"  <nav class=\"navbar navbar-expand-lg navbar-light\">\r\n" + 
-        			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\r\n" + 
-        			"        <i class=\"fa d-inline fa-lg fa-circle-o\"></i>\r\n" + 
-        			"        <b>CornDogMusic</b>\r\n" + 
-        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar5\" style=\"\">\r\n" + 
-        			"        <span class=\"navbar-toggler-icon\"></span>\r\n" + 
-        			"      </button>\r\n" + 
-        			"      <div class=\"collapse navbar-collapse\" id=\"navbar5\">\r\n" + 
-        			"        <ul class=\"navbar-nav mr-auto\">\r\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"index.html\">Home</a> </li>\r\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"webapp.html\">Search</a> </li>\r\n" + 
-        			"        </ul>\r\n" + 
-        			"        <ul class=\"navbar-nav ml-auto\">\r\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"aboutus\">About us</a> </li>\r\n" + 
-        			"        </ul> <a class=\"btn btn-outline-primary navbar-btn ml-md-2\" href=\"account.html\">Account</a>\r\n" + 
-        			"      </div>\r\n" + 
+        			"  <nav class=\"blue lighten-1\" role=\"navigation\">\r\n" + 
+        			"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage.html\" class=\"brand-logo\">CornDogMusic</a>\r\n" + 
+        			"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
+        			"        <li><a href=\"account.html\">Account</a></li>\r\n" + 
+        			"		<li><a href=\"aboutus.html\">About Us</a></li>\r\n" + 
+        			"		<li><a href=\"webapp.html\">Music</a></li>\r\n" + 
+        			"        <li><a href=\"store.html\">Store</a></li>\r\n" + 
+        			"\r\n" + 
+        			"\r\n" + 
+        			"      </ul>\r\n" + 
+        			"\r\n" + 
+        			"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
+        			"        <li><a href=\"#\">Navbar Link</a></li>\r\n" + 
+        			"      </ul>\r\n" + 
+        			"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger\"><i class=\"material-icons\">menu</i></a>\r\n" + 
         			"    </div>\r\n" + 
         			"  </nav>\r\n" + 
-        			"  <div class=\"py-5\">\r\n" + 
+        			"  <div class=\"section no-pad-bot\" id=\"index-banner\">\r\n" + 
+        			"    <div class=\"container\">\r\n" + 
+        			"      <br><br>\r\n" + 
+        			"      <h1 class=\"header center black-text\">Store Page</h1>\r\n" + 
+        			"      <div class=\"row center\">\r\n" + 
+        			"        <h5 class=\"header col s12 light\">Support our emotion based music site, <br/> And look damn good doing it!	</h5>\r\n" + 
+        			"      </div>\r\n" + 
+        			"      <div class=\"row center\">\r\n" + 
+        			"      </div>\r\n" + 
+        			"      <br><br>\r\n" + 
+        			"\r\n" + 
+        			"    </div>\r\n" + 
+        			"  </div>\r\n" + 
+        			"\r\n" + 
+        			"\r\n" + 
+        			"  <div class=\"container\">\r\n" + 
+        			"    <div class=\"section\">\r\n" + 
+        			"\r\n" + 
+        			"      <!--   Icon Section   -->\r\n" + 
+        			"      <div class=\"row\">\r\n" + 
+        			"        <div class=\"col s12 m4\">\r\n" + 
+        			"          <div class=\"icon-block\">\r\n" + 
+        			"            <image class = \"left\" src = \"../images/tshirt1.png\" width = 200px></image>\r\n" + 
+        			"\r\n" + 
+        			"            <h5 class=\"heavy left\">Premium T-shirt<br/>Only &pound9.99</h5>\r\n" + 
+        			"          </div>\r\n" + 
+        			"        </div>\r\n" + 
+        			"\r\n" + 
+        			"        <div class=\"col s12 m4\">\r\n" + 
+        			"          <div class=\"icon-block\">\r\n" + 
+        			"            <image class = \"left\" src = \"../images/tshirt2.jpg\" width = 210px></image>\r\n" +
+        			"\r\n" +
+        			"            <h5 class=\"heavy left\">Budget T-shirt<br/>Only &pound4.99</h5>\r\n" + 
+        			"          </div>\r\n" + 
+        			"        </div>\r\n" + 
+        			"\r\n" + 
+        			"        <div class=\"col s12 m4\">\r\n" + 
+        			"          <div class=\"icon-block\">\r\n" + 
+        			"            <image class = \"left\" src = \"../images/tshirt2.jpg\" width = 210px></image>\r\n" + 
+        			"\r\n" + 
+        			"            <p class=\"heavy left\">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>\r\n" + 
+        			"          </div>\r\n" + 
+        			"        </div>\r\n" + 
+        			"      </div>\r\n" + 
+        			"\r\n" + 
+        			"    </div>\r\n" + 
+        			"    <br><br>\r\n" + 
+        			"  </div>\r\n" + 
+        			"\r\n" + 
+        			"  <footer class=\"page-footer orange\">\r\n" + 
         			"    <div class=\"container\">\r\n" + 
         			"      <div class=\"row\">\r\n" + 
-        			"        <div class=\"col-md-12\">\r\n" + 
-        			"          <h1 class=\"display-1 text-center shadow-none border-bottom border-info\" contenteditable=\"true\">CornDogStore</h1>\r\n" + 
+        			"        <div class=\"col l6 s12\">\r\n" + 
+        			"          <h5 class=\"white-text\">Company Bio</h5>\r\n" + 
+        			"          <p class=\"grey-text text-lighten-4\">This is the footer where we will have contact us and donation button</p>\r\n" + 
+        			"\r\n" + 
+        			"\r\n" + 
+        			"        </div>\r\n" + 
+        			"        <div class=\"col l3 s12\">\r\n" + 
+        			"          <h5 class=\"white-text\">Settings</h5>\r\n" + 
+        			"          <ul>\r\n" + 
+        			"            <li><a class=\"white-text\" href=\"#!\">Link 1</a></li>\r\n" + 
+        			"            <li><a class=\"white-text\" href=\"#!\">Link 2</a></li>\r\n" + 
+        			"            <li><a class=\"white-text\" href=\"#!\">Link 3</a></li>\r\n" + 
+        			"            <li><a class=\"white-text\" href=\"#!\">Link 4</a></li>\r\n" + 
+        			"          </ul>\r\n" + 
+        			"        </div>\r\n" + 
+        			"        <div class=\"col l3 s12\">\r\n" + 
+        			"          <h5 class=\"white-text\">Connect</h5>\r\n" + 
+        			"          <ul>\r\n" + 
+        			"            <li><a class=\"white-text\" href=\"#!\">Link 1</a></li>\r\n" + 
+        			"            <li><a class=\"white-text\" href=\"#!\">Link 2</a></li>\r\n" + 
+        			"            <li><a class=\"white-text\" href=\"#!\">Link 3</a></li>\r\n" + 
+        			"            <li><a class=\"white-text\" href=\"#!\">Link 4</a></li>\r\n" + 
+        			"          </ul>\r\n" + 
         			"        </div>\r\n" + 
         			"      </div>\r\n" + 
         			"    </div>\r\n" + 
-        			"  </div>\r\n" + 
-        			"  <div class=\"py-5\">\r\n" + 
-        			"    <div class=\"container\">\r\n" + 
-        			"      <div class=\"row\">\r\n" + 
-        			"        <div class=\"col-md-2  \" style=\"\">\r\n" + 
-        			"          <a href=\"checkout.html\">\r\n" + 
-        			"          </a>\r\n" + 
-        			"          <div class=\"row\">\r\n" + 
-        			"            <div class=\"col-md-12\">\r\n" + 
-        			"            </div>\r\n" + 
-        			"          </div>\r\n" + 
-        			"        </div>\r\n" + 
-        			"        <div class=\"col-md-2\"><img class=\"img-fluid d-block mx-auto\" src=\"../images/tshirt4.jpeg\">\r\n" + 
-        			"          <h2 class=\"\">Budget T-Shirt<br>&pound15.00</h2>\r\n" + 
-        			"        </div>\r\n" + 
-        			"        <div class=\"col-md-2\" style=\"\">\r\n" + 
-        			"          <a href=\"checkout.html\">\r\n" + 
-        			"            <img class=\"img-fluid d-block\" src=\"../images/tshirt2.jpg\">\r\n" + 
-        			"          </a>\r\n" + 
-        			"          <div class=\"row\">\r\n" + 
-        			"            <div class=\"col-md-12\" style=\"\">\r\n" + 
-        			"              <h2 class=\"\">T-Shirt<br>&pound40.00</h2>\r\n" + 
-        			"            </div>\r\n" + 
-        			"          </div>\r\n" + 
-        			"        </div>\r\n" + 
-        			"        <div class=\"col-md-2\" style=\"\"><img class=\"../images/tshirt3.jpg\">\r\n" + 
-        			"          <div class=\"row\">\r\n" + 
-        			"            <div class=\"col-md-12\">\r\n" + 
-        			"              <a href=\"checkout.html\">\r\n" + 
-        			"                <img class=\"img-fluid d-block\" src=\"../images/tshirt3.jpg\">\r\n" + 
-        			"              </a>\r\n" + 
-        			"              <h2 class=\"\">Premium T-Shirt<br>&pound120.00</h2>\r\n" + 
-        			"            </div>\r\n" + 
-        			"          </div>\r\n" + 
-        			"        </div><a href=\"checkout.html\" style=\"\">\r\n" + 
-        			"        </a>\r\n" + 
-        			"        <div class=\"col-md-2\">"
-        			+ "<a href = \"checkout.html\">"
-        					+ "<img class=\"img-fluid d-block\" src=\"../images/tshirt1.png\">"
-        					+ "</a>\r\n" + 
-        			"          <div class=\"row\">\r\n" + 
-        			"            <div class=\"col-md-12\">\r\n" + 
-        			"              <h2 class=\"\">Designer<br>&nbsp;T-shirt<br>&pound999.99</h2>\r\n" + 
-        			"            </div>\r\n" + 
-        			"          </div>\r\n" + 
-        			"        </div>\r\n" + 
-        			"      </div><a href=\"checkout.html\">\r\n" + 
-        			"      </a>\r\n" + 
-        			"    </div><a href=\"checkout.html\">\r\n" + 
-        			"    </a>\r\n" + 
-        			"  </div><a href=\"checkout.html\">\r\n" + 
-        			"    <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\r\n" + 
-        			"    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\r\n" + 
-        			"    <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\" style=\"\" ></script>\r\n" + 
-        			"  </a>\r\n" + 
-        			"</body>\r\n" + 
+        			"    <div class=\"footer-copyright\">\r\n" + 
+        			"      <div class=\"container\">\r\n" + 
+        			"      </div>\r\n" + 
+        			"    </div>\r\n" + 
+        			"  </footer>\r\n" + 
         			"\r\n" + 
-        			"</html>";
+        			"\r\n" + 
+        			"  <!--  Scripts-->\r\n" + 
+        			"  <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\r\n" + 
+        			"  <script src=\"js/materialize.js\"></script>\r\n" + 
+        			"  <script src=\"js/init.js\"></script>\r\n" + 
+        			"\r\n" + 
+        			"  </body>\r\n" + 
+        			"</html>\r\n" + 
+        			"";
         	
         	
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );

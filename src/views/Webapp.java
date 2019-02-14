@@ -29,25 +29,27 @@ public class Webapp extends DynamicWebPage
         			"</head>\n" + 
         			"\n" + 
         			"<body >\n" + 
-        			"  <nav class=\"navbar navbar-expand-md navbar-light\">\n" + 
-        			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\n" + 
-        			"        <i class=\"fa d-inline fa-lg fa-stop-circle\"></i>\n" + 
-        			"        <b> BRAND</b>\n" + 
-        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar4\">\n" + 
-        			"        <span class=\"navbar-toggler-icon\"></span>\n" + 
-        			"      </button>\n" + 
-        			"      <div class=\"collapse navbar-collapse\" id=\"navbar4\">\n" + 
-        			"        <ul class=\"navbar-nav ml-auto\">\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Features</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Pricing</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">About</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">FAQ</a> </li>\n" + 
-        			"        </ul> <a class=\"btn navbar-btn ml-md-2 btn-light\">Contact us</a>\n" + 
-        			"      </div>\n" + 
-        			"    </div>\n" + 
-        			"  </nav>\n" + 
+        			"  <nav class=\"navbar navbar-expand-lg navbar-light\">\r\n" + 
+        			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\r\n" + 
+        			"        <i class=\"fa d-inline fa-lg fa-circle-o\"></i>\r\n" + 
+        			"        <b>CornDogMusic</b>\r\n" + 
+        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar5\">\r\n" + 
+        			"        <span class=\"navbar-toggler-icon\"></span>\r\n" + 
+        			"      </button>\r\n" + 
+        			"      <div class=\"collapse navbar-collapse\" id=\"navbar5\">\r\n" + 
+        			"        <ul class=\"navbar-nav mr-auto\">\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"homepage.html\">Home</a> </li>\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"webapp.html\">Music</a> </li>\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"store.html\">Store</a> </li>\r\n" + 
+        			"        </ul>\r\n" + 
+        			"        <ul class=\"navbar-nav ml-auto\">\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"aboutus\">About us</a> </li>\r\n" + 
+        			"        </ul> <a class=\"btn btn-outline-primary navbar-btn ml-md-2\" href=\"account.html\">Account</a>\r\n" + 
+        			"      </div>\r\n" + 
+        			"    </div>\r\n" + 
+        			"  </nav>\r\n" +  
         			"  <div class=\"py-0 pt-3\">\n" + 
-        			"    <div class=\"container-fluid\">\n" + 
+        			"    <div class=\"container\">\n" + 
         			"      <div class=\"row\">\n" + 
         			"        <div class=\"col-md-2\"><img class=\"img-fluid d-block p-1 mx-2 img-thumbnail mx-auto\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" height=\"300\"></div>\n" + 
         			"        <div class=\"col-md-5\">\n" + 
@@ -78,7 +80,7 @@ public class Webapp extends DynamicWebPage
         			"    </div>\n" + 
         			"  </div>\n" + 
         			"  <div class=\"py-0\">\n" + 
-        			"    <div class=\"container-fluid\">\n" + 
+        			"    <div class=\"container\">\n" + 
         			"      <div class=\"row\">\n" + 
         			"        <div class=\"col-md-9\" style=\"\">\n" + 
         			"          <div class=\"row\" style=\"\">\n" + 
@@ -129,7 +131,7 @@ public class Webapp extends DynamicWebPage
         			"    </div>\n" + 
         			"  </div>\n" + 
         			"  <div class=\"py-0\">\n" + 
-        			"    <div class=\"container-fluid\">\n" + 
+        			"    <div class=\"container\">\n" + 
         			"      <div class=\"row pt-2\">\n" + 
         			"        <div class=\"col-md-9\">\n" + 
         			"          <div class=\"row\" style=\"\"></div>\n" + 
@@ -152,8 +154,6 @@ public class Webapp extends DynamicWebPage
         			"  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n" + 
         			"  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\n" + 
         			"  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\"></script>\n" + 
-        			"  <pingendo onclick=\"window.open('https://pingendo.com/', '_blank')\" style=\"cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white\">Made with Pingendo Free&nbsp;&nbsp;<img src=\"https://pingendo.com/site-assets/Pingendo_logo_big.png\" class=\"d-block\" alt=\"Pingendo logo\" height=\"16\"></pingendo>\n" + 
-        			"</body>\n" + 
         			"\n" + 
         			"</html>";
         	

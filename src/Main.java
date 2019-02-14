@@ -5,8 +5,10 @@ import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import views.Checkout;
 import views.ExampleView;
+import views.HomePage;
 import views.Store;
 import views.TestForm;
+import views.Webapp;
 import web.Base64;
 import web.WebInterface;
 import web.WebRequest;
@@ -79,12 +81,12 @@ public class Main
 		
 		//An example dynamic page
 		ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
-		Store storepage = new Store(databaseInterface, fileStoreInterface);
 		Checkout checkout = new Checkout(databaseInterface, fileStoreInterface);
 		//An example dynamic page that responds to a form in html
 		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
-
-		
+		Webapp iwebapp = new Webapp(databaseInterface,fileStoreInterface);
+		HomePage ihomepage= new HomePage(databaseInterface,fileStoreInterface);
+		Store store= new Store(databaseInterface,fileStoreInterface);
 		//this variable indicates that the program should keep running
 			//by setting this variable to false the program will exit
 		boolean shouldKeepRunning = true;
@@ -133,16 +135,23 @@ public class Main
 		        {
 		        	//example page is processed
 		        }
-		        else
-		        if(storepage.process(toProcess))
+		        else if(iwebapp.process(toProcess))
 		        {
-		        	
+		        	//example page is processed
 		        }
 		        else
 		        if(checkout.process(toProcess)) {
 		        	
 		        }
-		        else
+		        else if (store.process(toProcess))
+			        {
+			        	//testForm page is processed
+			        }
+			        else if (ihomepage.process(toProcess))
+				        {
+				        	//testForm page is processed
+				        }
+				        else
 		        {
 			        String asFilepath = fileStoreInterface.decodeFilePath(toProcess.path);
 			        if((asFilepath!=null)&&fileStoreInterface.exists(asFilepath))
