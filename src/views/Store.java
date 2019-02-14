@@ -148,7 +148,7 @@ public class Store extends DynamicWebPage
         			"    </div>\r\n" + 
         			"    <div class=\"footer-copyright\">\r\n" + 
         			"      <div class=\"container\">\r\n" + 
-        			"		<h5>© 2019 Feelin' It</h5>\r\n" + 
+        			"		<h5>&copy 2019 Feelin' It</h5>\r\n" + 
         			"      </div>\r\n" + 
         			"    </div>\r\n" + 
         			"  </footer>\r\n" + 
