@@ -78,7 +78,7 @@ public class Main
 			//however it is not safe to rely on this as it is not guaranteed to be called, for example if the computer power fails
 			//it obviously won't run as, without power, it will stop immediately
 		registerShutdownHook(databaseInterface);
-		
+
 		//An example dynamic page
 		ExampleView exampleDynamicPage = new ExampleView(databaseInterface,fileStoreInterface);
 		Checkout checkout = new Checkout(databaseInterface, fileStoreInterface);
