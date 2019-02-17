@@ -14,7 +14,7 @@ public class HomePage extends DynamicWebPage
 
 	public boolean process(WebRequest toProcess)
 	{
-        if(toProcess.path.equalsIgnoreCase("homepage.html"))
+        if(toProcess.path.equalsIgnoreCase("homepage"))
         {
         	//Lab 1 Task 4
         	//Change this string so that it contains HTML from a page you created in Pingendo 

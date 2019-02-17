@@ -9,5 +9,6 @@ public class Tshirt implements Serializable {
 	public String filePathToImage;
 	public String price;
 	public String title;
+	public String paypalBtn;
 
 }
