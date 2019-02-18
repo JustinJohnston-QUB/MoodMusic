@@ -82,29 +82,39 @@ public class Store extends DynamicWebPage
                         			"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger\"><i class=\"material-icons\">menu</i></a>\r\n" + 
                         			"    </div>\r\n" + 
                         			"  </nav>\r\n";
-        			//Store page title
+        			//Carousel
         			stringToSendToWebBrowser +=
-        			"  <div class=\"section no-pad-bot\" id=\"index-banner\">\r\n" + 
-        			"    <div class=\"container\">\r\n" + 
-        			"      <br><br>\r\n" + 
-        			"      <h1 class=\"header center black-text\">Store Page</h1>\r\n" + 
-        			"      <div class=\"row center\">\r\n" + 
-        			"        <h5 class=\"header col s12 light\">Support our emotion based music site, <br/> And look damn good doing it!	</h5>\r\n" + 
-        			"      </div>\r\n" + 
-        			"      <div class=\"row center\">\r\n" + 
-        			"      </div>\r\n" + 
-        			"      <br><br>\r\n" + 
+        			"<div class=\"carousel carousel-slider\">\r\n" + 
+        			"    <div class=\"carousel-fixed-item\">\r\n" + 
+        			"      <a href=\"#tshirts\">\r\n" + 
+        			"        <h2 class=\"white-text\">Store</h2>\r\n" + 
+        			"      </a>\r\n" + 
+        			"      <h5 class=\"header white-text\">Support our emotion based music site <br /> and look damn good doing it! </h5>\r\n" + 
         			"\r\n" + 
         			"    </div>\r\n" + 
-        			"  </div>\r\n" + 
-        			"\r\n" + 
-        			"\r\n" + 
+        			"    <a class=\"carousel-item\" href=\"#one!\">\r\n" + 
+        			"      <img src=\"https://lorempixel.com/1920/1080/nature/1\">\r\n" + 
+        			"    </a>\r\n" + 
+        			"    <a class=\"carousel-item\" href=\"#two!\">\r\n" + 
+        			"      <img src=\"https://lorempixel.com/1920/1080/nature/2\">\r\n" + 
+        			"    </a>\r\n" + 
+        			"    <a class=\"carousel-item\" href=\"#three!\">\r\n" + 
+        			"      <img src=\"https://lorempixel.com/1920/1080/nature/3\">\r\n" + 
+        			"    </a>\r\n" + 
+        			"    <a class=\"carousel-item\" href=\"#four!\">\r\n" + 
+        			"      <img src=\"https://lorempixel.com/1920/1080/nature/4\">\r\n" + 
+        			"    </a>\r\n" + 
+        			"    <a class=\"carousel-item\" href=\"#five!\">\r\n" + 
+        			"      <img src=\"https://lorempixel.com/1920/1080/nature/5\">\r\n" + 
+        			"    </a>\r\n" + 
+        			"  </div>" + 
         			"  <div class=\"container\">\r\n" + 
         			"    <div class=\"section\">\r\n" + 
         			"\r\n" + 
         			"      <!--   Icon Section   -->\r\n" + 
         			"      <div class=\"row\">\r\n"; 
         			
+
         			for (int i = 0; i < 3; i++) {
         				changeTshirt(i, itshirt);
 						stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
@@ -160,15 +170,31 @@ public class Store extends DynamicWebPage
         			"  </footer>\r\n" + 
         			"\r\n" + 
         			"\r\n";
-        			
+        			//Scripts
         			stringToSendToWebBrowser +="  <!--  Scripts-->\r\n" + 
         			"  <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\r\n" + 
         			"  <script src=\"js/materialize.js\"></script>\r\n" + 
         			"  <script src=\"js/init.js\"></script>\r\n" + 
         			"\r\n" + 
+        			"<script>\r\n" + 
+        			"    $(document).ready(function() {\r\n" + 
+        			"      $('.carousel').carousel();\r\n" + 
+        			"\r\n" + 
+        			"      $('.carousel.carousel-slider').carousel({\r\n" + 
+        			"        fullWidth: true,\r\n" + 
+        			"        indicators: true\r\n" + 
+        			"      });\r\n" + 
+        			"\r\n" + 
+        			"      autoplay();\r\n" + 
+        			"\r\n" + 
+        			"      function autoplay() {\r\n" + 
+        			"        $('.carousel').carousel('next');\r\n" + 
+        			"        setTimeout(autoplay, 4500);\r\n" + 
+        			"      }\r\n" + 
+        			"    });\r\n" + 
+        			"  </script>" +
         			"  </body>\r\n" + 
-        			"</html>\r\n" + 
-        			"";
+        			"</html>\r\n"; 
         	
         	
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
