@@ -1,5 +1,9 @@
 package views;
 
+import org.h2.mvstore.MVMap;
+
+import model.Song;
+import model.Tshirt;
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import web.WebRequest;
@@ -160,8 +164,43 @@ public class Webapp extends DynamicWebPage
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 //
         	return true;
-        }
-        return false;
+        }else if(toProcess.path.equalsIgnoreCase("song.html")){
+        	Song isong = new Song();
+        	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+        			"<html>\n" + 
+        			"<body>\n" + 
+        			"\n" + 
+        			"<h2>Add song</h2>\n" + 
+        			"<form action=\"/addsong\" method = \"GET\">\n" + 
+        			"  Artist:<br>\n" + 
+        			"  <input type=\"text\" name=\"artistname\" value=\"Artist\">\n" + 
+        			"  <br>\n" + 
+        			"  Song Title:<br>\n" + 
+        			"  <input type=\"text\" name=\"songtitle\" value=\"title\">\n" + 
+        			"  <br>\n" + 
+        			"  Mood<br>\n" + 
+        			"  <input type=\"text\" name=\"mood\" value=\"mood\">\n" + 
+        			"  <br><br>\n" + 
+        			"  <input type=\"submit\" value=\"Submit\">\n" + 
+        			"</form> \n" + 
+        			"\n" + 
+        			"</body>\n" + 
+        			"</html> ";
+        	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+        	return true;
+        	}else if(toProcess.path.equalsIgnoreCase("addsong")) {
+        		Song isong = new Song();
+        		isong.uniqueID = "song_"+System.currentTimeMillis();
+        		isong.artistname = toProcess.params.get("artistname");
+        		isong.songtitle= toProcess.params.get("songtitle");
+        		isong.mood= toProcess.params.get("mood");
+        		
+        		MVMap<String, Song> songs= db.s.openMap("Song");
+        		songs.put(isong.uniqueID, isong);
+        		db.commit();
+        		return true;
+        	}
+		return false;   
 	}
 
 }
