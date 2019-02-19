@@ -1,5 +1,7 @@
 package views;
 
+import java.util.List;
+
 import org.h2.mvstore.MVMap;
 
 import model.Song;
@@ -171,7 +173,7 @@ public class Webapp extends DynamicWebPage
         			"<body>\n" + 
         			"\n" + 
         			"<h2>Add song</h2>\n" + 
-        			"<form action=\"/addsong\" method = \"GET\">\n" + 
+        			"<form action=\"../addsong.html\" method = \"GET\">\n" + 
         			"  Artist:<br>\n" + 
         			"  <input type=\"text\" name=\"artistname\" value=\"Artist\">\n" + 
         			"  <br>\n" + 
@@ -188,7 +190,7 @@ public class Webapp extends DynamicWebPage
         			"</html> ";
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
         	return true;
-        	}else if(toProcess.path.equalsIgnoreCase("addsong")) {
+        	}else if(toProcess.path.equalsIgnoreCase("addsong.html")) {
         		Song isong = new Song();
         		isong.uniqueID = "song_"+System.currentTimeMillis();
         		isong.artistname = toProcess.params.get("artistname");
@@ -198,8 +200,41 @@ public class Webapp extends DynamicWebPage
         		MVMap<String, Song> songs= db.s.openMap("Song");
         		songs.put(isong.uniqueID, isong);
         		db.commit();
+        		String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+        				"<html>\n" + 
+        				"<body>\n" + 
+        				"	<h2>song Added</h2>\n" + 
+        				"</body>\n" + 
+        				"</html>\n" + 
+        				"";
+        		toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
         		return true;
-        	}
+        	}else if(toProcess.path.equalsIgnoreCase("displaysong.html")){
+            	Song isong = new Song();
+            	MVMap<String, Song> songs= db.s.openMap("Song");
+            	List<String> songkeys = songs.keyList() ;
+            	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+        				"<html>\n" + 
+        				"<body>\n";
+        		if(songkeys.size() == 0) {
+        			stringToSendToWebBrowser += "<p> no songs in database</p>";
+        		}else {
+        			stringToSendToWebBrowser += "<div>";
+        			for(int i = 0; i<songkeys.size();i++) {
+        				String songsUniqueID = songkeys.get(i);
+        				isong = songs.get(songsUniqueID);
+        				stringToSendToWebBrowser += "<h4>Artist name:</h4> <p>"+ isong.artistname +"</p><\n" + 
+        						"<h4>song name:</h4> <p>"+ isong.songtitle +"</p>\n" + 
+        						"<h4>mood:</h4> <p>"+isong.mood+"</p>";
+        			}
+        			stringToSendToWebBrowser += "</div>";
+        		}
+            	stringToSendToWebBrowser += "</body>\n" + 
+        				"</html>\n" + 
+        				"";
+            	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+            	return true;
+            	}
 		return false;   
 	}
 
