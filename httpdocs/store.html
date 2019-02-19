@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Store</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+  <!--Navigation Bar-->
+  <nav class="orange" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="home" class="brand-logo">Feelin' It</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href=\"webapp.html\">Music</a></li>
+        <li class="active"><a href="store.html">Store</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="account.html">Account</a></li>
+      </ul>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+
+  </nav>
+  <!--carousel-->
+  <div class="carousel carousel-slider">
+    <div class="carousel-fixed-item">
+      <a href="#tshirts">
+        <h2 class="black-text">Store</h2>
+      </a>
+      <h5 class="header store-text">Support our emotion based music site <br /> and look damn good doing it! </h5>
+
+    </div>
+    <a class="carousel-item" href="#one!">
+      <img src="https://lorempixel.com/1920/1080/nature/1">
+    </a>
+    <a class="carousel-item" href="#two!">
+      <img src="../images/sampleDeal.png">
+    </a>
+    <a class="carousel-item" href="#three!">
+      <img src="https://lorempixel.com/1920/1080/nature/3">
+    </a>
+    <a class="carousel-item" href="#four!">
+      <img src="https://lorempixel.com/1920/1080/nature/4">
+    </a>
+    <a class="carousel-item" href="#five!">
+      <img src="https://lorempixel.com/1920/1080/nature/5">
+    </a>
+  </div>
+
+  <!--Tshirts-->
+  <div class="container" id="tshirts">
+    <h4>T-Shirts</h4>
+    <div class="section">
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+
+            <a href="checkout.html">
+              <image class="left" src="../images/tshirt1.png" alt="Picture of tshirt" width=200px></image>
+            </a>
+            <h5 class="heavy left">Budget T-shirt<br />Only &pound4.99</h5>
+            <!--Dropdown button to choose colour-->
+            <div class="colourBtn">
+              <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>
+              <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!" onclick="M.toast({html: 'Red Chosen'})">Red</a></li>
+                <li><a href="#!" onclick="M.toast({html: 'Blue Chosen'})">Blue</a></li>
+                <li><a href="#!" onclick="M.toast({html: 'Yellow Chosen'})">Yellow</a></li>
+              </ul>
+            </div>
+            <!--Paypal button-->
+
+            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="BNY7ML6LGKLDN">
+              <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+              <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+            </form>
+
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <a href="checkout.html">
+              <image class="left" src="../images/tshirt2.jpg" alt="Picture of tshirt" width=200px></image>
+            </a>
+            <h5 class="heavy left">Premium T-shirt<br />Only &pound9.99</h5>
+            <div class="colourBtn">
+              <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>
+              <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">Red</a></li>
+                <li><a href="#!">Blue</a></li>
+                <li><a href="#!">Yellow</a></li>
+              </ul>
+            </div>
+            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="WHVFFLN5E2DPW">
+              <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+              <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+            </form>
+
+
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <a href="checkout.html">
+              <image class="left" src="../images/tshirt3.jpg" alt="Picture of tshirt" width=200px></image>
+            </a>
+
+            <h5 class="heavy left">Rock On T-shirt<br />Only &pound15.99</h5>
+            <div class="colourBtn">
+              <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>
+              <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">Red</a></li>
+                <li><a href="#!">Blue</a></li>
+                <li><a href="#!">Yellow</a></li>
+              </ul>
+            </div>
+            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="WBUXQ3A283W3W">
+              <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+              <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </div>
+  <!--Footer-->
+  <footer class="page-footer blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4"></p>
+
+
+        </div>
+        <div class="col 20 s12">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="JCGQUETZC6DMN" />
+            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <h5>&copy 2019 Feelin' It</h5>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/init.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('.carousel').carousel();
+
+      $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+      });
+
+      autoplay();
+
+      function autoplay() {
+        $('.carousel').carousel('next');
+        setTimeout(autoplay, 4500);
+      }
+
+      $('.dropdown-trigger').dropdown();
+
+
+    });
+  </script>
+
+</body>
+
+</html>
