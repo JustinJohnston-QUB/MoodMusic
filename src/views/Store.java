@@ -82,6 +82,7 @@ public class Store extends DynamicWebPage
                         			"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger\"><i class=\"material-icons\">menu</i></a>\r\n" + 
                         			"    </div>\r\n" + 
                         			"  </nav>\r\n";
+        			
         			//Carousel
         			stringToSendToWebBrowser +=
         			"<div class=\"carousel carousel-slider\">\r\n" + 
@@ -108,20 +109,28 @@ public class Store extends DynamicWebPage
         			"      <img src=\"https://lorempixel.com/1920/1080/nature/5\">\r\n" + 
         			"    </a>\r\n" + 
         			"  </div>" + 
-        			"  <div class=\"container\">\r\n" + 
+        			"  <div class=\"container\">\r\n" +
+        			"    <h4>T-Shirts</h4>\r\n" + 
         			"    <div class=\"section\">\r\n" + 
         			"\r\n" + 
         			"      <!--   Icon Section   -->\r\n" + 
         			"      <div class=\"row\">\r\n"; 
         			
-
         			for (int i = 0; i < 3; i++) {
         				changeTshirt(i, itshirt);
 						stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
 			        			"          <div class=\"icon-block\">\r\n" + 
 			        			"            <image class = \"left\" src = \""+itshirt.filePathToImage+"\" alt = \"Picture of tshirt\" width = 200px></image>\r\n" + 
-			        			"\r\n" + 
+			        			"\r\n" +
 			        			"            <h5 class=\"heavy left\">"+itshirt.title+"<br/>Only &pound"+itshirt.price+"</h5>\r\n" + 
+			        			"<div class=\"colourBtn\">\r\n" + 
+			        			"            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>\r\n" + 
+			        			"            <ul id='dropdown1' class='dropdown-content'>\r\n" + 
+			        			"              <li><a href=\"#!\">Red</a></li>\r\n" + 
+			        			"              <li><a href=\"#!\">Blue</a></li>\r\n" + 
+			        			"              <li><a href=\"#!\">Yellow</a></li>\r\n" + 
+			        			"            </ul>\r\n" + 
+			        			"          </div>" + 
 			        			"			<form target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
 			        			"				<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\r\n" + 
 			        			"				<input type=\"hidden\" name=\"hosted_button_id\" value=\""+itshirt.paypalBtn+"\">\r\n" + 
@@ -190,7 +199,8 @@ public class Store extends DynamicWebPage
         			"      function autoplay() {\r\n" + 
         			"        $('.carousel').carousel('next');\r\n" + 
         			"        setTimeout(autoplay, 4500);\r\n" + 
-        			"      }\r\n" + 
+        			"      }\r\n" +
+        			"      $('.dropdown-trigger').dropdown();\r\n" + 
         			"    });\r\n" + 
         			"  </script>" +
         			"  </body>\r\n" + 
