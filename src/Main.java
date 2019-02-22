@@ -7,6 +7,7 @@ import views.Checkout;
 import views.AboutUsView;
 import views.ExampleView;
 import views.HomePage;
+import views.Registration;
 import views.Store;
 import views.TestForm;
 import views.Webapp;
@@ -88,6 +89,7 @@ public class Main
 		AboutUsView aboutUsPage = new AboutUsView(databaseInterface, fileStoreInterface);
 		Webapp iwebapp = new Webapp(databaseInterface,fileStoreInterface);
 		HomePage ihomepage= new HomePage(databaseInterface,fileStoreInterface);
+		Registration registerPage = new Registration(databaseInterface,fileStoreInterface);
 		Store store= new Store(databaseInterface,fileStoreInterface);
 		//this variable indicates that the program should keep running
 		//by setting this variable to false the program will exit
@@ -151,6 +153,10 @@ public class Main
 				else if (ihomepage.process(toProcess))
 				{
 					//testForm page is processed
+				}
+				else if (registerPage.process(toProcess))
+				{
+					
 				}
 				else if(aboutUsPage.process(toProcess))
 				{}
