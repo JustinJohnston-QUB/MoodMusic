@@ -47,6 +47,7 @@ public class HomePage extends DynamicWebPage
         			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"homepage.html\">Home</a> </li>\r\n" + 
         			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"webapp.html\">Music</a> </li>\r\n" + 
         			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"store.html\">Store</a> </li>\r\n" + 
+        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"registration.html\">Register</a> </li>\r\n" + 
         			"        </ul>\r\n" + 
         			"        <ul class=\"navbar-nav ml-auto\">\r\n" + 
         			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"aboutus\">About us</a> </li>\r\n" + 
