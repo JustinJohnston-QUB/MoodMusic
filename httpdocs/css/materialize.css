@@ -3,6 +3,17 @@
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+
+#tshirts{
+  margin-top: 50px;
+}
+
+
+
+.paypalBtn{
+  padding-top: 10px;
+  padding-left: 15%;
+}
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -4461,13 +4472,66 @@ nav .input-field label.active i {
 }
 
 .navbar-fixed {
-  position: relative;
   height: 56px;
   z-index: 997;
 }
 
 .navbar-fixed nav {
-  position: fixed;
+}
+
+.productImageSpace{
+  width: 50px;
+  margin-top: 20px;
+}
+
+.productImage{
+  width: 50%;
+  float: left;
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+
+.productDesc{
+  float: left;
+  background: #b1afaf;
+  border-radius: 5px;
+  margin-left: 5px;
+  grid-column-start: 5;
+  grid-column-end: 6;
+}
+
+.colourBtn{
+  padding: 0px 25px;
+}
+
+.grid-container{
+  display: grid;
+   grid-template-columns: auto auto auto;
+   grid-gap: 10px;
+   padding: 10px;}
+
+
+#navbar {
+  background-color: #333; /* Black background color */
+  position: fixed; /* Make it stick/fixed */
+  top: 0; /* Stay on top */
+  width: 100%; /* Full width */
+  transition: top 0.3s; /* Transition effect when sliding down (and up) */
+}
+
+/* Style the navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
 }
 
 @media only screen and (min-width: 601px) {
@@ -4743,13 +4807,14 @@ small {
 
 .card {
   position: relative;
-  margin: 0.5rem 0 1rem 0;
+  margin: 10px;
   background-color: #fff;
   -webkit-transition: -webkit-box-shadow .25s;
   transition: -webkit-box-shadow .25s;
   transition: box-shadow .25s;
   transition: box-shadow .25s, -webkit-box-shadow .25s;
   border-radius: 2px;
+  width: 220px;
 }
 
 .card .card-title {
@@ -4883,7 +4948,7 @@ small {
 }
 
 .card .card-content {
-  padding: 24px;
+  padding-left: 34px;
   border-radius: 0 0 2px 2px;
 }
 

@@ -15,7 +15,7 @@ public class aboutus extends DynamicWebPage
 
 	public boolean process(WebRequest toProcess)
 	{
-        if(toProcess.path.equalsIgnoreCase("checkout.html"))
+        if(toProcess.path.equalsIgnoreCase("aboutus.html"))
         {
       
         	

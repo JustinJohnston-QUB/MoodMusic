@@ -69,7 +69,7 @@ public class Store extends DynamicWebPage
                         			"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
                         			"		<li><a href=\"webapp\">Music</a></li>\r\n" + 
                         			"		<li><a href=\"store\">Store</a></li>\r\n" + 
-                        			"		<li><a href=\"aboutus\">About Us</a></li>\r\n" + 
+                        			"		<li><a href=\"aboutus.jhtm\">About Us</a></li>\r\n" + 
                         			"		<li><a href=\"account\">Account</a></li>\r\n" + 
                         			"\r\n" + 
                         			"\r\n" + 
@@ -88,25 +88,25 @@ public class Store extends DynamicWebPage
         			"<div class=\"carousel carousel-slider\">\r\n" + 
         			"    <div class=\"carousel-fixed-item\">\r\n" + 
         			"      <a href=\"#tshirts\">\r\n" + 
-        			"        <h2 class=\"white-text\">Store</h2>\r\n" + 
+        			"        <h2 class=\"black-text\">Store</h2>\r\n" + 
         			"      </a>\r\n" + 
-        			"      <h5 class=\"header white-text\">Support our emotion based music site <br /> and look damn good doing it! </h5>\r\n" + 
+        			"      <h5 class=\"black-text\">Support our emotion based music site <br /> and look damn good doing it! </h5>\r\n" + 
         			"\r\n" + 
         			"    </div>\r\n" + 
         			"    <a class=\"carousel-item\" href=\"#one!\">\r\n" + 
-        			"      <img src=\"https://lorempixel.com/1920/1080/nature/1\">\r\n" + 
+        			"      <img src=\"../images/sampleDeal.png\">\r\n" + 
         			"    </a>\r\n" + 
         			"    <a class=\"carousel-item\" href=\"#two!\">\r\n" + 
-        			"      <img src=\"https://lorempixel.com/1920/1080/nature/2\">\r\n" + 
+        			"      <img src=\"../images/sampleDeal.png\">\r\n" + 
         			"    </a>\r\n" + 
         			"    <a class=\"carousel-item\" href=\"#three!\">\r\n" + 
-        			"      <img src=\"https://lorempixel.com/1920/1080/nature/3\">\r\n" + 
+        			"      <img src=\"../images/sampleDeal.png\">\r\n" + 
         			"    </a>\r\n" + 
         			"    <a class=\"carousel-item\" href=\"#four!\">\r\n" + 
-        			"      <img src=\"https://lorempixel.com/1920/1080/nature/4\">\r\n" + 
+        			"      <img src=\"../images/sampleDeal.png\">\r\n" + 
         			"    </a>\r\n" + 
         			"    <a class=\"carousel-item\" href=\"#five!\">\r\n" + 
-        			"      <img src=\"https://lorempixel.com/1920/1080/nature/5\">\r\n" + 
+        			"      <img src=\"../images/sampleDeal.png\">\r\n" + 
         			"    </a>\r\n" + 
         			"  </div>" + 
         			"  <div class=\"container\">\r\n" +
@@ -119,28 +119,30 @@ public class Store extends DynamicWebPage
         			for (int i = 0; i < 3; i++) {
         				changeTshirt(i, itshirt);
 						stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
-			        			"          <div class=\"icon-block\">\r\n" + 
-			        			"            <image class = \"left\" src = \""+itshirt.filePathToImage+"\" alt = \"Picture of tshirt\" width = 200px></image>\r\n" + 
-			        			"\r\n" +
-			        			"            <h5 class=\"heavy left\">"+itshirt.title+"<br/>Only &pound"+itshirt.price+"</h5>\r\n" + 
-			        			"<div class=\"colourBtn\">\r\n" + 
-			        			"            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>\r\n" + 
-			        			"            <ul id='dropdown1' class='dropdown-content'>\r\n" + 
-			        			"              <li><a href=\"#!\">Red</a></li>\r\n" + 
-			        			"              <li><a href=\"#!\">Blue</a></li>\r\n" + 
-			        			"              <li><a href=\"#!\">Yellow</a></li>\r\n" + 
-			        			"            </ul>\r\n" + 
-			        			"          </div>" + 
-			        			"			<form target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
-			        			"				<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\r\n" + 
-			        			"				<input type=\"hidden\" name=\"hosted_button_id\" value=\""+itshirt.paypalBtn+"\">\r\n" + 
-			        			"				<input type=\"image\" src=\"https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal – The safer, easier way to pay online!\">\r\n" + 
-			        			"				<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\">\r\n" + 
-			        			"			</form>\r\n" + 
-			        			"\r\n" + 
-			        			"          </div>\r\n" + 
-			        			"        </div>\r\n" + 
-			        			"\r\n"; 
+								"          <div class=\"icon-block\">\r\n" + 
+								"            <a href=\"checkout.html\">\r\n" + 
+								"              <image class=\"left\" src=\""+itshirt.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
+								"            </a>\r\n" + 
+								"            <h5 class=\"heavy left\">"+itshirt.title+"<br />Only &pound"+itshirt.price+"</h5>\r\n" + 
+								"            <!--Dropdown button to choose colour-->\r\n" + 
+								"            <div class=\"colourBtn\">\r\n" + 
+								"              <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>\r\n" + 
+								"              <ul id='dropdown1' class='dropdown-content'>\r\n" + 
+								"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Red Chosen'})\">Red</a></li>\r\n" + 
+								"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
+								"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
+								"              </ul>\r\n" + 
+								"            </div>\r\n" + 
+								"            <!--Paypal button-->\r\n" + 
+								"\r\n" + 
+								"            <form class = \"paypalBtn\"target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
+								"              <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\r\n" +itshirt.paypalBtn+"\">\r\n" + 
+								"              <input type=\"image\" src=\"https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal – The safer, easier way to pay online!\">\r\n" + 
+								"              <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\">\r\n" + 
+								"            </form>\r\n" + 
+								"\r\n" + 
+								"          </div>\r\n" + 
+								"        </div>"; 
 					}
         			//This is the footer
         			stringToSendToWebBrowser += "</div>\r\n" + 
