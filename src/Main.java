@@ -85,7 +85,7 @@ public class Main
 		Checkout checkout = new Checkout(databaseInterface, fileStoreInterface);
 		//An example dynamic page that responds to a form in html
 		TestForm testFormPage = new TestForm(databaseInterface,fileStoreInterface);
-		AboutUsView aboutus = new AboutUsView(databaseInterface, fileStoreInterface);
+		AboutUsView aboutUsPage = new AboutUsView(databaseInterface, fileStoreInterface);
 		Webapp iwebapp = new Webapp(databaseInterface,fileStoreInterface);
 		HomePage ihomepage= new HomePage(databaseInterface,fileStoreInterface);
 		Store store= new Store(databaseInterface,fileStoreInterface);
@@ -152,7 +152,7 @@ public class Main
 				{
 					//testForm page is processed
 				}
-				else if(aboutus.process(toProcess))
+				else if(aboutUsPage.process(toProcess))
 				{}
 				else
 				{
