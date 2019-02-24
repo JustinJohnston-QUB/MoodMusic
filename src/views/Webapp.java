@@ -145,7 +145,7 @@ public class Webapp extends DynamicWebPage
         			for(int i = 0; i < artistkeys.size();i++) {
         				String artistUniqueID = artistkeys.get(i);
         				iartist = artists.get(artistUniqueID);
-        				stringToSendToWebBrowser += "  <option value=\""+ iartist.uniqueID +"\">"+iartist.artistName+"</option>\n";
+        				stringToSendToWebBrowser += "  <option value=\""+iartist.uniqueID +"\">"+iartist.artistName+"</option>\n";
         			}
         			
         			stringToSendToWebBrowser += "</select>" +
@@ -181,12 +181,16 @@ public class Webapp extends DynamicWebPage
         	return true;
         	
         	}else if(toProcess.path.equalsIgnoreCase("addsong.html")) {
+        	 	MVMap<String, Artist> artists= db.s.openMap("Artist");
+        	 	Artist art1 = artists.get(toProcess.params.get("Artist"));
         		Song isong = new Song();
         		isong.uniqueID = "song_"+System.currentTimeMillis();
         		isong.songtitle= toProcess.params.get("songtitle");	
-        		
+        		isong.songlength =  toProcess.params.get("songlength");	
+        		isong.songLink =  toProcess.params.get("songlink");	
         		MVMap<String, Song> songs= db.s.openMap("Song");
         		songs.put(isong.uniqueID, isong);
+        		artists.put(art1.uniqueID, art1);
         		db.commit();
         		String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
         				"<html>\n" + 
@@ -387,7 +391,7 @@ public class Webapp extends DynamicWebPage
         				String songUniqueID = songkeys.get(i);
         				isong = songs.get(songUniqueID);
         				if (isong.songtitle.toLowerCase().contains(searchTerm.toLowerCase())) {
-        					searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><p class=\"lead\">"+iartist.artistName+"</p></a>\n";
+        					searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><p class=\"lead\">"+isong.songtitle +" - " +iartist.artistName+"</p></a>\n";
         					resultcount++;
         				}        				
         			}
