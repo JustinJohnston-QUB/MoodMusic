@@ -8,7 +8,6 @@ public class Song implements Serializable {
 	
 	public String songtitle;
 	public double songlength;
-	public String mood;
 	public String songLink;
 	public String uniqueID;
 

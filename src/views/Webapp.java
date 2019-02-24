@@ -62,7 +62,7 @@ public class Webapp extends DynamicWebPage
  // Form
         			"          <form action=\"../search.html\" method=\"GET\" class=\"form-inline d-flex justify-content-center\">\n" + 
         			"            <div class=\"input-group\"> "
-        			+ "					<input type=\"text\" class=\"form-control\" name =\"Search\" value =\"Enter Search text here\">\n" + 
+        			+ "					<input type=\"text\" class=\"form-control\" name =\"Search\" placeholder =\"Enter Search text here\">\n" + 
         			"              <div class=\"input-group-append\">"
         			+ "					 <input class=\"btn btn-primary\" type=\"submit\" value  = \"Search\"></input> "
         			+ "				</div>\n" + 
@@ -125,21 +125,30 @@ public class Webapp extends DynamicWebPage
 //
         	return true;
         }else if(toProcess.path.equalsIgnoreCase("song.html")){
-        	Song isong = new Song();
+        	MVMap<String, Artist> artists= db.s.openMap("Artist");
+        	List<String> artistkeys = artists.keyList() ;
+        	Artist iartist = new Artist();
         	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
         			"<html>\n" + 
         			"<body>\n" + 
         			"\n" + 
         			"<h2>Add song</h2>\n" + 
-        			"<form action=\"../addsong.html\" method = \"GET\">\n" + 
-        			"  Artist:<br>\n" + 
-        			"  <input type=\"text\" name=\"artistname\" value=\"Artist\">\n" + 
-        			"  <br>\n" + 
-        			"  Song Title:<br>\n" + 
+        			"<form action=\"../addsong.html\" method = \"GET\"id = \"addsong\">\n " + 
+        			"  Song Title " + 
         			"  <input type=\"text\" name=\"songtitle\" value=\"title\">\n" + 
         			"  <br>\n" + 
-        			"  Mood<br>\n" + 
-        			"  <input type=\"text\" name=\"mood\" value=\"mood\">\n" + 
+        			" song Length <input type=\"time\" name=\"songtlength\" value=\"time\">\n" + 
+        			"  <br>\n" + 
+        			"  song Link <input type=\"text\" name=\"songLink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
+        			"  <br>\n" + 
+        			"Artist Name<select name=\"Artist\" form=\"addsong\">\n";
+        			for(int i = 0; i < artistkeys.size();i++) {
+        				String artistUniqueID = artistkeys.get(i);
+        				iartist = artists.get(artistUniqueID);
+        				stringToSendToWebBrowser += "  <option value=\""+ iartist.uniqueID +"\">"+iartist.artistName+"</option>\n";
+        			}
+        			
+        			stringToSendToWebBrowser += "</select>" +
         			"  <br><br>\n" + 
         			"  <input type=\"submit\" value=\"Submit\">\n" + 
         			"</form> \n" + 
@@ -148,11 +157,33 @@ public class Webapp extends DynamicWebPage
         			"</html> ";
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
         	return true;
+        }else if(toProcess.path.equalsIgnoreCase("artist.html")){
+        	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+        			"<html>\n" + 
+        			"<body>\n" + 
+        			"\n" + 
+        			"<h2>Add Artist</h2>\n" + 
+        			"<form action=\"../addartist.html\" method = \"GET\"id = \"addartist\">\n " + 
+        			"  Artist Name " + 
+        			"  <input type=\"text\" name=\"artistname\" placeholder=\"Name\">\n" + 
+        			"  <br>\n" + 
+        			"  Description<input type=\"text\" name=\"artistdescription\" placeholder=\"description\">\n" + 
+        			"  <br>\n" + 
+        			"  song Link <input type=\"text\" name=\"Artist Image\" placeholder=\"link to an image\">\n" + 
+        			"  <br>\n" + 
+        			"  <br><br>\n" + 
+        			"  <input type=\"submit\" value=\"Submit\">\n" + 
+        			"</form> \n" + 
+        			"\n" + 
+        			"</body>\n" + 
+        			"</html> ";
+        	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+        	return true;
+        	
         	}else if(toProcess.path.equalsIgnoreCase("addsong.html")) {
         		Song isong = new Song();
         		isong.uniqueID = "song_"+System.currentTimeMillis();
-        		isong.songtitle= toProcess.params.get("songtitle");
-        		isong.mood= toProcess.params.get("mood");
+        		isong.songtitle= toProcess.params.get("songtitle");	
         		
         		MVMap<String, Song> songs= db.s.openMap("Song");
         		songs.put(isong.uniqueID, isong);
@@ -166,13 +197,32 @@ public class Webapp extends DynamicWebPage
         				"";
         		toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
         		return true;
+        		
+        	}else if(toProcess.path.equalsIgnoreCase("addartist.html")) {
+        		Artist iartist = new Artist();
+        		iartist.uniqueID= "Artist_"+System.currentTimeMillis();
+        		iartist.artistName = toProcess.params.get("artistname");	
+        		iartist.artistDescription = toProcess.params.get("artistdescription");		
+        		MVMap<String, Artist> artists= db.s.openMap("Artist");
+        		artists.put(iartist.uniqueID, iartist);
+        		db.commit();
+        		String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+        				"<html>\n" + 
+        				"<body>\n" + 
+        				"	<h2>artist Added</h2>\n" + 
+        				"</body>\n" + 
+        				"</html>\n" + 
+        				"";
+        		toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+        		return true;
         	}else if(toProcess.path.equalsIgnoreCase("search.html")){
+        		String searchTerm = toProcess.params.get("Search").toLowerCase();
             	Song isong = new Song();
             	Artist iartist = new Artist();
             	MVMap<String, Song> songs= db.s.openMap("Song");
             	List<String> songkeys = songs.keyList() ;
             	MVMap<String, Artist> artists= db.s.openMap("Artist");
-            	List<String> artistkeys = songs.keyList() ;
+            	List<String> artistkeys = artists.keyList() ;
             	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
             			"<html>\n" + 
             			"\n" + 
@@ -210,7 +260,7 @@ public class Webapp extends DynamicWebPage
             			 // Form
              			"          <form action=\"../search.html\" method=\"GET\" class=\"form-inline d-flex justify-content-center\">\n" + 
              			"            <div class=\"input-group\"> "
-             			+ "					<input type=\"text\" class=\"form-control\" name =\"Search\" value =\"Enter Search text here\">\n" + 
+             			+ "					<input type=\"text\" class=\"form-control\" name =\"Search\" placeholder =\"Enter Search text here\">\n" + 
              			"              <div class=\"input-group-append\">"
              			+ "					 <input class=\"btn btn-primary\" type=\"submit\" value  = \"Search\"></input> "
              			+ "				</div>\n" + 
@@ -272,11 +322,10 @@ public class Webapp extends DynamicWebPage
         					"                <div class=\"col-md-12\">";
         			int resultcount = 0;
         			String searchresult = "";
-        			String searchTerm = toProcess.params.get("search").toLowerCase().trim();
         			for(int i = 0; i<artistkeys.size();i++) {
         				String artistUniqueID = artistkeys.get(i);
         				iartist = artists.get(artistUniqueID);
-        				if (iartist.artistName.contains(searchTerm)) {
+        				if (iartist.artistName.toLowerCase().contains(searchTerm.toLowerCase())) {
         					searchresult += "<a href = \"../artistpage?artist="+iartist.uniqueID+"\"><p class=\"lead\">"+iartist.artistName+"</p></a>\n";
         					resultcount++;
         				}        				
@@ -285,7 +334,7 @@ public class Webapp extends DynamicWebPage
         				searchresult += "<p class=\"lead\">No Artists found</p>\n";
         			}
         			stringToSendToWebBrowser += searchresult;
-        			stringToSendToWebBrowser += "/div>\n" + 
+        			stringToSendToWebBrowser += "</div>\n" + 
         					"              </div>\n" + 
         					"            </div>\n" + 
         					"          </div>\n" + 
@@ -295,7 +344,7 @@ public class Webapp extends DynamicWebPage
         					"  </div>";
         		}
 //end of artist Search      
-        		
+     		
  //Song Search
         		if(songkeys.size() == 0) {
         			stringToSendToWebBrowser += "<div class=\"container-fluid px-3\">\n" + 
@@ -303,7 +352,7 @@ public class Webapp extends DynamicWebPage
         					"        <div class=\"col-md-12\">\n" + 
         					"          <div class=\"row\">\n" + 
         					"            <div class=\"col-md-12\">\n" + 
-        					"              <h2 class=\"\">Artist</h2>\n" + 
+        					"              <h2 class=\"\">Songs</h2>\n" + 
         					"            </div>\n" + 
         					"          </div>\n" + 
         					"          <div class=\"row\">\n" + 
@@ -334,11 +383,10 @@ public class Webapp extends DynamicWebPage
         					"                <div class=\"col-md-12\">";
         			int resultcount = 0;
         			String searchresult = "";
-        			String searchTerm = toProcess.params.get("search").toLowerCase().trim();
-        			for(int i = 0; i<artistkeys.size();i++) {
+        			for(int i = 0; i<songkeys.size();i++) {
         				String songUniqueID = songkeys.get(i);
-        				iartist = artists.get(songUniqueID);
-        				if (isong.songtitle.contains(searchTerm)) {
+        				isong = songs.get(songUniqueID);
+        				if (isong.songtitle.toLowerCase().contains(searchTerm.toLowerCase())) {
         					searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><p class=\"lead\">"+iartist.artistName+"</p></a>\n";
         					resultcount++;
         				}        				
@@ -347,7 +395,7 @@ public class Webapp extends DynamicWebPage
         				searchresult += "<p class=\"lead\">No songs found</p>\n";
         			}
         			stringToSendToWebBrowser += searchresult;
-        			stringToSendToWebBrowser += "/div>\n" + 
+        			stringToSendToWebBrowser += "</div>\n" + 
         					"              </div>\n" + 
         					"            </div>\n" + 
         					"          </div>\n" + 
@@ -356,7 +404,7 @@ public class Webapp extends DynamicWebPage
         					"    </div>\n" + 
         					"  </div>";
         		}
-//end of artist Search       
+//end of song  Search  
             	stringToSendToWebBrowser += "</body>\n" + 
         				"</html>\n" + 
         				"";
