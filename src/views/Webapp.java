@@ -330,7 +330,7 @@ public class Webapp extends DynamicWebPage
         				String artistUniqueID = artistkeys.get(i);
         				iartist = artists.get(artistUniqueID);
         				if (iartist.artistName.toLowerCase().contains(searchTerm.toLowerCase())) {
-        					searchresult += "<a href = \"../artistpage?artist="+iartist.uniqueID+"\"><p class=\"lead\">"+iartist.artistName+"</p></a>\n";
+        					searchresult += "<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><p class=\"lead\">"+iartist.artistName+"</p></a>\n";
         					resultcount++;
         				}        				
         			}
@@ -414,6 +414,135 @@ public class Webapp extends DynamicWebPage
         				"";
             	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
             	return true;
+            	}else if(toProcess.path.equalsIgnoreCase("artistpage.html")) {
+            		String artist;
+            		artist = toProcess.params.get("artist").toLowerCase();
+                	Song isong = new Song();
+                	Artist iartist = new Artist();
+                	MVMap<String, Song> songs= db.s.openMap("Song");
+                	List<String> songkeys = songs.keyList() ;
+                	MVMap<String, Artist> artists= db.s.openMap("Artist");
+                	List<String> artistkeys = artists.keyList() ;
+        			for(int i = 0; i<artistkeys.size();i++) {
+        				String artistUniqueID = artistkeys.get(i);
+        				if(artist.equalsIgnoreCase(artistUniqueID)) {
+        					iartist = artists.get(artistUniqueID);
+        				}
+        			}
+            		String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+            				"<html>\n" + 
+            				"\n" + 
+            				"<head>\n" + 
+            				"  <meta charset=\"utf-8\">\n" + 
+            				"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" + 
+            				"  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" type=\"text/css\">\n" + 
+            				"  <link rel=\"stylesheet\" href=\"Untitled.css\">\n" + 
+            				"</head>\n" + 
+            				"\n" + 
+            				"<body style=\"\">\n" + 
+            				"  <nav class=\"navbar navbar-expand-md navbar-dark bg-primary\">\n" + 
+            				"    <div class=\"container\"> <a class=\"navbar-brand\" href=\"#\">\n" + 
+            				"        <i class=\"fa d-inline fa-lg fa-stop-circle\"></i>\n" + 
+            				"        <b> Feelin' it</b>\n" + 
+            				"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar16\">\n" + 
+            				"        <span class=\"navbar-toggler-icon\"></span>\n" + 
+            				"      </button>\n" + 
+            				"      <div class=\"collapse navbar-collapse\" id=\"navbar16\">\n" + 
+            				"        <ul class=\"navbar-nav ml-auto\">\n" + 
+            				"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Features</a> </li>\n" + 
+            				"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Pricing</a> </li>\n" + 
+            				"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">About</a> </li>\n" + 
+            				"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">FAQ</a> </li>\n" + 
+            				"        </ul> <a class=\"btn navbar-btn ml-md-2 btn-light text-dark\">Contact us</a>\n" + 
+            				"      </div>\n" + 
+            				"    </div>\n" + 
+            				"  </nav>\n" + 
+            				"  <div class=\"py-0 pl-3 pr-3 pt-3 pb-0\">\n" + 
+            				"    <div class=\"container-fluid\">\n" + 
+            				"      <div class=\"row\">\n" + 
+            				"        <div class=\"col-md-8\">\n" + 
+            				"          <div class=\"row\">\n" + 
+            				"            <div class=\"col-md-2\"></div>\n" + 
+            				"            <div class=\"col-md-10\">\n" + 
+            				"              <h1 class=\"\" style=\"\">"+ iartist.artistName +"</h1>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"          <div class=\"row\" style=\"\">\n" + 
+            				"            <div class=\"col-md-2\" style=\"\"><img class=\"img-fluid d-block rounded-circle mx-auto\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"300\" height=\"300\"></div>\n" + 
+            				"            <div class=\"col-md-10\">\n" + 
+            				"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
+            				"                <div class=\"col-md-12\" style=\"\">\n" + 
+            				"                  <p class=\"lead\" style=\"\">"+ iartist.artistDescription +"<br></p>\n" + 
+            				"                </div>\n" + 
+            				"              </div>\n" + 
+
+            				"              <div class=\"row\">\n" + 
+            				"                <div class=\"col-md-12\">\n" + 
+            				"                  <h3 class=\"\">Songs</h3>\n"+
+            				"<div class=\"row\">";
+//start of song loop        
+            				
+            				if (iartist.artistSongs == null) {
+            					stringToSendToWebBrowser += 	"                    <div class=\"col-md-12\">\n" + 
+            													"                      <p class=\"lead\">no songs found</p>\n" +
+            													"                    </div>\n";
+            				}else {
+            					for(int i = 0; i < songkeys.size();i++) {
+                					isong = songs.get(i);
+                					for(int j = 0; j < iartist.artistSongs.size() ;j++) {
+                						if(isong.uniqueID.equalsIgnoreCase(iartist.artistSongs.get(j))) {
+                            				stringToSendToWebBrowser += 	"                    <div class=\"col-md-12\">\n" + 
+                                    										"                      <p class=\"lead\">Song details go here</p>\n" +
+                                    										"                    </div>\n";
+                						}
+                					}
+                				}
+            				}
+ // end of song loop    
+            				stringToSendToWebBrowser += "</div>\n" + 
+            				"                </div>\n" + 
+            				"              </div>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"        </div>\n" +        				
+            				"        <div class=\"col-md-4 bg-light\">\n" + 
+            				"          <div class=\"row\">\n" + 
+            				"            <div class=\"col-md-12 bg-light\">\n" + 
+            				"              <h1 class=\"\" contenteditable=\"true\">Comments</h1>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"          <div class=\"row\">\n" + 
+            				"            <div class=\"col-md-12\">\n" + 
+            				"              <p class=\"\">This is where a comment goes - the username is appended</p>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"          <div class=\"row\">\n" + 
+            				"            <div class=\"col-md-12\">\n" + 
+            				"              <form id=\"c_form-h\" class=\"\">\n" + 
+            				"                <div class=\"form-group row\"> <label for=\"inputmailh\" class=\"col-2 col-form-label\">user</label>\n" + 
+            				"                  <div class=\"col-10\">\n" + 
+            				"                    <input type=\"email\" class=\"form-control\" id=\"inputmailh\" placeholder=\"mail@example.com\"> </div>\n" + 
+            				"                </div>\n" + 
+            				"                <div class=\"form-group row\"> <label for=\"inputpasswordh\" class=\"col-2 col-form-label\">Comment</label>\n" + 
+            				"                  <div class=\"col-10\">\n" + 
+            				"                    <input type=\"text\" class=\"form-control form-control-sm\" id=\"comment\" placeholder=\"Comment\" required=\"required\" style=\"	min-height: 100px;\"> </div>\n" + 
+            				"                </div>\n" + 
+            				"                <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n" + 
+            				"              </form>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"        </div>\n" + 
+            				"      </div>\n" + 
+            				"    </div>\n" + 
+            				"  </div>\n" + 
+            				"  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n" + 
+            				"  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\n" + 
+            				"  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\"></script>\n" +
+            				"</body>\n" + 
+            				"\n" + 
+            				"</html>";
+            		toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+            		return true;
             	}
 		return false;   
 	}
