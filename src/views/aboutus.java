@@ -1,6 +1,6 @@
 package views;
 
-import model.Tshirt;
+import model.Product;
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import web.WebRequest;

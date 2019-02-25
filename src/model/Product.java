@@ -11,5 +11,6 @@ public class Product implements Serializable {
 	public String price;
 	public String title;
 	public String paypalBtn;
+	public String description;
 
 }
