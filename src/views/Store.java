@@ -54,12 +54,12 @@ public class Store extends DynamicWebPage
 			//navbar
 			stringToSendToWebBrowser +=  
 					"  <nav class=\"orange\" role=\"navigation\">\r\n" + 
-							"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"home\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
+							"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage.html\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
 							"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
 							"		<li><a href=\"webapp\">Music</a></li>\r\n" + 
 							"		<li><a href=\"store\">Store</a></li>\r\n" + 
 							"		<li><a href=\"indexview\">About Us</a></li>\r\n" + 
-							"		<li><a href=\"account\">Account</a></li>\r\n" + 
+							"		<li><a href=\"registration\">Account</a></li>\r\n" + 
 							"\r\n" + 
 							"\r\n" + 
 							"\r\n" + 
@@ -110,7 +110,7 @@ public class Store extends DynamicWebPage
 					Product tshirt = products.get(productUniqueID);
 
 					stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
-							"            <a href=\"checkout.html\">\r\n" + 
+							"            <a href=\"productpage\">\r\n" + 
 							"              <image class=\"left\" src=\""+tshirt.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
 							"            </a>\r\n" + 
 							"            <h5 class=\"heavy left\">"+tshirt.title+"<br />Only &pound"+tshirt.price+"</h5>\r\n" + 
@@ -223,7 +223,7 @@ public class Store extends DynamicWebPage
 						"      <p>Price</p>\r\n" + 
 						"      <input type=\"text\" name=\"price\" value=\"\">\r\n"
 						+ "      <p>Product Description</p>\r\n" + 
-						"      <textarea name=\"description\" rows=\"8\" cols=\"50\">This is filler</textarea>" + 
+						"      <textarea name=\"description\" rows=\"8\" cols=\"50\"></textarea>" + 
 						"      <p>Paypal Button Link</p>\r\n" + 
 						"      <input type=\"text\" name=\"paypalBtn\" value=\"\">\r\n" + 
 						"      <input type=\"submit\" value=\"Submit\">\r\n" + 
@@ -283,7 +283,7 @@ public class Store extends DynamicWebPage
 						"        <li><a href=\\\"webapp\\\">Music</a></li>\r\n" + 
 						"        <li><a href=\"store\">Store</a></li>\r\n" + 
 						"        <li><a href=\"aboutus.html\">About Us</a></li>\r\n" + 
-						"        <li><a href=\"account.html\">Account</a></li>\r\n" + 
+						"        <li><a href=\"registration\">Account</a></li>\r\n" + 
 						"      </ul>\r\n" + 
 						"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
 						"        <li><a href=\"#\">Navbar Link</a></li>\r\n" + 

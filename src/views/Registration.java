@@ -44,7 +44,7 @@ public class Registration extends DynamicWebPage
         			"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"home\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
         			"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
         			"        <li><a href=\\\"webapp.html\\\">Music</a></li>\r\n" + 
-        			"        <li class=\"active\"><a href=\"store.html\">Store</a></li>\r\n" + 
+        			"        <li><a href=\"store\">Store</a></li>\r\n" + 
         			"        <li><a href=\"aboutus.html\">About Us</a></li>\r\n" + 
         			"        <li><a href=\"account.html\">Account</a></li>\r\n" + 
         			"      </ul>\r\n" + 
