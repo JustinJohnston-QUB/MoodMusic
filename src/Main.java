@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-import model.Tshirt;
+import model.Product;
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import views.Checkout;
@@ -9,6 +9,7 @@ import views.ExampleView;
 import views.HomePage;
 import views.Registration;
 import views.Store;
+import views.StoreTest;
 import views.TestForm;
 import views.Webapp;
 import web.Base64;
@@ -91,6 +92,7 @@ public class Main
 		HomePage ihomepage= new HomePage(databaseInterface,fileStoreInterface);
 		Registration registerPage = new Registration(databaseInterface,fileStoreInterface);
 		Store store= new Store(databaseInterface,fileStoreInterface);
+		StoreTest storetest = new StoreTest(databaseInterface, fileStoreInterface);
 		//this variable indicates that the program should keep running
 		//by setting this variable to false the program will exit
 		boolean shouldKeepRunning = true;
@@ -159,7 +161,11 @@ public class Main
 					
 				}
 				else if(aboutUsPage.process(toProcess))
-				{}
+				{   }
+				else if (storetest.process(toProcess))
+				{
+					//testForm page is processed
+				}
 				else
 				{
 					String asFilepath = fileStoreInterface.decodeFilePath(toProcess.path);

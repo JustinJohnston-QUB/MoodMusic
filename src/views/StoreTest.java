@@ -1,7 +1,5 @@
 package views;
 
-import java.util.List;
-
 import org.h2.mvstore.MVMap;
 
 import model.Product;
@@ -10,31 +8,46 @@ import storage.FileStoreInterface;
 import web.WebRequest;
 import web.WebResponse;
 
-public class Store extends DynamicWebPage
+public class StoreTest extends DynamicWebPage
 {
-	public Store(DatabaseInterface db,FileStoreInterface fs)
+	public StoreTest(DatabaseInterface db,FileStoreInterface fs)
 	{
 		super(db,fs);
 	}
 
 	public void changeTshirt(int whichShirt, Product itshirt) {
-
+		System.out.println("I is:" + whichShirt);
+		switch(whichShirt) {
+		case 0:
+			itshirt.price = "4.99";
+			itshirt.title = "Budget T-Shirt";
+			itshirt.filePathToImage = "../images/tshirt1.png";
+			itshirt.paypalBtn = "BNY7ML6LGKLDN";
+			break;
+		case 1:
+			itshirt.price = "9.99";
+			itshirt.title = "Respectable T-Shirt";
+			itshirt.filePathToImage = "../images/tshirt2.jpg";
+			itshirt.paypalBtn = "WHVFFLN5E2DPW";
+			break;
+		case 2:
+			itshirt.price = "15.99";
+			itshirt.title = "Premium T-Shirt";
+			itshirt.filePathToImage = "../images/tshirt3.jpg";
+			itshirt.paypalBtn = "WBUXQ3A283W3W";
+			break;
+		default:
+			itshirt.price = "N/A";
+			itshirt.title = "T-shirt Not Found";
+			itshirt.filePathToImage = "../images/tshirt1.jpg";
+			break;
+		}
 	}
 	public boolean process(WebRequest toProcess)
 	{
-		if(toProcess.path.equalsIgnoreCase("store"))
-		{				
-			
-			MVMap<String, Product> products = db.s.openMap("products");
-			List<String> productKeys = products.keyList();
-			
-			if (productKeys.size() == 0) {
-				Product tshirt = new Product();
-				tshirt.filePathToImage = "../images/tshirt1.png"; 
-			}
-			
-			
-			
+		if(toProcess.path.equalsIgnoreCase("storetest"))
+		{
+			Product itshirt = new Product();
 
 			//start of html and imports of materialize cs
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
@@ -105,34 +118,34 @@ public class Store extends DynamicWebPage
 							"      <!--   Icon Section   -->\r\n" + 
 							"      <div class=\"row\">\r\n"; 
 
-				for (int i = 0; i < productKeys.size(); i++) {
-					String productUniqueID = productKeys.get(i);
-					Product tshirt = products.get(productUniqueID);
-
-					stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
-							"            <a href=\"checkout.html\">\r\n" + 
-							"              <image class=\"left\" src=\""+tshirt.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
-							"            </a>\r\n" + 
-							"            <h5 class=\"heavy left\">"+tshirt.title+"<br />Only &pound"+tshirt.price+"</h5>\r\n" + 
-							"            <!--Dropdown button to choose colour-->\r\n" + 
-							"            <div class=\"colourBtn\">\r\n" + 
-							"              <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>\r\n" + 
-							"              <ul id='dropdown1' class='dropdown-content'>\r\n" + 
-							"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Red Chosen'})\">Red</a></li>\r\n" + 
-							"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
-							"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
-							"              </ul>\r\n" + 
-							"            </div>\r\n" + 
-							"            <!--Paypal button-->\r\n" + 
-							"\r\n" + 
-							"            <form class = \"paypalBtn\"target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
-							"              <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\r\n"+tshirt.paypalBtn+"\">\r\n" + 
-							"              <input type=\"image\" src=\"https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal – The safer, easier way to pay online!\">\r\n" + 
-							"              <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\">\r\n" + 
-							"            </form>\r\n" + 
-							"\r\n" + 
-							"        </div>"; 
-				}
+			for (int i = 0; i < 3; i++) {
+				changeTshirt(i, itshirt);
+				stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
+						"          <div class=\"icon-block\">\r\n" + 
+						"            <a href=\"checkout.html\">\r\n" + 
+						"              <image class=\"left\" src=\""+itshirt.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
+						"            </a>\r\n" + 
+						"            <h5 class=\"heavy left\">"+itshirt.title+"<br />Only &pound"+itshirt.price+"</h5>\r\n" + 
+						"            <!--Dropdown button to choose colour-->\r\n" + 
+						"            <div class=\"colourBtn\">\r\n" + 
+						"              <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>\r\n" + 
+						"              <ul id='dropdown1' class='dropdown-content'>\r\n" + 
+						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Red Chosen'})\">Red</a></li>\r\n" + 
+						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
+						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
+						"              </ul>\r\n" + 
+						"            </div>\r\n" + 
+						"            <!--Paypal button-->\r\n" + 
+						"\r\n" + 
+						"            <form class = \"paypalBtn\"target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
+						"              <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\r\n" +itshirt.paypalBtn+"\">\r\n" + 
+						"              <input type=\"image\" src=\"https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal – The safer, easier way to pay online!\">\r\n" + 
+						"              <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\">\r\n" + 
+						"            </form>\r\n" + 
+						"\r\n" + 
+						"          </div>\r\n" + 
+						"        </div>"; 
+			}
 			//This is the footer
 			stringToSendToWebBrowser += "</div>\r\n" + 
 					"        </div>\r\n" + 
@@ -216,7 +229,7 @@ public class Store extends DynamicWebPage
 						"  </head>\r\n" + 
 						"  <body>\r\n" + 
 						"    <form action=\"productprocess\" method=\"GET\">\r\n" + 
-						"      <p>Tshirt Title</p>\r\n" + 
+						"      <p>Product Title</p>\r\n" + 
 						"      <input type=\"text\" name=\"ProdTitle\" value=\"\">\r\n" + 
 						"      <p>File Path To Image</p>\r\n" + 
 						"      <input type=\"text\" name=\"filePathToImage\" value=\"\">\r\n" + 
@@ -252,8 +265,40 @@ public class Store extends DynamicWebPage
 				
 				toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 
+
+
 				return true;
 			}
+			else
+				if(toProcess.path.equalsIgnoreCase("addprodpage")) {
+
+					String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
+							"<html lang=\"en\" dir=\"ltr\">\r\n" + 
+							"  <head>\r\n" + 
+							"    <meta charset=\"utf-8\">\r\n" + 
+							"    <title>Adding Shirt</title>\r\n" + 
+							"  </head>\r\n" + 
+							"  <body>\r\n" + 
+							"    <form action=\"productprocess\" method=\"GET\">\r\n" + 
+							"      <p>Product Title</p>\r\n" + 
+							"      <input type=\"text\" name=\"ShirtTitle\" value=\"\">\r\n" + 
+							"      <p>File Path To Image</p>\r\n" + 
+							"      <input type=\"text\" name=\"filePathToImage\" value=\"\">\r\n" + 
+							"      <p>Price</p>\r\n" + 
+							"      <input type=\"text\" name=\"price\" value=\"\">\r\n" + 
+							"      <p>Paypal Button Link</p>\r\n" + 
+							"      <input type=\"text\" name=\"paypalBtn\" value=\"\">\r\n" + 
+							"      <input type=\"submit\" value=\"Submit\">\r\n" + 
+							"    </form>\r\n" + 
+							"  </body>\r\n" + 
+							"</html>\r\n" + 
+							"";
+
+					toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+
+					return true;
+				}
+
 		return false;
 	}
 
