@@ -22,47 +22,24 @@ public class Webapp extends DynamicWebPage
 
 	public boolean process(WebRequest toProcess)
 	{
+//WebApp Page
         if(toProcess.path.equalsIgnoreCase("webapp"))
         
         {
-        	//Lab 1 Task 4
-        	//Change this string so that it contains HTML from a page you created in Pingendo 
         	String stringToSendToWebBrowser = PageElements.header()  +
         			"<body >\n" + PageElements.Navbar()+
-        			/** nav
-        			"  <nav class=\"navbar navbar-expand-lg navbar-light\">\r\n" + 
-        			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\r\n" + 
-        			"        <i class=\"fa d-inline fa-lg fa-circle-o\"></i>\r\n" + 
-        			"        <b>CornDogMusic</b>\r\n" + 
-        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar5\">\r\n" + 
-        			"        <span class=\"navbar-toggler-icon\"></span>\r\n" + 
-        			"      </button>\r\n" + 
-        			"      <div class=\"collapse navbar-collapse\" id=\"navbar5\">\r\n" + 
-        			"        <ul class=\"navbar-nav mr-auto\">\r\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"homepage.html\">Home</a> </li>\r\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"webapp.html\">Music</a> </li>\r\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"store\">Store</a> </li>\r\n" + 
-        			"        </ul>\r\n" + 
-        			"        <ul class=\"navbar-nav ml-auto\">\r\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"aboutus\">About us</a> </li>\r\n" + 
-        			"        </ul> <a class=\"btn btn-outline-primary navbar-btn ml-md-2\" href=\"account.html\">Account</a>\r\n" + 
-        			"      </div>\r\n" + 
-        			"    </div>\r\n" + 
-        			"  </nav>\r\n" +  
-        			"  <div class=\"py-0 pt-3\">\n" + 
-        			"<body style=\"\" >\n" + 
-        			**/
-        			"  <div class=\"py-5 text-center\" style=\"	background-image: linear-gradient(to top, rgb(249, 99, 50), #FFFFFF);	background-size: 100%;	background-position: left top;	background-repeat: repeat;\">\n" + 
+
+        			"  <div class=\"py-5 text-center\" style=\">\n" + 
         			"    <div class=\"container\">\n" + 
         			"      <div class=\"row\">\n" + 
         			"        <div class=\"mx-auto col-md-6\">\n" + 
         			"          <h1>Search for the Music you love</h1>\n" + 
         			"          <p class=\"mb-4\">Search by Mood, Artist or Song</p>\n" + 
  // Form
-        			"          <form action=\"../search.html\" method=\"GET\" class=\"form-inline d-flex justify-content-center\">\n" + 
-        			"            <div class=\"input-group\"> "
-        			+ "					<input type=\"text\" class=\"form-control\" name =\"Search\" placeholder =\"Enter Search text here\">\n" + 
-        			"              <div class=\"input-group-append\">"
+        			"          <form action=\"../search.html\" method=\"GET\" class=\"col s12\">\n" + 
+        			"            <div class=\"input-field col s12\"> "
+        			+ "					<input type=\"text\" class=\"form-control center-align\" name =\"Search\" placeholder =\"Enter Search text here\">\n" + 
+        			"              <div class=\"input-field col s12\">"
         			+ "					 <input class=\"btn btn-primary\" type=\"submit\" value  = \"Search\"></input> "
         			+ "				</div>\n" + 
         			"            </div>\n" + 
@@ -121,63 +98,100 @@ public class Webapp extends DynamicWebPage
         			"</html>";
         	
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
-//
         	return true;
+    
+//Page with form for adding songs       	
+    
         }else if(toProcess.path.equalsIgnoreCase("song.html")){
         	MVMap<String, Artist> artists= db.s.openMap("Artist");
         	List<String> artistkeys = artists.keyList() ;
         	Artist iartist = new Artist();
-        	String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
-        			"<body>\n" + 
-        			"\n" + 
-        			"<h2>Add song</h2>\n" + 
-        			"<form action=\"../addsong.html\" method = \"GET\"id = \"addsong\">\n " + 
-        			"  Song Title " + 
-        			"  <input type=\"text\" name=\"songtitle\" value=\"title\">\n" + 
-        			"  <br>\n" + 
-        			" song Length <input type=\"time\" name=\"songtlength\" value=\"time\">\n" + 
-        			"  <br>\n" + 
-        			"  song Link <input type=\"text\" name=\"songLink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
-        			"  <br>\n" + 
-        			"Artist Name<select name=\"Artist\" form=\"addsong\">\n";
-        			for(int i = 0; i < artistkeys.size();i++) {
-        				String artistUniqueID = artistkeys.get(i);
-        				iartist = artists.get(artistUniqueID);
-        				stringToSendToWebBrowser += "  <option value=\""+iartist.uniqueID +"\">"+iartist.artistName+"</option>\n";
-        			}
+        	String stringToSendToWebBrowser = PageElements.header() +
+        			"<body>\n" + PageElements.Navbar()+ PageElements.Search()+
+					        			
+					"\n" + 
+					        			
+					"<div class=\"container\">\n" + 
+					"  <div class=\"row\">\n" + 
+					"    <div class=\"col-sm-4\">\n" + 
+					"		<h2>Add song</h2>\n" + 
+					"		<form action=\"../addsong.html\" method = \"GET\"id = \"addsong\">\n " + 
+					"  			Song Title " + 
+					"  			<input type=\"text\" name=\"songtitle\" value=\"title\">\n" + 
+					"  			<br>\n" + 
+					" 			song Length <input type=\"time\" name=\"songtlength\" value=\"time\">\n" + 
+					"  			<br>\n" + 
+					"  			song Link <input type=\"text\" name=\"songLink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
+					"  			<br>\n" +
+					"			<div class=\"input-field\"> "+
+					"			Artist Name<select name=\"Artist\" class = \"browser-default\" form=\"addsong\">\n"+
+					"			option value=\"\" disabled selected>Choose your option</option>" ;
+					for(int i = 0; i < artistkeys.size();i++) {
+						String artistUniqueID = artistkeys.get(i);
+						iartist = artists.get(artistUniqueID);
+						stringToSendToWebBrowser += "  <option value=\""+iartist.uniqueID +"\">"+iartist.artistName+"</option>\n";
+					}
+					
+					stringToSendToWebBrowser += "</select>" + 
+					"  </div>"+
+					"  <br><br>\n" + 
+					"  <input type=\"submit\" value=\"Submit\">\n" + 
+					"</form> \n" + 
+					"    </div>\n" + 
+					"    <div class=\"col-sm-8\">\n" + 
+					"      <h3>We are always looking for more artists</h3> \n" + 
+					"      <p style = lead>Add an artist on this page</p>\n" + 
+					"      <bt><p>more text...</p>\n" + 
+					"    </div>\n" + 
+					"  </div>\n" + 
+					"</div>"+
         			
-        			stringToSendToWebBrowser += "</select>" +
-        			"  <br><br>\n" + 
-        			"  <input type=\"submit\" value=\"Submit\">\n" + 
-        			"</form> \n" + 
-        			"\n" + 
-        			"</body>\n" + 
-        			"</html> ";
-        	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
-        	return true;
-        }else if(toProcess.path.equalsIgnoreCase("artist.html")){
-        	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-        			PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
-        			"<body>\n" + 
-        			"\n" + 
-        			"<h2>Add Artist</h2>\n" + 
-        			"<form action=\"../addartist.html\" method = \"GET\"id = \"addartist\">\n " + 
-        			"  Artist Name " + 
-        			"  <input type=\"text\" name=\"artistname\" placeholder=\"Name\">\n" + 
-        			"  <br>\n" + 
-        			"  Description<input type=\"text\" name=\"artistdescription\" placeholder=\"description\">\n" + 
-        			"  <br>\n" + 
-        			"  song Link <input type=\"text\" name=\"Artist Image\" placeholder=\"link to an image\">\n" + 
-        			"  <br>\n" + 
-        			"  <br><br>\n" + 
-        			"  <input type=\"submit\" value=\"Submit\">\n" + 
-        			"</form> \n" + 
+        			
+        	
         			"\n" + 
         			"</body>\n" + 
         			"</html> ";
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
         	return true;
         	
+        	
+        	
+//Page with form for adding Artists           	
+        }else if(toProcess.path.equalsIgnoreCase("artist.html")){
+        	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+        			PageElements.header()+ "<body>\n"  + PageElements.Navbar()+ PageElements.Search()+
+        			"\n" + 
+        			"<div class=\"container\">\n" + 
+        			"  <div class=\"row\">\n" + 
+        			"    <div class=\"col-sm-4\">\n" + 
+        			"			<h2>Add Artist</h2>\n" + 
+        			"			<form action=\"../addartist.html\" method = \"GET\"id = \"addartist\">\n " + 
+        			" 			 Artist Name " + 
+        			" 			 <input type=\"text\" name=\"artistname\" placeholder=\"Name\">\n" + 
+        			" 			 <br>\n" + 
+        			"  			Description<input type=\"text\" name=\"artistdescription\" placeholder=\"description\">\n" + 
+        			" 			 <br>\n" + 
+        			" 			 image Link <input type=\"text\" name=\"Artist Image\" placeholder=\"link to an image\">\n" + 
+        			"  			<br>\n" + 
+        			"  			<br><br>\n" + 
+        			"  			<input type=\"submit\" value=\"Submit\">\n" + 
+        			"			</form> \n" + 
+        			"    </div>\n" + 
+        			"    <div class=\"col-sm-8\">\n" + 
+        			"      <h3>We are always looking for more artists</h3> \n" + 
+        			"      <p style = lead>Add an artist on this page</p>\n" + 
+        			"      <bt><p>more text...</p>\n" + 
+        			"    </div>\n" + 
+        			"  </div>\n" + 
+        			"</div>"+
+        			
+        			"\n" + 
+        			"</body>\n" + 
+        			"</html> ";
+        	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+        	return true;
+ 
+//Page which adds songs to the database        	
         	}else if(toProcess.path.equalsIgnoreCase("addsong.html")) {
         	 	MVMap<String, Artist> artists= db.s.openMap("Artist");
         	 	Artist art1 = artists.get(toProcess.params.get("Artist"));
@@ -206,6 +220,7 @@ public class Webapp extends DynamicWebPage
         		toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
         		return true;
         		
+//Page which adds Artists to the database             		
         	}else if(toProcess.path.equalsIgnoreCase("addartist.html")) {
         		Artist iartist = new Artist();
         		iartist.uniqueID= "Artist_"+System.currentTimeMillis();
@@ -222,6 +237,9 @@ public class Webapp extends DynamicWebPage
         				"";
         		toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
         		return true;
+        		
+        		
+//Search results page              		
         	}else if(toProcess.path.equalsIgnoreCase("search.html")){
         		String searchTerm = toProcess.params.get("Search").toLowerCase();
             	Song isong = new Song();
@@ -234,17 +252,17 @@ public class Webapp extends DynamicWebPage
             			"\n" + 
             			"<body style=\"\">\n" + 
  
-            			"  <div class=\"py-5 text-center\" style=\"	background-image: linear-gradient(to top, rgb(249, 99, 50), #FFFFFF);	background-size: 100%;	background-position: left top;	background-repeat: repeat;\">\n" + 
+            			"  <div class=\"py-5 text-center\">\n" + 
             			"    <div class=\"container\">\n" + 
             			"      <div class=\"row\">\n" + 
             			"        <div class=\"mx-auto col-md-6\">\n" + 
             			"          <h1>Search for the Music you love</h1>\n" + 
             			"          <p class=\"mb-4\">Search by Mood, Artist or Song</p>\n" + 
-            			 // Form
-             			"          <form action=\"../search.html\" method=\"GET\" class=\"form-inline d-flex justify-content-center\">\n" + 
-             			"            <div class=\"input-group\"> "
-             			+ "					<input type=\"text\" class=\"form-control\" name =\"Search\" placeholder =\"Enter Search text here\">\n" + 
-             			"              <div class=\"input-group-append\">"
+ // Form
+             			"          <form action=\"../search.html\" method=\"GET\" class=\"col s12\">\n" + 
+             			"            <div class=\"input-field col s12\"> "
+             			+ "					<input type=\"text\" class=\"form-control center-align\" name =\"Search\" placeholder =\"Enter Search text here\">\n" + 
+             			"              <div class=\"input-field col s12\">"
              			+ "					 <input class=\"btn btn-primary\" type=\"submit\" value  = \"Search\"></input> "
              			+ "				</div>\n" + 
              			"            </div>\n" + 
@@ -408,6 +426,8 @@ public class Webapp extends DynamicWebPage
         				"";
             	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
             	return true;
+            	
+// page which displays artists            	
             	}else if(toProcess.path.equalsIgnoreCase("artistpage.html")) {
             		String artist;
             		artist = toProcess.params.get("artist").toLowerCase();

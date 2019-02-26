@@ -10,16 +10,12 @@ public class PageElements {
 					"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage.html\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
 					"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
 					"		<li><a href=\"webapp\">Music</a></li>\r\n" + 
-					"		<li><a href=\"song.html\">add Song</a></li>\r\n" + 
-					"		<li><a href=\"artist.html\">add musician</a></li>\r\n" + 
+					"		<li><a href=\"song.html\">Add Song</a></li>\r\n" + 
+					"		<li><a href=\"artist.html\">Add musician</a></li>\r\n" + 
 					"		<li><a href=\"store\">Store</a></li>\r\n" + 
 					"		<li><a href=\"indexview\">About Us</a></li>\r\n" + 
 					"		<li><a href=\"user\">Account</a></li>\r\n" + 
-					"\r\n" + 
-					"\r\n" + 
-					"\r\n" + 
 					"      </ul>\r\n" + 
-					"\r\n" + 
 					"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
 					"        <li><a href=\"#\">Navbar Link</a></li>\r\n" + 
 					"      </ul>\r\n" + 
@@ -33,12 +29,24 @@ public class PageElements {
 	public static String Search() {
 		
 
-		 String stringToSendToWebBrowser =  "<div class=\"container\">\r\n" + 
+		 String stringToSendToWebBrowser = 	"  <nav class=\"transparent z-depth-0\">\r\n" + 
+									 		"    <div class=\"nav-wrapper\">\r\n" + 
+									 		"      <form action=\"../search.html\" method=\"GET\">\r\n" + 
+									 		"        <div class=\"input-field\">\r\n" + 
+									 		"          <input id=\"search\" class = \"center-align\"name = \"Search\" placeholder =\"You can type anywhere in this area and hit the enter key to search for your favourite music\" type=\"search\" required>\r\n" + 
+									 		"          <label class=\"label-icon\" for=\"search\" ><i class=\"material-icons\" style=\"color:black\">search</i></label>\r\n" + 
+									 		"          <i class=\"material-icons\">close</i>\r\n" + 
+									 		"        </div>\r\n" + 
+									 		"      </form>\r\n" + 
+									 		"    </div>\r\n" + 
+									 		"  </nav>"; 
+											 							/**
+				 							"<div class=\"container-fluid\">\r\n" + 
 									 		"  <div class=\"row\">\r\n" + 
 									 		"    <div class=\"col-sm-8\">\r\n" + 
 									 		"    </div>\r\n" + 
-									 		"    <div class=\"col-sm-4\">\r\n" + 
-											"         <form action=\"../search.html\" method=\"GET\" class=\"form-inline d-flex justify-content-center\">\n" + 
+									 		"    <div class=\"col-sm-4\">\r\n" + 		
+											"         <form action=\"../search.html\" method=\"GET\" class=\"form-inline\">\n" + 
 											"            <div class=\"input-group\"> "						+
 											"					<input type=\"text\" class=\"form-control\" name =\"Search\" placeholder =\"Enter Search text here\">\n" + 
 											"              <div class=\"input-group-append\">"+
@@ -49,7 +57,7 @@ public class PageElements {
 									 		"    </div>\r\n" + 
 									 		"  </div>\r\n" + 
 									 		"</div>";
-	
+											**/
 		return stringToSendToWebBrowser;
 		}
 	
