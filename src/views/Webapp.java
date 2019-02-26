@@ -23,20 +23,13 @@ public class Webapp extends DynamicWebPage
 	public boolean process(WebRequest toProcess)
 	{
         if(toProcess.path.equalsIgnoreCase("webapp"))
+        
         {
         	//Lab 1 Task 4
         	//Change this string so that it contains HTML from a page you created in Pingendo 
-        	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-        			"<html>\n" + 
-        			"\n" + 
-        			"<head>\n" + 
-        			"  <meta charset=\"utf-8\">\n" + 
-        			"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" + 
-        			"  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" type=\"text/css\">\n" + 
-        			"  <link rel=\"stylesheet\" href=\"Untitled.css\">\n" + 
-        			"</head>\n" + 
-        			"\n" + 
-        			"<body >\n" + 
+        	String stringToSendToWebBrowser = PageElements.header()  +
+        			"<body >\n" + PageElements.Navbar()+
+        			/** nav
         			"  <nav class=\"navbar navbar-expand-lg navbar-light\">\r\n" + 
         			"    <div class=\"container\"> <a class=\"navbar-brand text-primary\" href=\"#\">\r\n" + 
         			"        <i class=\"fa d-inline fa-lg fa-circle-o\"></i>\r\n" + 
@@ -58,23 +51,7 @@ public class Webapp extends DynamicWebPage
         			"  </nav>\r\n" +  
         			"  <div class=\"py-0 pt-3\">\n" + 
         			"<body style=\"\" >\n" + 
-        			"  <nav class=\"navbar navbar-expand-md navbar-dark bg-primary\">\n" + 
-        			"    <div class=\"container\"> <a class=\"navbar-brand\" href=\"#\">\n" + 
-        			"        <i class=\"fa d-inline fa-lg fa-stop-circle\"></i>\n" + 
-        			"        <b> Feelin' it</b>\n" + 
-        			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar16\">\n" + 
-        			"        <span class=\"navbar-toggler-icon\"></span>\n" + 
-        			"      </button>\n" + 
-        			"      <div class=\"collapse navbar-collapse\" id=\"navbar16\">\n" + 
-        			"        <ul class=\"navbar-nav ml-auto\">\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Features</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Pricing</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">About</a> </li>\n" + 
-        			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">FAQ</a> </li>\n" + 
-        			"        </ul> <a class=\"btn navbar-btn ml-md-2 btn-light text-dark\">Contact us</a>\n" + 
-        			"      </div>\n" + 
-        			"    </div>\n" + 
-        			"  </nav>\n" + 
+        			**/
         			"  <div class=\"py-5 text-center\" style=\"	background-image: linear-gradient(to top, rgb(249, 99, 50), #FFFFFF);	background-size: 100%;	background-position: left top;	background-repeat: repeat;\">\n" + 
         			"    <div class=\"container\">\n" + 
         			"      <div class=\"row\">\n" + 
@@ -150,8 +127,7 @@ public class Webapp extends DynamicWebPage
         	MVMap<String, Artist> artists= db.s.openMap("Artist");
         	List<String> artistkeys = artists.keyList() ;
         	Artist iartist = new Artist();
-        	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-        			"<html>\n" + 
+        	String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
         			"<body>\n" + 
         			"\n" + 
         			"<h2>Add song</h2>\n" + 
@@ -181,7 +157,7 @@ public class Webapp extends DynamicWebPage
         	return true;
         }else if(toProcess.path.equalsIgnoreCase("artist.html")){
         	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-        			"<html>\n" + 
+        			PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
         			"<body>\n" + 
         			"\n" + 
         			"<h2>Add Artist</h2>\n" + 
@@ -221,8 +197,7 @@ public class Webapp extends DynamicWebPage
         		songs.put(isong.uniqueID, isong);
         		artists.put(art1.uniqueID, art1);
         		db.commit();
-        		String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-        				"<html>\n" + 
+        		String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
         				"<body>\n" + 
         				"	<h2>song Added</h2>\n" + 
         				"</body>\n" + 
@@ -239,8 +214,7 @@ public class Webapp extends DynamicWebPage
         		MVMap<String, Artist> artists= db.s.openMap("Artist");
         		artists.put(iartist.uniqueID, iartist);
         		db.commit();
-        		String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-        				"<html>\n" + 
+        		String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
         				"<body>\n" + 
         				"	<h2>artist Added</h2>\n" + 
         				"</body>\n" + 
@@ -256,34 +230,10 @@ public class Webapp extends DynamicWebPage
             	List<String> songkeys = songs.keyList() ;
             	MVMap<String, Artist> artists= db.s.openMap("Artist");
             	List<String> artistkeys = artists.keyList() ;
-            	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-            			"<html>\n" + 
-            			"\n" + 
-            			"<head>\n" + 
-            			"  <meta charset=\"utf-8\">\n" + 
-            			"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" + 
-            			"  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" type=\"text/css\">\n" + 
-            			"  <link rel=\"stylesheet\" href=\"/Untitled.css\">\n" + 
-            			"</head>\n" + 
+            	String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ 
             			"\n" + 
             			"<body style=\"\">\n" + 
-            			"  <nav class=\"navbar navbar-expand-md navbar-dark bg-primary\">\n" + 
-            			"    <div class=\"container\"> <a class=\"navbar-brand\" href=\"#\">\n" + 
-            			"        <i class=\"fa d-inline fa-lg fa-stop-circle\"></i>\n" + 
-            			"        <b> Feelin' it</b>\n" + 
-            			"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar16\">\n" + 
-            			"        <span class=\"navbar-toggler-icon\"></span>\n" + 
-            			"      </button>\n" + 
-            			"      <div class=\"collapse navbar-collapse\" id=\"navbar16\">\n" + 
-            			"        <ul class=\"navbar-nav ml-auto\">\n" + 
-            			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Features</a> </li>\n" + 
-            			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Pricing</a> </li>\n" + 
-            			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">About</a> </li>\n" + 
-            			"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">FAQ</a> </li>\n" + 
-            			"        </ul> <a class=\"btn navbar-btn ml-md-2 btn-light text-dark\">Contact us</a>\n" + 
-            			"      </div>\n" + 
-            			"    </div>\n" + 
-            			"  </nav>\n" + 
+ 
             			"  <div class=\"py-5 text-center\" style=\"	background-image: linear-gradient(to top, rgb(249, 99, 50), #FFFFFF);	background-size: 100%;	background-position: left top;	background-repeat: repeat;\">\n" + 
             			"    <div class=\"container\">\n" + 
             			"      <div class=\"row\">\n" + 
@@ -473,34 +423,7 @@ public class Webapp extends DynamicWebPage
         					iartist = artists.get(artistUniqueID);
         				}
         			}
-            		String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-            				"<html>\n" + 
-            				"\n" + 
-            				"<head>\n" + 
-            				"  <meta charset=\"utf-8\">\n" + 
-            				"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" + 
-            				"  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" type=\"text/css\">\n" + 
-            				"  <link rel=\"stylesheet\" href=\"Untitled.css\">\n" + 
-            				"</head>\n" + 
-            				"\n" + 
-            				"<body style=\"\">\n" + 
-            				"  <nav class=\"navbar navbar-expand-md navbar-dark bg-primary\">\n" + 
-            				"    <div class=\"container\"> <a class=\"navbar-brand\" href=\"#\">\n" + 
-            				"        <i class=\"fa d-inline fa-lg fa-stop-circle\"></i>\n" + 
-            				"        <b> Feelin' it</b>\n" + 
-            				"      </a> <button class=\"navbar-toggler navbar-toggler-right border-0\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar16\">\n" + 
-            				"        <span class=\"navbar-toggler-icon\"></span>\n" + 
-            				"      </button>\n" + 
-            				"      <div class=\"collapse navbar-collapse\" id=\"navbar16\">\n" + 
-            				"        <ul class=\"navbar-nav ml-auto\">\n" + 
-            				"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Features</a> </li>\n" + 
-            				"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">Pricing</a> </li>\n" + 
-            				"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">About</a> </li>\n" + 
-            				"          <li class=\"nav-item\"> <a class=\"nav-link\" href=\"#\">FAQ</a> </li>\n" + 
-            				"        </ul> <a class=\"btn navbar-btn ml-md-2 btn-light text-dark\">Contact us</a>\n" + 
-            				"      </div>\n" + 
-            				"    </div>\n" + 
-            				"  </nav>\n" + 
+            		String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
             				"  <div class=\"py-0 pl-3 pr-3 pt-3 pb-0\">\n" + 
             				"    <div class=\"container-fluid\">\n" + 
             				"      <div class=\"row\">\n" + 
