@@ -420,7 +420,7 @@ public class Webapp extends DynamicWebPage
         				String songUniqueID = songkeys.get(i);
         				isong = songs.get(songUniqueID);
         				if (isong.songtitle.toLowerCase().contains(searchTerm.toLowerCase())) {
-        					searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><p class=\"lead\">"+isong.songtitle +" - " +iartist.artistName+"</p></a>\n";
+        					searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><p class=\"lead\">"+isong.songtitle;
         					resultcount++;
         				}        				
         			}
@@ -517,12 +517,15 @@ public class Webapp extends DynamicWebPage
             													"                    </div>\n";
             				}else {
             					for(int i = 0; i < songkeys.size();i++) {
-                					String songName = songs.get(i).songtitle;
+            						
+                					String songId = songkeys.get(i);
+                					isong = songs.get(songId);
+                					String songName = isong.uniqueID;
                 					for(int j = 0; j < iartist.artistSongs.size() ;j++) {
                 						String artistSong = iartist.artistSongs.get(j);
                 						if(songName.equalsIgnoreCase(artistSong)) {
                             				stringToSendToWebBrowser += 	"                    <div class=\"col-md-12\">\n" + 
-                                    										"                      <p class=\"lead\">Song details go here</p>\n" +
+                                    										"                    <a href = \"../songpage?song="+isong.uniqueID+"\"><p class=\"lead\">"+isong.songtitle +" - " +iartist.artistName+"</p></a>\n"+
                                     										"                    </div>\n";
                 						}
                 					}
