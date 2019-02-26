@@ -1,5 +1,6 @@
 package views;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.h2.mvstore.MVMap;
@@ -210,6 +211,13 @@ public class Webapp extends DynamicWebPage
         		isong.songlength =  toProcess.params.get("songlength");	
         		isong.songLink =  toProcess.params.get("songlink");	
         		MVMap<String, Song> songs= db.s.openMap("Song");
+        		if(art1.artistSongs !=null) {
+        			art1.artistSongs.add(isong.uniqueID);
+        		}else {
+        			art1.artistSongs = new ArrayList<String>();
+        			art1.artistSongs.add(isong.uniqueID);
+        		}
+        		
         		songs.put(isong.uniqueID, isong);
         		artists.put(art1.uniqueID, art1);
         		db.commit();
@@ -509,9 +517,10 @@ public class Webapp extends DynamicWebPage
             													"                    </div>\n";
             				}else {
             					for(int i = 0; i < songkeys.size();i++) {
-                					isong = songs.get(i);
+                					String songName = songs.get(i).songtitle;
                 					for(int j = 0; j < iartist.artistSongs.size() ;j++) {
-                						if(isong.uniqueID.equalsIgnoreCase(iartist.artistSongs.get(j))) {
+                						String artistSong = iartist.artistSongs.get(j);
+                						if(songName.equalsIgnoreCase(artistSong)) {
                             				stringToSendToWebBrowser += 	"                    <div class=\"col-md-12\">\n" + 
                                     										"                      <p class=\"lead\">Song details go here</p>\n" +
                                     										"                    </div>\n";
