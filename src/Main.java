@@ -5,8 +5,10 @@ import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import views.Checkout;
 import views.AboutUsView;
+import views.AddProduct;
 import views.ExampleView;
 import views.HomePage;
+import views.ProductPage;
 import views.Registration;
 import views.Store;
 import views.TestForm;
@@ -91,6 +93,9 @@ public class Main
 		HomePage ihomepage= new HomePage(databaseInterface,fileStoreInterface);
 		Registration registerPage = new Registration(databaseInterface,fileStoreInterface);
 		Store store= new Store(databaseInterface,fileStoreInterface);
+		AddProduct addproduct = new AddProduct(databaseInterface, fileStoreInterface);
+
+		ProductPage productpage = new ProductPage(databaseInterface, fileStoreInterface);
 		//this variable indicates that the program should keep running
 		//by setting this variable to false the program will exit
 		boolean shouldKeepRunning = true;
@@ -159,7 +164,18 @@ public class Main
 					
 				}
 				else if(aboutUsPage.process(toProcess))
-				{   }
+				{   
+					
+				}
+				
+				else if (addproduct.process(toProcess))
+				{
+					
+				}
+				else if (productpage.process(toProcess))
+				{
+					
+				}
 				
 				else
 				{

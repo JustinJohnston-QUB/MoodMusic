@@ -45,7 +45,7 @@ public class Registration extends DynamicWebPage
         			"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
         			"        <li><a href=\"webapp\">Music</a></li>\r\n" + 
         			"        <li><a href=\"store\">Store</a></li>\r\n" + 
-        			"        <li><a href=\"aboutus.html\">About Us</a></li>\r\n" + 
+        			"        <li><a href=\"indexview\">About Us</a></li>\r\n" + 
         			"        <li><a href=\"registration\">Account</a></li>\r\n" + 
         			"      </ul>\r\n" + 
         			"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
