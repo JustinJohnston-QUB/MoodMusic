@@ -421,10 +421,24 @@ public class Webapp extends DynamicWebPage
         				isong = songs.get(songUniqueID);
         				if (isong.songtitle.toLowerCase().contains(searchTerm.toLowerCase())) {
         					searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><p class=\"lead\">"+isong.songtitle;
+        					for(int k = 0; k < artistkeys.size();k++) {	
+                				String artistUniqueID = artistkeys.get(k);
+                				iartist = artists.get(artistUniqueID);
+                				if(iartist.artistSongs != null) {
+	            					for(int j = 0; j < iartist.artistSongs.size() ;j++) {
+	            						String artistSong = iartist.artistSongs.get(j);
+	            						if(artistSong.equalsIgnoreCase(isong.uniqueID.toLowerCase())) {
+	            							searchresult += " - " + iartist.artistName + "</p></a>";
+	            						}
+	            					}
+                				}
+            				}
+        				}
+        						
         					resultcount++;
         				}        				
-        			}
-        			if(resultcount == 0) {
+        			
+					if(resultcount == 0) {
         				searchresult += "<p class=\"lead\">No songs found</p>\n";
         			}
         			stringToSendToWebBrowser += searchresult;
@@ -437,6 +451,7 @@ public class Webapp extends DynamicWebPage
         					"    </div>\n" + 
         					"  </div>";
         		}
+        	
 //end of song  Search  
             	stringToSendToWebBrowser += "</body>\n" + 
         				"</html>\n" + 
