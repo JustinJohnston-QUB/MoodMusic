@@ -119,9 +119,9 @@ public class Webapp extends DynamicWebPage
 					"  			Song Title " + 
 					"  			<input type=\"text\" name=\"songtitle\" value=\"title\">\n" + 
 					"  			<br>\n" + 
-					" 			song Length <input type=\"time\" name=\"songtlength\" value=\"time\">\n" + 
+					" 			song Length <input type=\"time\" name=\"songlength\" value=\"time\">\n" + 
 					"  			<br>\n" + 
-					"  			song Link <input type=\"text\" name=\"songLink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
+					"  			song Link <input type=\"text\" name=\"songlink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
 					"  			<br>\n" +
 					"			<div class=\"input-field\"> "+
 					"			Artist Name<select name=\"Artist\" class = \"browser-default\" form=\"addsong\">\n"+
@@ -427,6 +427,110 @@ public class Webapp extends DynamicWebPage
             	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
             	return true;
             	
+// page which displays songs          	
+            	}else if(toProcess.path.equalsIgnoreCase("songpage")) {
+            		String song;
+            		song = toProcess.params.get("song").toLowerCase();
+                	Song isong = new Song();
+                	Artist iartist = new Artist();
+                	Artist tempartist = new Artist();
+                	MVMap<String, Song> songs= db.s.openMap("Song");
+                	List<String> songkeys = songs.keyList() ;
+                	MVMap<String, Artist> artists= db.s.openMap("Artist");
+                	List<String> artistkeys = artists.keyList() ;
+        			for(int i = 0; i<songkeys.size();i++) {
+        				String songUniqueID = songkeys.get(i);
+        				if(song.equalsIgnoreCase(songUniqueID)) {
+        					isong = songs.get(songUniqueID);
+        				}
+        			}
+ //start of artist loop        
+   					String searchresult = "";
+    				for(int k = 0; k < artistkeys.size();k++) {	
+        				String artistUniqueID = artistkeys.get(k);
+        				tempartist = artists.get(artistUniqueID);
+        				if(tempartist.artistSongs != null) {
+        					for(int j = 0; j < tempartist.artistSongs.size() ;j++) {
+        						String artistSong = tempartist.artistSongs.get(j);
+        						if(artistSong.equalsIgnoreCase(isong.uniqueID.toLowerCase())) {
+        							iartist = artists.get(artistUniqueID);
+        						}
+        					}
+        				}
+    				}		
+
+// end of artist loop 
+            		String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+            				"  <div class=\"py-0 pl-3 pr-3 pt-3 pb-0\">\n" + 
+            				"    <div class=\"container-fluid\">\n" + 
+            				"      <div class=\"row\">\n" + 
+            				"        <div class=\"col-md-8\">\n" + 
+            				"          <div class=\"row\">\n" + 
+            				"            <div class=\"col-md-2\"></div>\n" + 
+            				"            <div class=\"col-md-10\">\n" + 
+            				"              <h1 class=\"\" style=\"\">"+ isong.songtitle +"</h1>\n" + 
+            				"					<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h3 class>"+"      Artist: "+iartist.artistName+"</p></a>\n"+
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"          <div class=\"row\" style=\"\">\n" + 
+            				"            <div class=\"col-md-2\" style=\"\"><img class=\"img-fluid d-block rounded-circle mx-auto\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"300\" height=\"300\"></div>\n" + 
+            				"            <div class=\"col-md-10\">\n" + 
+            				"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
+            				"                <div class=\"col-md-12\" style=\"\">\n" + 
+            				"                  <p class=\"lead\" style=\"\">" + "song length: " + isong.songlength +"<br></p>\n" + 
+            				"                  <p class=\"lead\" style=\"\">" + "song link: " + isong.songLink +"<br></p>\n" + 
+            				"                </div>\n" + 
+            				"              </div>\n" + 
+
+            				"              <div class=\"row\">\n" + 
+            				"                <div class=\"col-md-12\">\n" + 
+            				"                  <h3 class=\"\">Artist</h3>\n"+
+            				"<div class=\"row\">";
+   
+            				stringToSendToWebBrowser += "</div>\n" + 
+            				"                </div>\n" + 
+            				"              </div>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"        </div>\n" +        				
+            				"        <div class=\"col-md-4 bg-light\">\n" + 
+            				"          <div class=\"row\">\n" + 
+            				"            <div class=\"col-md-12 bg-light\">\n" + 
+            				"              <h1 class=\"\" contenteditable=\"true\">Comments</h1>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"          <div class=\"row\">\n" + 
+            				"            <div class=\"col-md-12\">\n" + 
+            				"              <p class=\"\">This is where a comment goes - the username is appended</p>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"          <div class=\"row\">\n" + 
+            				"            <div class=\"col-md-12\">\n" + 
+            				"              <form id=\"c_form-h\" class=\"\">\n" + 
+            				"                <div class=\"form-group row\"> <label for=\"inputmailh\" class=\"col-2 col-form-label\">user</label>\n" + 
+            				"                  <div class=\"col-10\">\n" + 
+            				"                    <input type=\"email\" class=\"form-control\" id=\"inputmailh\" placeholder=\"mail@example.com\"> </div>\n" + 
+            				"                </div>\n" + 
+            				"                <div class=\"form-group row\"> <label for=\"inputpasswordh\" class=\"col-2 col-form-label\">Comment</label>\n" + 
+            				"                  <div class=\"col-10\">\n" + 
+            				"                    <input type=\"text\" class=\"form-control form-control-sm\" id=\"comment\" placeholder=\"Comment\" required=\"required\" style=\"	min-height: 100px;\"> </div>\n" + 
+            				"                </div>\n" + 
+            				"                <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n" + 
+            				"              </form>\n" + 
+            				"            </div>\n" + 
+            				"          </div>\n" + 
+            				"        </div>\n" + 
+            				"      </div>\n" + 
+            				"    </div>\n" + 
+            				"  </div>\n" + 
+            				"  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n" + 
+            				"  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\n" + 
+            				"  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\"></script>\n" +
+            				"</body>\n" + 
+            				"\n" + 
+            				"</html>";
+            		toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+            		return true;
 // page which displays artists            	
             	}else if(toProcess.path.equalsIgnoreCase("artistpage.html")) {
             		String artist;
@@ -466,8 +570,7 @@ public class Webapp extends DynamicWebPage
             				"              <div class=\"row\">\n" + 
             				"                <div class=\"col-md-12\">\n" + 
             				"                  <h3 class=\"\">Songs</h3>\n"+
-            				"<div class=\"row\">";
-//start of song loop        
+            				"<div class=\"row\">";       
             				
             				if (iartist.artistSongs == null) {
             					stringToSendToWebBrowser += 	"                    <div class=\"col-md-12\">\n" + 
@@ -489,7 +592,9 @@ public class Webapp extends DynamicWebPage
                 					}
                 				}
             				}
- // end of song loop    
+            				
+
+
             				stringToSendToWebBrowser += "</div>\n" + 
             				"                </div>\n" + 
             				"              </div>\n" + 
@@ -535,6 +640,7 @@ public class Webapp extends DynamicWebPage
             		toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
             		return true;
             	}
+        
 		return false;   
 	}
 
