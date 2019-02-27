@@ -171,7 +171,7 @@ public class Webapp extends DynamicWebPage
         			" 			 <br>\n" + 
         			"  			Description<input type=\"text\" name=\"artistdescription\" placeholder=\"description\">\n" + 
         			" 			 <br>\n" + 
-        			" 			 image Link <input type=\"text\" name=\"Artist Image\" placeholder=\"link to an image\">\n" + 
+        			" 			 image Link <input type=\"text\" name=\"artistimage\" placeholder=\"link to an image\">\n" + 
         			"  			<br>\n" + 
         			"  			<br><br>\n" + 
         			"  			<input type=\"submit\" value=\"Submit\">\n" + 
@@ -225,7 +225,8 @@ public class Webapp extends DynamicWebPage
         		Artist iartist = new Artist();
         		iartist.uniqueID= "Artist_"+System.currentTimeMillis();
         		iartist.artistName = toProcess.params.get("artistname");	
-        		iartist.artistDescription = toProcess.params.get("artistdescription");		
+        		iartist.artistDescription = toProcess.params.get("artistdescription");	
+        		iartist.artistImage = toProcess.params.get("artistimage");
         		MVMap<String, Artist> artists= db.s.openMap("Artist");
         		artists.put(iartist.uniqueID, iartist);
         		db.commit();
@@ -558,9 +559,13 @@ public class Webapp extends DynamicWebPage
             				"              <h1 class=\"\" style=\"\">"+ iartist.artistName +"</h1>\n" + 
             				"            </div>\n" + 
             				"          </div>\n" + 
-            				"          <div class=\"row\" style=\"\">\n" + 
-            				"            <div class=\"col-md-2\" style=\"\"><img class=\"img-fluid d-block rounded-circle mx-auto\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"300\" height=\"300\"></div>\n" + 
-            				"            <div class=\"col-md-10\">\n" + 
+            				"          <div class=\"row\" style=\"\">\n" ;
+            				if(iartist.artistImage != null && iartist.artistImage != "" ) {
+            					stringToSendToWebBrowser +="            <div class=\"col-md-2\" style=\"\"><img class=\"img-fluid d-block rounded-circle mx-auto\" src=\""+iartist.artistImage+"\" width=\"300\" height=\"300\"></div>\n";
+            				}else {
+            					stringToSendToWebBrowser +="            <div class=\"col-md-2\" style=\"\"><img class=\"img-fluid d-block rounded-circle mx-auto\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"300\" height=\"300\"></div>\n";
+            				}
+            				stringToSendToWebBrowser+="            <div class=\"col-md-10\">\n" + 
             				"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
             				"                <div class=\"col-md-12\" style=\"\">\n" + 
             				"                  <p class=\"lead\" style=\"\">"+ iartist.artistDescription +"<br></p>\n" + 
