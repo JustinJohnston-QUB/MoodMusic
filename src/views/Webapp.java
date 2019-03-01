@@ -36,7 +36,7 @@ public class Webapp extends DynamicWebPage
 					"      <div class=\"row\">\n" + 
 					"        <div class=\"col s6 offset-s3\">\n" + 
 					"          <h3 class=\"center-align\">Search for the Music you love</h3>\n" + 
-					"          <p class=\"center-align\"\">Search by Mood, Artist or Song</p>\n" + 
+					"          <p class=\"center-align\">Search by Mood, Artist or Song</p>\n" + 
 					// Form
 					"          <form action=\"../search.html\" method=\"GET\" class=\"col s12\">\n" + 
 					"            <div class=\"input-field col s12\"> "
@@ -55,43 +55,43 @@ public class Webapp extends DynamicWebPage
 					"    <div class=\"container\">\n" + 
 					"      <div class=\"row\">\n" + 
 					"        <div class=\"col s12\">\n" + 
-					"          <h1 class=\"center-align\">Featured Artists</h1>\n" + 
+					"          <h1 class=\"center-align\">Choose Your Mood</h1>\n" + 
 					"        </div>\n" + 
 					"      </div>\n" + 
 					"      <div class=\"row\">\n" + 
-					"        <div class=\"col s3\"> <img class=\"img-fluid d-block mb-3 mx-auto rounded-circle\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-					"          <h4> <b>J. W. Goethe</b> </h4>\n" + 
-					"          <p class=\"mb-0\">CEO and founder</p>\n" + 
+					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
+					"          <h4 class = \"flow-text\" > <b>Happy</b> </h4>\n" + 
+					"          <p class=\"flow-text\">keep that bliss going</p>\n" + 
 					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"img-fluid d-block mb-3 mx-auto rounded-circle\" src=\"https://static.pingendo.com/img-placeholder-2.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-					"          <h4> <b>G. W. John</b> </h4>\n" + 
-					"          <p class=\"mb-0\">Co-founder</p>\n" + 
+					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-2.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
+					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" + 
+					"          <p class=\"flow-tex\">Co-founder</p>\n" + 
 					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"img-fluid d-block mb-3 mx-auto rounded-circle\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"150\">\n" + 
-					"          <h4> <b>J. G. Wolf</b> </h4>\n" + 
-					"          <p class=\"mb-0\">CFO</p>\n" + 
+					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"150\">\n" + 
+					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" + 
+					"          <p class=\"flow-tex\">CFO</p>\n" + 
 					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"img-fluid d-block mb-3 mx-auto rounded-circle\" src=\"https://static.pingendo.com/img-placeholder-4.svg\" width=\"150\">\n" + 
-					"          <h4> <b>A. Gang</b> </h4>\n" + 
-					"          <p class=\"mb-0\">CTO</p>\n" + 
+					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\">\n" + 
+					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
+					"          <p class=\"flow-tex\">CTO</p>\n" + 
 					"        </div>\n" + 
 					"      </div>\n" + 
 					"      <div class=\"row d-flex justify-content-center\">\n" + 
-					"        <div class=\"col s3\"> <img class=\"img-fluid d-block mb-3 mx-auto rounded-circle\" src=\"https://static.pingendo.com/img-placeholder-4.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-					"          <h4> <b>G. W. John</b> </h4>\n" + 
-					"          <p class=\"mb-0\">Co-founder</p>\n" + 
+					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-2.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
+					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
+					"          <p class=\"flow-tex\">Co-founder</p>\n" + 
 					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"img-fluid d-block mb-3 mx-auto rounded-circle\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\">\n" + 
-					"          <h4> <b>J. G. Wolf</b> </h4>\n" + 
-					"          <p class=\"mb-0\">CFO</p>\n" + 
+					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\">\n" + 
+					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
+					"          <p class=\"flow-tex\">CFO</p>\n" + 
 					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"img-fluid d-block mb-3 mx-auto rounded-circle\" src=\"https://static.pingendo.com/img-placeholder-4.svg\" width=\"150\">\n" + 
-					"          <h4> <b>A. Gang</b> </h4>\n" + 
-					"          <p class=\"mb-0\">CTO</p>\n" + 
+					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"150\">\n" + 
+					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
+					"          <p class=\"flow-tex\">CTO</p>\n" + 
 					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"img-fluid d-block mb-3 mx-auto rounded-circle\" src=\"https://static.pingendo.com/img-placeholder-4.svg\" width=\"150\">\n" + 
-					"          <h4> <b>A. Gang</b> </h4>\n" + 
-					"          <p class=\"mb-0\">CTO</p>\n" + 
+					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\">\n" + 
+					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
+					"          <p class=\"flow-tex\">CTO</p>\n" + 
 					"        </div>\n" +
 					"      </div>\n" + 
 					"    </div>\n" + 
