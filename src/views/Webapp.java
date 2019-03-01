@@ -28,6 +28,9 @@ public class Webapp extends DynamicWebPage
 		if(toProcess.path.equalsIgnoreCase("webapp"))
 
 		{
+			MVMap<String, Mood> moods= db.s.openMap("Mood");
+			List<String> moodkeys = moods.keyList() ;
+			Mood imood = new Mood();
 			String stringToSendToWebBrowser = PageElements.header()  +
 					"<body >\n" + PageElements.Navbar()+
 
@@ -51,50 +54,46 @@ public class Webapp extends DynamicWebPage
 					"      </div>\n" + 
 					"    </div>\n" + 
 					"  </div>\n" +
-					//start of link div
+					//start of moods
 					"  <div class=\"col s12 white center-align\">\n" + 
 					"    <div class=\"container\">\n" + 
 					"      <div class=\"row\">\n" + 
 					"        <div class=\"col s12\">\n" + 
 					"          <h1 class=\"center-align\">Choose Your Mood</h1>\n" + 
 					"        </div>\n" + 
+					"      </div>\n"+
+					"      <div class=\"row\">\n" ;
+			 	int moodcount = 1;
+			 	if(moodkeys.size() == 0) {
+					stringToSendToWebBrowser +=
+							"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
+									"<h5 class=\" flow-text blue-text text-darken-2\">Moods Missing</h5>\n"+ 
+							"          <p class=\"flow-text\">there are no moods only xanax</p>\n" + 
+							"        </div>\n";
+			 	}else {
+			 		for(int i = 0; i<moodkeys.size();i++) {
+						String moodUniqueID = moodkeys.get(i);
+							imood = moods.get(moodUniqueID);
+							stringToSendToWebBrowser +=
+									"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
+											"<a href = \"../moodpage.html?mood="+imood.moodname+"\"><h5 class=\" flow-text blue-text text-darken-2\">"+imood.moodname+"</h5></a>\n"+ 
+									"          <p class=\"flow-text\">"+imood.mooddescription+"</p>\n" + 
+									"        </div>\n";
+									if(moodcount < 4) {
+										moodcount++;
+									}else {
+										stringToSendToWebBrowser +="        </div>\n"+
+												"      <div class=\"row\">\n" ;
+										 moodcount = 1;
+									}
+									
+					}
+			 	}
+				
+
+				stringToSendToWebBrowser +=
 					"      </div>\n" + 
-					//end of link div
-					"      <div class=\"row\">\n" + 
-					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-					"          <h4 class = \"flow-text\" > <b>Happy</b> </h4>\n" + 
-					"          <p class=\"flow-text\">keep that bliss going</p>\n" + 
-					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-2.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" + 
-					"          <p class=\"flow-tex\">Co-founder</p>\n" + 
-					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"150\">\n" + 
-					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" + 
-					"          <p class=\"flow-tex\">CFO</p>\n" + 
-					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\">\n" + 
-					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
-					"          <p class=\"flow-tex\">CTO</p>\n" + 
-					"        </div>\n" + 
-					"      </div>\n" + 
-					"      <div class=\"row d-flex justify-content-center\">\n" + 
-					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-2.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
-					"          <p class=\"flow-tex\">Co-founder</p>\n" + 
-					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\">\n" + 
-					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
-					"          <p class=\"flow-tex\">CFO</p>\n" + 
-					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"150\">\n" + 
-					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
-					"          <p class=\"flow-tex\">CTO</p>\n" + 
-					"        </div>\n" + 
-					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\">\n" + 
-					"          <h4 class=\"flow-text\"> <b>G. W. John</b> </h4>\n" +
-					"          <p class=\"flow-tex\">CTO</p>\n" + 
-					"        </div>\n" +
+
 					"      </div>\n" + 
 					"    </div>\n" + 
 					"  </div>\n";
@@ -310,13 +309,13 @@ public class Webapp extends DynamicWebPage
 					"      </div>\n" + 
 					"    </div>\n" + 
 					"  </div>\n" + 
-					"<div class=\"col s12 white\" style=\"\">\n" + 
+					"<div class=\"col s12\" style=\"\">\n" + 
 					"    <div class=\"container-fluid\">\n" + 
 					"      <div class=\"row\">\n" + 
-					"        <div class=\"col s12\">\n" + 
+					"        <div class=\"col s12 white\">\n" + 
 					"          <div class=\"row\">\n" + 
 					"            <div class=\"col s10  offset-s1\">\n" + 
-					"              <h1 class=\"\" contenteditable=\"false\" >Search results</h1>\n" + 
+					"              <h1 class=\"center-align\" contenteditable=\"false\" >Search results</h1>\n" + 
 					"            </div>\n" + 
 					"          </div>\n" + 
 					"        </div>\n" + 
@@ -324,7 +323,7 @@ public class Webapp extends DynamicWebPage
 					"    </div>";
 			//mood Search
 			if(moodkeys.size() == 0) {
-				stringToSendToWebBrowser += "<div class=\"col s12\">\n" + 
+				stringToSendToWebBrowser += "<div class=\"col s12 white\">\n" + 
 						"      <div class=\"row\">\n" + 
 						"        <div class=\"col s121\">\n" + 
 						"          <div class=\"row\">\n" + 
@@ -346,7 +345,7 @@ public class Webapp extends DynamicWebPage
 						"    </div>\n" + 
 						"  </div>";
 			}else {
-				stringToSendToWebBrowser += "    <div class=\"container-fluid\">\n" + 
+				stringToSendToWebBrowser += "    <div class=\"col s12 white\">\n" + 
 						"      <div class=\"row\">\n" + 
 						"        <div class=\"col s12\">\n" + 
 						"          <div class=\"row\">\n" + 
@@ -384,7 +383,7 @@ public class Webapp extends DynamicWebPage
 			//end of mood Search      
 			//artist Search
 			if(artistkeys.size() == 0) {
-				stringToSendToWebBrowser += "<div class=\"col s12\">\n" + 
+				stringToSendToWebBrowser += "<div class=\"col s12 white\">\n" + 
 						"      <div class=\"row\">\n" + 
 						"        <div class=\"col s121\">\n" + 
 						"          <div class=\"row\">\n" + 
@@ -406,7 +405,7 @@ public class Webapp extends DynamicWebPage
 						"    </div>\n" + 
 						"  </div>";
 			}else {
-				stringToSendToWebBrowser += "    <div class=\"container-fluid\">\n" + 
+				stringToSendToWebBrowser += "    <div class=\"col s12 white\">\n" + 
 						"      <div class=\"row\">\n" + 
 						"        <div class=\"col s12\">\n" + 
 						"          <div class=\"row\">\n" + 
@@ -445,7 +444,7 @@ public class Webapp extends DynamicWebPage
 
 			//Song Search
 			if(songkeys.size() == 0) {
-				stringToSendToWebBrowser += "<div class=\"container-fluid\">\n" + 
+				stringToSendToWebBrowser += "<div class=\"col s12 white\">\n" + 
 						"      <div class=\"row\">\n" + 
 						"        <div class=\"col s12\">\n" + 
 						"          <div class=\"row\">\n" + 
@@ -467,7 +466,7 @@ public class Webapp extends DynamicWebPage
 						"    </div>\n" + 
 						"  </div>";
 			}else {
-				stringToSendToWebBrowser += "    <div class=\"container-fluid px-3\">\n" + 
+				stringToSendToWebBrowser += "    <div class=\"col s12 white\">\n" + 
 						"      <div class=\"row\">\n" + 
 						"        <div class=\"col s12\">\n" + 
 						"          <div class=\"row\">\n" + 
@@ -486,6 +485,7 @@ public class Webapp extends DynamicWebPage
 					isong = songs.get(songUniqueID);
 					if (isong.songtitle.toLowerCase().contains(searchTerm.toLowerCase())) {
 						searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><h5 class=\"blue-text text-darken-2\">"+isong.songtitle;
+						resultcount++;
 						for(int k = 0; k < artistkeys.size();k++) {	
 							String artistUniqueID = artistkeys.get(k);
 							iartist = artists.get(artistUniqueID);
@@ -500,7 +500,7 @@ public class Webapp extends DynamicWebPage
 						}
 					}
 
-					resultcount++;
+					
 				}        				
 
 				if(resultcount == 0) {
@@ -795,13 +795,15 @@ public class Webapp extends DynamicWebPage
 							for(int q  = 0 ; q< artistkeys.size();q++) {
 								String artistname = artistkeys.get(q);
 								iartist = artists.get(artistname);
-								for(int k = 0; k < iartist.artistSongs.size() ;k++) {
+								if(iartist.artistSongs != null) {
+									for(int k = 0; k < iartist.artistSongs.size() ;k++) {
 									String artistSong = iartist.artistSongs.get(k);
 									if(songID.equalsIgnoreCase(artistSong)) {
 										stringToSendToWebBrowser += 	"                    <div class=\"col s12 \">\n" + 
 												"                    <a href = \"../songpage?song="+isong.uniqueID+"\"><h5 class=\"blue-text text-darken-2\">"+isong.songtitle +" - " +iartist.artistName+"</h5></a>\n"+
 												"                    </div>\n";
 									}
+								}
 								}
 							}
 							
@@ -829,11 +831,11 @@ public class Webapp extends DynamicWebPage
 					"    <div class=\"col s12\">\n" + 
 					"			<h2>Add Mood</h2>\n" + 
 					"			<form action=\"../addmood.html\" method = \"GET\"id = \"addmood\">\n " + 
-					" 			 Mood Name " + 
-					" 			 <input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
-					" 			 <br>\n" + 
 					" 			 Mood Image " + 
 					" 			 <input type=\"text\" name=\"moodimage\" placeholder=\"image\">\n" + 
+					" 			 <br>\n" + 
+					" 			 Mood Name " + 
+					" 			 <input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
 					" 			 <br>\n" + 
 					"  			Description<input type=\"text\" name=\"mooddescription\" placeholder=\"description\">\n" + 
 					"  			<br><br>\n" + 
