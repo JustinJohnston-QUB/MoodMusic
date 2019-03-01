@@ -155,7 +155,7 @@ public class Webapp extends DynamicWebPage
 			stringToSendToWebBrowser += "</select>" + 
 					"  </div>"+
 					"  <br><br>\n" + 
-					"  <input type=\"submit\" value=\"Submit\">\n" + 
+					"  <input class=\"btn waves-effect waves-light  deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"</form> \n" + 
 					"    </div>\n" + 
 					"    <div class=\"col s6 m0\">\n" + 
@@ -194,7 +194,7 @@ public class Webapp extends DynamicWebPage
 					" 			 image Link <input type=\"text\" name=\"artistimage\" placeholder=\"link to an image\">\n" + 
 					"  			<br>\n" + 
 					"  			<br><br>\n" + 
-					"  			<input type=\"submit\" value=\"Submit\">\n" + 
+					"  			<input class=\"btn waves-effect waves-light  deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"			</form> \n" + 
 					"    </div>\n" + 
 					"    <div class=\"col s8\">\n" + 
@@ -342,7 +342,7 @@ public class Webapp extends DynamicWebPage
 						"    </div>\n" + 
 						"  </div>";
 			}else {
-				stringToSendToWebBrowser += "    <div class=\"container-fluid px-3\">\n" + 
+				stringToSendToWebBrowser += "    <div class=\"container-fluid\">\n" + 
 						"      <div class=\"row\">\n" + 
 						"        <div class=\"col s12\">\n" + 
 						"          <div class=\"row\">\n" + 
@@ -360,7 +360,7 @@ public class Webapp extends DynamicWebPage
 					String artistUniqueID = artistkeys.get(i);
 					iartist = artists.get(artistUniqueID);
 					if (iartist.artistName.toLowerCase().contains(searchTerm.toLowerCase())) {
-						searchresult += "<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h5>"+iartist.artistName+"</h5></a>\n";
+						searchresult += "<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h5 class=\"blue-text text-darken-2\">"+iartist.artistName+"</h5></a>\n";
 						resultcount++;
 					}        				
 				}
@@ -381,7 +381,7 @@ public class Webapp extends DynamicWebPage
 
 			//Song Search
 			if(songkeys.size() == 0) {
-				stringToSendToWebBrowser += "<div class=\"container-fluid px-3\">\n" + 
+				stringToSendToWebBrowser += "<div class=\"container-fluid\">\n" + 
 						"      <div class=\"row\">\n" + 
 						"        <div class=\"col s12\">\n" + 
 						"          <div class=\"row\">\n" + 
@@ -421,7 +421,7 @@ public class Webapp extends DynamicWebPage
 					String songUniqueID = songkeys.get(i);
 					isong = songs.get(songUniqueID);
 					if (isong.songtitle.toLowerCase().contains(searchTerm.toLowerCase())) {
-						searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><h5>"+isong.songtitle;
+						searchresult += "<a href = \"../songpage?song="+isong.uniqueID+"\"><h5 class=\"blue-text text-darken-2\">"+isong.songtitle;
 						for(int k = 0; k < artistkeys.size();k++) {	
 							String artistUniqueID = artistkeys.get(k);
 							iartist = artists.get(artistUniqueID);
@@ -524,7 +524,7 @@ public class Webapp extends DynamicWebPage
 					"            <div class=\"col s2\"></div>\n" + 
 					"            <div class=\"col s12\">\n" + 
 					"              <h1>"+isong.songtitle +"</h1>\n" + 
-					"					<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h3>"+"Artist: "+iartist.artistName+"</h3></a>\n"+
+					"					<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h3 class=\"blue-text text-darken-2\">"+"Artist: "+iartist.artistName+"</h3></a>\n"+
 					"            </div>\n" + 
 					"          </div>\n" + 
 					"          <div class=\"row offset-s1\">\n" + 
@@ -609,7 +609,7 @@ public class Webapp extends DynamicWebPage
 						String artistSong = iartist.artistSongs.get(j);
 						if(songName.equalsIgnoreCase(artistSong)) {
 							stringToSendToWebBrowser += 	"                    <div class=\"col s12 \">\n" + 
-									"                    <a href = \"../songpage?song="+isong.uniqueID+"\"><h5>"+isong.songtitle +" - " +iartist.artistName+"</h5></a>\n"+
+									"                    <a href = \"../songpage?song="+isong.uniqueID+"\"><h5 class=\"blue-text text-darken-2\">"+isong.songtitle +" - " +iartist.artistName+"</h5></a>\n"+
 									"                    </div>\n";
 						}
 					}
