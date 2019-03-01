@@ -94,11 +94,9 @@ public class Webapp extends DynamicWebPage
 					"        </div>\n" +
 					"      </div>\n" + 
 					"    </div>\n" + 
-					"  </div>\n" + 
-					"  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n" + 
-					"  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\n" + 
-					"  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\"></script>\n" + 
-					"</body>\n" + 
+					"  </div>\n";
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += "</body>\n" + 
 					"\n" + 
 					"</html>";
 
@@ -134,19 +132,19 @@ public class Webapp extends DynamicWebPage
 					"			<div class=\"input-field\"> "+
 					"			Artist Name<select name=\"Artist\" class = \"browser-default\" form=\"addsong\">\n"+
 					"			option value=\"\" disabled selected>Choose your option</option>" ;
-			
+
 			for(int i = 0; i < artistkeys.size();i++) {
 				String artistUniqueID = artistkeys.get(i);
 				iartist = artists.get(artistUniqueID);
 				stringToSendToWebBrowser += "  <option value=\""+iartist.uniqueID +"\">"+iartist.artistName+"</option>\n";
 			}
-			
-			
+
+
 			stringToSendToWebBrowser +=			 "</select>" + 
-												"  </div>"+
-												"			<div class=\"input-field\"> "+
-												"			Mood<select name=\"mood\" class = \"browser-default\" form=\"addsong\">\n"+
-												"			option value=\"\" disabled selected>Choose your option</option>" ;
+					"  </div>"+
+					"			<div class=\"input-field\"> "+
+					"			Mood<select name=\"mood\" class = \"browser-default\" form=\"addsong\">\n"+
+					"			option value=\"\" disabled selected>Choose your option</option>" ;
 			for(int i = 0; i < moodkeys.size();i++) {
 				String moodUniqueID = moodkeys.get(i);
 				imood= moods.get(moodUniqueID);
@@ -165,13 +163,13 @@ public class Webapp extends DynamicWebPage
 					"      <bt><p>more text...</p>\n" + 
 					"    </div>\n" + 
 					"  </div>\n" + 
-					"</div>"+
+					"</div>";
+			stringToSendToWebBrowser += PageElements.scripts();
 
-
-
-        			"\n" + 
-        			"</body>\n" + 
-        			"</html> ";
+			stringToSendToWebBrowser += 
+					"\n" + 
+							"</body>\n" + 
+							"</html> ";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 
@@ -204,11 +202,12 @@ public class Webapp extends DynamicWebPage
 					"      <bt><p>more text...</p>\n" + 
 					"    </div>\n" + 
 					"  </div>\n" + 
-					"</div>"+
-
-        			"\n" + 
-        			"</body>\n" + 
-        			"</html> ";
+					"</div>";
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += 
+					"\n" + 
+							"</body>\n" + 
+							"</html> ";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 
@@ -244,10 +243,12 @@ public class Webapp extends DynamicWebPage
 			db.commit();
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
-					"	<h2>song Added</h2>\n" + 
+					"	<h2>song Added</h2>\n";
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser +=
 					"</body>\n" + 
-					"</html>\n" + 
-					"";
+							"</html>\n" + 
+							"";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 
@@ -263,10 +264,12 @@ public class Webapp extends DynamicWebPage
 			db.commit();
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
-					"	<h2>artist Added</h2>\n" + 
+					"	<h2>artist Added</h2>\n";
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser +=
 					"</body>\n" + 
-					"</html>\n" + 
-					"";
+							"</html>\n" + 
+							"";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 
@@ -448,7 +451,9 @@ public class Webapp extends DynamicWebPage
 						"    </div>\n" + 
 						"  </div>";
 			}
-
+			;
+			//scripts
+			stringToSendToWebBrowser += PageElements.scripts();
 			//end of song  Search  
 			stringToSendToWebBrowser += "</body>\n" + 
 					"</html>\n" + 
@@ -536,13 +541,12 @@ public class Webapp extends DynamicWebPage
 					"              </div>\n" + 
 					"            </div>\n" + 
 					"          </div>\n" + 
-					"        </div>\n" +        				
-					"  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n" + 
-					"  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\n" + 
-					"  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\"></script>\n" +
+					"        </div>\n" ;
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser +=
 					"</body>\n" + 
-					"\n" + 
-					"</html>";
+							"\n" + 
+							"</html>";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 			// page which displays artists            	
@@ -611,15 +615,10 @@ public class Webapp extends DynamicWebPage
 				}
 			}
 
-
-
-			stringToSendToWebBrowser +=
-					"  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n" + 
-							"  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js\" integrity=\"sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut\" crossorigin=\"anonymous\"></script>\n" + 
-							"  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\"></script>\n" +
-							"</body>\n" + 
-							"\n" + 
-							"</html>";
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser +="</body>\n" + 
+					"\n" + 
+					"</html>";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 		}else if(toProcess.path.equalsIgnoreCase("mood.html")){
@@ -642,7 +641,9 @@ public class Webapp extends DynamicWebPage
 					"  </div>\n" + 
 					"</div>"+
 
-        			"\n" + 
+        			"\n" ;
+					stringToSendToWebBrowser += PageElements.scripts();
+					stringToSendToWebBrowser += 
         			"</body>\n" + 
         			"</html> ";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
@@ -656,7 +657,9 @@ public class Webapp extends DynamicWebPage
 			db.commit();
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
-					"	<h2>Mood added</h2>\n" + 
+					"	<h2>Mood added</h2>\n";
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += 
 					"</body>\n" + 
 					"</html>\n" + 
 					"";
@@ -664,7 +667,7 @@ public class Webapp extends DynamicWebPage
 			return true;
 
 
-            		
+
 		}
 
 		return false;   
