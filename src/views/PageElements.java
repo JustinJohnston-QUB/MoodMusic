@@ -6,7 +6,7 @@ public class PageElements {
 		
 	}
 
-	public String footer() {
+	public static String footer() {
 		String footerString = "</div>\r\n" + 
 				"        </div>\r\n" + 
 				"      </div>\r\n" + 
@@ -48,22 +48,26 @@ public class PageElements {
 	public static String Navbar() {
 		
 
-	 String stringToSendToWebBrowser =  
+	 String stringToSendToWebBrowser = 
+			 "<ul id=\"dropdown1\" class=\"dropdown-content\">\r\n" + 
+			 "  <li><a href=\"webapp\">Music</a></li>\r\n" + 
+			 "  <li><a href=\"song.html\">Add Song</a></li>\r\n" + 
+			 "  <li><a href=\"artist.html\">Add Artist</a></li>\r\n" + 
+			 "</ul>" +
 			"  <nav class=\"orange\" role=\"navigation\">\r\n" + 
 					"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage.html\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
 					"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
-					"		<li><a href=\"webapp\">Music</a></li>\r\n" + 
-					"		<li><a href=\"song.html\">Add Song</a></li>\r\n" + 
-					"		<li><a href=\"artist.html\">Add musician</a></li>\r\n" + 
+					"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown1\">Music<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
 					"		<li><a href=\"store\">Store</a></li>\r\n" + 
 					"		<li><a href=\"indexview\">About Us</a></li>\r\n" + 
 					"		<li><a href=\"user\">Account</a></li>\r\n" + 
+					"" +
 					"      </ul>\r\n" + 
 					"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
 					"        <li><a href=\"#\">Navbar Link</a></li>\r\n" + 
 					"      </ul>\r\n" + 
 					"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger\"><i class=\"material-icons\">menu</i></a>\r\n" + 
-					"    </div>\r\n" + 
+					"    </div>\r\n" +
 					"  </nav>\r\n";
 	
 	return stringToSendToWebBrowser;
@@ -118,6 +122,34 @@ public class PageElements {
 											"  <link href=\"../untitled.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/>\r\n" + 
 							    			"</head>\n";
 		return stringToSendToWebBrowser ;
+	}
+	
+	public static String scripts() {
 		
+		String stringToSendToWebBrowser = "  <!--  Scripts-->\r\n" + 
+				"  <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\r\n" + 
+				"  <script src=\"js/materialize.js\"></script>\r\n" + 
+				"  <script src=\"js/init.js\"></script>\r\n" + 
+				"\r\n" + 
+				"<script>\r\n" + 
+				"    $(document).ready(function() {\r\n" + 
+				"      $('.carousel').carousel();\r\n" + 
+				"\r\n" + 
+				"      $('.carousel.carousel-slider').carousel({\r\n" + 
+				"        fullWidth: true,\r\n" + 
+				"        indicators: true\r\n" + 
+				"      });\r\n" + 
+				"\r\n" + 
+				"      autoplay();\r\n" + 
+				"\r\n" + 
+				"      function autoplay() {\r\n" + 
+				"        $('.carousel').carousel('next');\r\n" + 
+				"        setTimeout(autoplay, 4500);\r\n" + 
+				"      }\r\n" +
+				"      $('.dropdown-trigger').dropdown();\r\n" + 
+				"    });\r\n" + 
+				"  </script>";
+		
+		return stringToSendToWebBrowser;
 	}
 }

@@ -22,19 +22,18 @@ public class Store extends DynamicWebPage
 	{
 		if(toProcess.path.equalsIgnoreCase("store"))
 		{				
-			
-			PageElements pageElement = new PageElements();
-			
+
+
 			MVMap<String, Product> products = db.s.openMap("products");
 			List<String> productKeys = products.keyList();
-			
+
 			if (productKeys.size() == 0) {
 				Product tshirt = new Product();
 				tshirt.filePathToImage = "../images/tshirt1.png"; 
 			}
-			
-			
-			
+
+
+
 
 			//start of html and imports of materialize cs
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
@@ -52,8 +51,8 @@ public class Store extends DynamicWebPage
 					"\r\n" + 
 					"<body>\r\n";
 			//navbar
-			stringToSendToWebBrowser += pageElement.header();
-					
+			stringToSendToWebBrowser += PageElements.Navbar();
+
 
 			//Carousel
 			stringToSendToWebBrowser +=
@@ -88,71 +87,51 @@ public class Store extends DynamicWebPage
 							"      <!--   Icon Section   -->\r\n" + 
 							"      <div class=\"row\">\r\n"; 
 
-				for (int i = 0; i < productKeys.size(); i++) {
-					String productUniqueID = productKeys.get(i);
-					Product product = products.get(productUniqueID);
+			for (int i = 0; i < productKeys.size(); i++) {
+				String productUniqueID = productKeys.get(i);
+				Product product = products.get(productUniqueID);
 
-					stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
-							"            <a href=\"productpage\">\r\n" + 
-							"              <image class=\"left\" src=\""+product.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
-							"            </a>\r\n" + 
-							"            <h5 class=\"heavy left\">"+product.title+"<br />Only &pound"+product.price+"</h5>\r\n" + 
-							"            <!--Dropdown button to choose colour-->\r\n" + 
-							"            <div class=\"colourBtn\">\r\n" + 
-							"              <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>\r\n" + 
-							"              <ul id='dropdown1' class='dropdown-content'>\r\n" + 
-							"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Red Chosen'})\">Red</a></li>\r\n" + 
-							"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
-							"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
-							"              </ul>\r\n" + 
-							"            </div>\r\n" + 
-							"            <!--Paypal button-->\r\n" + 
-							"\r\n" + 
-							"            <form class = \"paypalBtn\"target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
-							"              <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\\r\n"+product.paypalBtn+"\">\r\n" + 
-							"              <input type=\"image\" src=\"https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal – The safer, easier way to pay online!\">\r\n" + 
-							"              <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\">\r\n" + 
-							"            </form>\r\n" + 
-							"\r\n" + 
-							"        </div>"; 
-				}
+				stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
+						"            <a href=\"productpage\">\r\n" + 
+						"              <image class=\"left\" src=\""+product.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
+						"            </a>\r\n" + 
+						"            <h5 class=\"heavy left\">"+product.title+"<br />Only &pound"+product.price+"</h5>\r\n" + 
+						"            <!--Dropdown button to choose colour-->\r\n" + 
+						"            <div class=\"colourBtn\">\r\n" + 
+						"              <a class='dropdown-trigger btn' href='#' data-target='dropdown2'>Choose Colour</a>\r\n" + 
+						"              <ul id='dropdown2' class='dropdown-content'>\r\n" + 
+						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Red Chosen'})\">Red</a></li>\r\n" + 
+						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
+						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
+						"              </ul>\r\n" + 
+						"            </div>\r\n" + 
+						"            <!--Paypal button-->\r\n" + 
+						"\r\n" + 
+						"            <form class = \"paypalBtn\"target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
+						"              <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\\r\n"+product.paypalBtn+"\">\r\n" + 
+						"              <input type=\"image\" src=\"https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal – The safer, easier way to pay online!\">\r\n" + 
+						"              <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\">\r\n" + 
+						"            </form>\r\n" + 
+						"\r\n" + 
+						"        </div>"; 
+			}
 			//This is the footer
-			stringToSendToWebBrowser += pageElement.footer();
+			stringToSendToWebBrowser += PageElements.footer();
 			//Scripts
-			stringToSendToWebBrowser +="  <!--  Scripts-->\r\n" + 
-					"  <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\r\n" + 
-					"  <script src=\"js/materialize.js\"></script>\r\n" + 
-					"  <script src=\"js/init.js\"></script>\r\n" + 
-					"\r\n" + 
-					"<script>\r\n" + 
-					"    $(document).ready(function() {\r\n" + 
-					"      $('.carousel').carousel();\r\n" + 
-					"\r\n" + 
-					"      $('.carousel.carousel-slider').carousel({\r\n" + 
-					"        fullWidth: true,\r\n" + 
-					"        indicators: true\r\n" + 
-					"      });\r\n" + 
-					"\r\n" + 
-					"      autoplay();\r\n" + 
-					"\r\n" + 
-					"      function autoplay() {\r\n" + 
-					"        $('.carousel').carousel('next');\r\n" + 
-					"        setTimeout(autoplay, 4500);\r\n" + 
-					"      }\r\n" +
-					"      $('.dropdown-trigger').dropdown();\r\n" + 
-					"    });\r\n" + 
-					"  </script>" +
+			stringToSendToWebBrowser += PageElements.scripts();
+			//End
+			stringToSendToWebBrowser +=
 					"  </body>\r\n" + 
-					"</html>\r\n"; 
+							"</html>\r\n"; 
 
 
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 
 			return true;
 		}
-	
+
 		return false;
 	}
-	
+
 
 }

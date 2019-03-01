@@ -23,7 +23,6 @@ public class ProductPage extends DynamicWebPage
 		MVMap<String, Product> products = db.s.openMap("products");
 		List<String> productKeys = products.keyList();
 		
-		PageElements pg = new PageElements();
 		
 		if (productKeys.size() == 0) {
 			Product emptProd = new Product();
@@ -45,7 +44,7 @@ public class ProductPage extends DynamicWebPage
 					"</head>\r\n" + 
 					"\r\n" + 
 					"<body>\r\n";
-			stringToSendToWebBrowser += pg.header();
+			stringToSendToWebBrowser += PageElements.Navbar();
 			
 			stringToSendToWebBrowser +=
 					"  <!--Main body of content-->\r\n" + 
@@ -102,7 +101,7 @@ public class ProductPage extends DynamicWebPage
 					"  <!--Footer-->\r\n";
 			
 			//Footer
-			stringToSendToWebBrowser += pg.footer();
+			stringToSendToWebBrowser += PageElements.footer();
 					
 			stringToSendToWebBrowser +=
 					"  <!--  Scripts-->\r\n" + 
