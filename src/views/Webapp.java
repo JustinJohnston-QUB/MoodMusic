@@ -1,3 +1,4 @@
+
 package views;
 
 import java.util.ArrayList;
@@ -672,5 +673,4 @@ public class Webapp extends DynamicWebPage
 
 		return false;   
 	}
-
 }
