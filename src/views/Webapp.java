@@ -50,7 +50,8 @@ public class Webapp extends DynamicWebPage
 					"        </div>\n" + 
 					"      </div>\n" + 
 					"    </div>\n" + 
-					"  </div>\n" + 
+					"  </div>\n" +
+					//start of link div
 					"  <div class=\"col s12 white center-align\">\n" + 
 					"    <div class=\"container\">\n" + 
 					"      <div class=\"row\">\n" + 
@@ -58,6 +59,7 @@ public class Webapp extends DynamicWebPage
 					"          <h1 class=\"center-align\">Choose Your Mood</h1>\n" + 
 					"        </div>\n" + 
 					"      </div>\n" + 
+					//end of link div
 					"      <div class=\"row\">\n" + 
 					"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
 					"          <h4 class = \"flow-text\" > <b>Happy</b> </h4>\n" + 
@@ -284,6 +286,9 @@ public class Webapp extends DynamicWebPage
 			List<String> songkeys = songs.keyList() ;
 			MVMap<String, Artist> artists= db.s.openMap("Artist");
 			List<String> artistkeys = artists.keyList() ;
+			MVMap<String, Mood> moods= db.s.openMap("Mood");
+			List<String> moodkeys = moods.keyList() ;
+			Mood imood = new Mood();
 			String stringToSendToWebBrowser = PageElements.header()+"<body>" + PageElements.Navbar()+ 
 					"  <div class=\"col s12\" style=\">\n" + 
 					"    <div class=\"container\">\n" + 
@@ -317,7 +322,66 @@ public class Webapp extends DynamicWebPage
 					"        </div>\n" + 
 					"      </div>\n" + 
 					"    </div>";
-
+			//mood Search
+			if(moodkeys.size() == 0) {
+				stringToSendToWebBrowser += "<div class=\"col s12\">\n" + 
+						"      <div class=\"row\">\n" + 
+						"        <div class=\"col s121\">\n" + 
+						"          <div class=\"row\">\n" + 
+						"            <div class=\"col s10  offset-s1\">\n" + 
+						"              <h2 class=\"\">Artist</h2>\n" + 
+						"            </div>\n" + 
+						"          </div>\n" + 
+						"          <div class=\"row\">\n" + 
+						"            <div class=\"col s12\">\n" + 
+						"              <div class=\"row\">\n" + 
+						"                <div class=\"col s12\">\n" + 
+						"                  <p class=\"lead\">No Moods in Database</p>\n" + 
+						"                </div>\n" + 
+						"              </div>\n" + 
+						"            </div>\n" + 
+						"          </div>\n" + 
+						"        </div>\n" + 
+						"      </div>\n" + 
+						"    </div>\n" + 
+						"  </div>";
+			}else {
+				stringToSendToWebBrowser += "    <div class=\"container-fluid\">\n" + 
+						"      <div class=\"row\">\n" + 
+						"        <div class=\"col s12\">\n" + 
+						"          <div class=\"row\">\n" + 
+						"            <div class=\"col s10  offset-s1\">\n" + 
+						"              <h2 class=\"\">Mood</h2>\n" + 
+						"            </div>\n" + 
+						"          </div>\n" + 
+						"          <div class=\"row\">\n" + 
+						"            <div class=\"col s12\">\n" + 
+						"              <div class=\"row\">\n" + 
+						"                <div class=\"col s10  offset-s1\">";
+				int resultcount = 0;
+				String searchresult = "";
+				for(int i = 0; i<moodkeys.size();i++) {
+					String moodName = moodkeys.get(i);
+					imood = moods.get(moodName);
+					if (imood.moodname.toLowerCase().contains(searchTerm.toLowerCase())) {
+						searchresult += "<a href = \"../moodpage.html?mood="+imood.moodname+"\"><h5 class=\"blue-text text-darken-2\">"+imood.moodname+"</h5></a>\n";
+						resultcount++;
+					}        				
+				}
+				if(resultcount == 0) {
+					searchresult += "<p class=\"lead\">No Moods found</p>\n";
+				}
+				stringToSendToWebBrowser += searchresult;
+				stringToSendToWebBrowser += "</div>\n" + 
+						"              </div>\n" + 
+						"            </div>\n" + 
+						"          </div>\n" + 
+						"        </div>\n" + 
+						"      </div>\n" + 
+						"    </div>\n" + 
+						"  </div>";
+			}
+			//end of mood Search      
 			//artist Search
 			if(artistkeys.size() == 0) {
 				stringToSendToWebBrowser += "<div class=\"col s12\">\n" + 
@@ -452,7 +516,7 @@ public class Webapp extends DynamicWebPage
 						"    </div>\n" + 
 						"  </div>";
 			}
-			;
+				
 			//scripts
 			stringToSendToWebBrowser += PageElements.scripts();
 			//end of song  Search  
@@ -652,6 +716,7 @@ public class Webapp extends DynamicWebPage
 		}else if(toProcess.path.equalsIgnoreCase("addmood.html")) {
 			Mood imood = new Mood();
 			imood.moodname = toProcess.params.get("moodname");	
+			imood.moodimage = toProcess.params.get("moodimage");	
 			imood.mooddescription = toProcess.params.get("mooddescription");	
 			MVMap<String, Mood> moods= db.s.openMap("Mood");
 			moods.put(imood.moodname, imood);
@@ -669,6 +734,122 @@ public class Webapp extends DynamicWebPage
 
 
 
+		}else if(toProcess.path.equalsIgnoreCase("moodpage.html")) {
+			String mood;
+			mood = toProcess.params.get("mood").toLowerCase();
+			Song isong = new Song();
+			Artist iartist = new Artist();
+			MVMap<String, Song> songs= db.s.openMap("Song");
+			List<String> songkeys = songs.keyList() ;
+			MVMap<String, Artist> artists= db.s.openMap("Artist");
+			List<String> artistkeys = artists.keyList() ;
+			MVMap<String, Mood> moods= db.s.openMap("Mood");
+			List<String> moodkeys = moods.keyList() ;
+			Mood imood = new Mood();
+			for(int i = 0; i<moodkeys.size();i++) {
+				String moodUniqueID = moodkeys.get(i);
+				if(mood.equalsIgnoreCase(moodUniqueID)) {
+					imood = moods.get(moodUniqueID);
+				}
+			}
+			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+					"  <div class=\"col s12 white\">\n" + 
+					"    <div class=\"container-fluid\">\n" + 
+					"      <div class=\"row\">\n" + 
+					"        <div class=\"col 10 offset-s1 white\">\n" + 
+					"          <div class=\"row\">\n" + 
+					"            <div class=\"col s2\"></div>\n" + 
+					"            <div class=\"col s12\">\n" + 
+					"              <h1 class=\"\" style=\"\">"+ imood.moodname +"</h1>\n" + 
+					"            </div>\n" + 
+					"          </div>\n" + 
+					"          <div class=\"row\" style=\"\">\n" ;
+				stringToSendToWebBrowser +="            <div class=\"col s2 align-center\" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n";
+
+			stringToSendToWebBrowser+="            <div class=\"col s8 offset-s1\">\n" + 
+					"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
+					"                <div class=\"col-md-12\" style=\"\">\n" + 
+					"                  <p class=\"lead\" style=\"\">"+ imood.mooddescription +"<br></p>\n" + 
+					"                </div>\n" + 
+					"              </div>\n" + 
+
+            				"              <div class=\"row\">\n" + 
+            				"                <div class=\"col s12 \">\n" + 
+            				"                  <h3 class=\"\">Songs</h3>\n"+
+            				"<div class=\"row\">";       
+
+			if (imood.songID == null) {
+				stringToSendToWebBrowser += 	"                    <div class=\"col s12 \">\n" + 
+						"                      <p class=\"lead\">no songs found for this mood</p>\n" +
+						"                    </div>\n";
+			}else {
+				for(int i = 0; i < songkeys.size();i++) {
+
+					String songId = songkeys.get(i);
+					isong = songs.get(songId);
+					String songID = isong.uniqueID;
+					for(int j = 0; j < imood.songID.size() ;j++) {
+						String moodSong = imood.songID.get(j);
+						if(songID.equalsIgnoreCase(moodSong)) {
+							//
+							for(int q  = 0 ; q< artistkeys.size();q++) {
+								String artistname = artistkeys.get(q);
+								iartist = artists.get(artistname);
+								for(int k = 0; k < iartist.artistSongs.size() ;k++) {
+									String artistSong = iartist.artistSongs.get(k);
+									if(songID.equalsIgnoreCase(artistSong)) {
+										stringToSendToWebBrowser += 	"                    <div class=\"col s12 \">\n" + 
+												"                    <a href = \"../songpage?song="+isong.uniqueID+"\"><h5 class=\"blue-text text-darken-2\">"+isong.songtitle +" - " +iartist.artistName+"</h5></a>\n"+
+												"                    </div>\n";
+									}
+								}
+							}
+							
+							}
+
+							//
+
+						}
+					}
+				}
+			
+
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser +="</body>\n" + 
+					"\n" + 
+					"</html>";
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;
+		}else if(toProcess.path.equalsIgnoreCase("mood.html")){
+			String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+					PageElements.header()+ "<body>\n"  + PageElements.Navbar()+ PageElements.Search()+
+					"\n" + 
+					"<div class=\"container\">\n" + 
+					"  <div class=\"row\">\n" + 
+					"    <div class=\"col s12\">\n" + 
+					"			<h2>Add Mood</h2>\n" + 
+					"			<form action=\"../addmood.html\" method = \"GET\"id = \"addmood\">\n " + 
+					" 			 Mood Name " + 
+					" 			 <input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
+					" 			 <br>\n" + 
+					" 			 Mood Image " + 
+					" 			 <input type=\"text\" name=\"moodimage\" placeholder=\"image\">\n" + 
+					" 			 <br>\n" + 
+					"  			Description<input type=\"text\" name=\"mooddescription\" placeholder=\"description\">\n" + 
+					"  			<br><br>\n" + 
+					"  			<input type=\"submit\" value=\"Submit\">\n" + 
+					"			</form> \n" + 
+					"    </div>\n" +  
+					"  </div>\n" + 
+					"</div>"+
+
+        			"\n" ;
+					stringToSendToWebBrowser += PageElements.scripts();
+					stringToSendToWebBrowser += 
+        			"</body>\n" + 
+        			"</html> ";
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;      	
 		}
 
 		return false;   

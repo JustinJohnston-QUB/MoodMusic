@@ -9,7 +9,7 @@ public class Mood implements Serializable {
 	
 	public String moodname;
 	public String mooddescription;
-	public String uniqueID;
+	public String moodimage;
 	public ArrayList<String> songID;
 
 
