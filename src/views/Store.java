@@ -84,13 +84,13 @@ public class Store extends DynamicWebPage
 							"\r\n" + 
 							"<div class=\"grid-container\">\r\n" + 
 							"      <div class=\"item1\">\r\n" + 
-							"        <h2>T-shirts</h2>\r\n" + 
+							"        \r\n" + 
 							"      </div>\r\n" + 
 							"      <div class=\"item2\">\r\n" + 
-							"        2\r\n" + 
+							"        <h2 class = center>Products</h2>\r\n" + 
 							"      </div>\r\n" + 
 							"      <div class=\"item3\">\r\n" + 
-							"        3\r\n" + 
+							"        \r\n" + 
 							"      </div>"; 
 
 			for (int i = 0; i < productKeys.size(); i++) {
@@ -110,7 +110,7 @@ public class Store extends DynamicWebPage
 						"                <h5 class = \"black-text\">"+product.title+"</h5>\r\n" + 
 						"              </div>\r\n" + 
 						"              <div class=\"card-action\">\r\n" + 
-						"                <h5 class = \"black-text\">Only &pound"+product.price+"</h5>\r\n" + 
+						"                <h6 class = \"black-text\">Only &pound"+product.price+"</h6>\r\n" + 
 						"              </div>\r\n" + 
 						"            </div></a>\r\n" + 
 						"          </div>\r\n" + 
