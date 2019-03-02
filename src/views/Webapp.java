@@ -67,8 +67,8 @@ public class Webapp extends DynamicWebPage
 			 	int moodcount = 1;
 			 	if(moodkeys.size() == 0) {
 					stringToSendToWebBrowser +=
-							"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-									"<h5 class=\" flow-text blue-text text-darken-2\">Moods Missing</h5>\n"+ 
+							"        <div class=\"col s12\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
+									"<h5 class=\" flow-text blue-text text-darken-2\">Moods Missing</h5><br>\n"+ 
 							"          <p class=\"flow-text\">there are no moods only xanax</p>\n" + 
 							"        </div>\n";
 			 	}else {
@@ -98,7 +98,7 @@ public class Webapp extends DynamicWebPage
 					"      </div>\n" + 
 					"    </div>\n" + 
 					"  </div>\n";
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts() + PageElements.footer();
 			stringToSendToWebBrowser += "</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -167,7 +167,7 @@ public class Webapp extends DynamicWebPage
 					"    </div>\n" + 
 					"  </div>\n" + 
 					"</div>";
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 
 			stringToSendToWebBrowser += 
 					"\n" + 
@@ -214,7 +214,7 @@ public class Webapp extends DynamicWebPage
 					"    </div>\n" + 
 					"  </div>\n" + 
 					"</div>";
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"\n" + 
 							"</body>\n" + 
@@ -255,7 +255,7 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>song Added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 
@@ -281,7 +281,7 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>artist Added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 
@@ -532,7 +532,7 @@ public class Webapp extends DynamicWebPage
 			}
 				
 			//scripts
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			//end of song  Search  
 			stringToSendToWebBrowser += "</body>\n" + 
 					"</html>\n" + 
@@ -621,7 +621,7 @@ public class Webapp extends DynamicWebPage
 					"            </div>\n" + 
 					"          </div>\n" + 
 					"        </div>\n" ;
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"\n" + 
@@ -657,7 +657,7 @@ public class Webapp extends DynamicWebPage
 					"          </div>\n" + 
 					"          <div class=\"row\" style=\"\">\n" ;
 			if(iartist.artistImage != null && iartist.artistImage != "" ) {
-				stringToSendToWebBrowser +="            <div class=\"col s2 align-center\" style=\"\"><img class=\"circle responsive-img\" src=\""+iartist.artistImage+"\" width=\"200px\" height=\"200px\"></div>\n";
+				stringToSendToWebBrowser +="            <div class=\"col s2 align-center\" style=\"\"><img class=\"circle responsive-img\" src=\""+iartist.artistImage+"\" width=\"1600px\" height=\"1600px\"></div>\n";
 			}else {
 				stringToSendToWebBrowser +="            <div class=\"col s2 align-center\" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n";
 			}
@@ -694,7 +694,7 @@ public class Webapp extends DynamicWebPage
 				}
 			}
 
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -712,7 +712,7 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>Mood added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser += 
 					"</body>\n" + 
 					"</html>\n" + 
@@ -804,7 +804,7 @@ public class Webapp extends DynamicWebPage
 				}
 			
 
-			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -834,7 +834,7 @@ public class Webapp extends DynamicWebPage
 					"</div>"+
 
         			"\n" ;
-					stringToSendToWebBrowser += PageElements.scripts();
+					stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 					stringToSendToWebBrowser += 
         			"</body>\n" + 
         			"</html> ";
