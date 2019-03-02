@@ -778,7 +778,7 @@ public class Webapp extends DynamicWebPage
 					"          </div>\n" + 
 					"          <div class=\"row\" style=\"\">\n" ;
 			  if(imood.moodimage != null && imood.moodimage != "" ) {
-					stringToSendToWebBrowser +="<div class=\"col s3\"><img class=\"circle responsive-img\" src=\""+imood.moodimage+"\"width=\"1600px\" height=\"1600px\" ></div>";
+					stringToSendToWebBrowser +="<div class=\"col s3\"><img class=\"circle responsive-img\" src=\""+imood.moodimage+"\"width=\"500px\" height=\"500px\" ></div>";
 				}else {
 					stringToSendToWebBrowser +=" div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\"></div>\n" ;
 				}
