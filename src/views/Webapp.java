@@ -98,7 +98,7 @@ public class Webapp extends DynamicWebPage
 					"      </div>\n" + 
 					"    </div>\n" + 
 					"  </div>\n";
-			stringToSendToWebBrowser += PageElements.scripts() + PageElements.footer();
+			stringToSendToWebBrowser += PageElements.scripts() + PageElements.footer2();
 			stringToSendToWebBrowser += "</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -167,7 +167,7 @@ public class Webapp extends DynamicWebPage
 					"    </div>\n" + 
 					"  </div>\n" + 
 					"</div>";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 
 			stringToSendToWebBrowser += 
 					"\n" + 
@@ -214,7 +214,7 @@ public class Webapp extends DynamicWebPage
 					"    </div>\n" + 
 					"  </div>\n" + 
 					"</div>";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser +=	PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +=
 					"\n" + 
 							"</body>\n" + 
@@ -255,7 +255,7 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>song Added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 
@@ -281,7 +281,7 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>artist Added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 
@@ -532,7 +532,7 @@ public class Webapp extends DynamicWebPage
 			}
 				
 			//scripts
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 			//end of song  Search  
 			stringToSendToWebBrowser += "</body>\n" + 
 					"</html>\n" + 
@@ -621,7 +621,7 @@ public class Webapp extends DynamicWebPage
 					"            </div>\n" + 
 					"          </div>\n" + 
 					"        </div>\n" ;
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"\n" + 
@@ -694,7 +694,18 @@ public class Webapp extends DynamicWebPage
 				}
 			}
 
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser += "                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					"                    </div>\n"+
+					PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -712,7 +723,7 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>Mood added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser += 
 					"</body>\n" + 
 					"</html>\n" + 
@@ -744,9 +755,9 @@ public class Webapp extends DynamicWebPage
 					"  <div class=\"col s12 white\">\n" + 
 					"    <div class=\"container-fluid\">\n" + 
 					"      <div class=\"row\">\n" + 
-					"        <div class=\"col 10 offset-s1 white\">\n" + 
-					"          <div class=\"row\">\n" + 
-					"            <div class=\"col s2\"></div>\n" + 
+					"        <div class=\"col 10 white\">\n" + 
+					"          <div class=\"row offset-s1\">\n" + 
+					"            <div class=\"col s2 white\"></div>\n" + 
 					"            <div class=\"col s12\">\n" + 
 					"              <h1 class=\"\" style=\"\">"+ imood.moodname +"</h1>\n" + 
 					"            </div>\n" + 
@@ -804,7 +815,19 @@ public class Webapp extends DynamicWebPage
 				}
 			
 
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser += "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 "                    </div>\n"+
+					 
+			PageElements.scripts()+ PageElements.footer2()+"                    </div>\n";
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -834,7 +857,7 @@ public class Webapp extends DynamicWebPage
 					"</div>"+
 
         			"\n" ;
-					stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
+					stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 					stringToSendToWebBrowser += 
         			"</body>\n" + 
         			"</html> ";
