@@ -614,15 +614,29 @@ public class Webapp extends DynamicWebPage
 					"					<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h3 class=\"blue-text text-darken-2\">"+"Artist: "+iartist.artistName+"</h3></a>\n"+
 					"            </div>\n" + 
 					"          </div>\n" + 
-					"          <div class=\"row offset-s1\">\n" + 
-					"            <div class=\"col s2 \" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n" + 
-					"            <div class=\"col s10\">\n" + 
+					"          <div class=\"row offset-s1\">\n"; 
+					if(isong.songImage != null && isong.songImage != "" ) {
+						stringToSendToWebBrowser +="<div class=\"col s2\"><img class=\"circle responsive-img\" src=\""+isong.songImage+"\"></div>";
+					}else {
+						stringToSendToWebBrowser +=" <div class=\"col s2\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"200px\" alt=\"Card image cap\"></div>\n" ;
+					}
+					//"            <div class=\"col s2 \" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n" + 
+					stringToSendToWebBrowser +=	"            <div class=\"col s10\">\n" + 
 					"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
 					"                <div class=\"col s12\" style=\"\">\n" + 
 					"                  <p class=\"lead\" style=\"\">" + "song length: " + isong.songlength +"<br></p>\n" + 
-					"                  <p class=\"lead\" style=\"\">" + "song link: " + isong.songLink +"<br></p>\n" + 
-					"                  <p class=\"lead\" style=\"\">" + "song mood: " + imood.moodname +"<br></p>\n" + 
-					"                </div>\n" + 
+					"                  <p class=\"lead\" style=\"\">" + "song mood: " + imood.moodname +"<br></p>\n" ; 
+					if(isong.songLink == null) {
+						stringToSendToWebBrowser += "                  <p class=\"lead\" style=\"\">" + "video: no youtube video <br></p>\n" ; 
+					}else {
+						stringToSendToWebBrowser += "<p>video:</p> ";
+						String[] youtubeparts =isong.songLink.split("=");
+						String youtubevideono = youtubeparts[1].trim();
+						//stringToSendToWebBrowser += "<iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/"+ youtubevideono.trim() +">" + "</iframe> ";
+						stringToSendToWebBrowser +="                <a href =\"" + isong.songLink + "\"> <p class=\"blue-text\" style=\"\">" + "song link: " + isong.songLink +"<br></p></a>\n"; 
+					}	
+					
+					stringToSendToWebBrowser += "                </div>\n" + 
 					"              </div>\n" + 
 					"					</div>\n" + 
 					"                </div>\n" + 
@@ -863,7 +877,6 @@ public class Webapp extends DynamicWebPage
 					"			<form action=\"../addmood.html\" role=\"form\" method = \"POST\"id = \"addmood\" enctype=\"multipart/form-data\">\n " + 
 					" 			 Mood Name<input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
 					" 			 <br>image\n" + 
-					//" 			 Mood Image <input type=\"text\" name=\"moodimage\" placeholder=\"image\">\n" + 
 					"			<div class=\"form-group\">\n"+
 					"                    <div class=\"col s12\">\n"+
 					"                      <label for=\"moodimage\" class=\"control-label\">Upload an image for the mood</label>\n"+
