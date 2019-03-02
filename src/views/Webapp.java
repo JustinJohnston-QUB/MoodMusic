@@ -1,6 +1,7 @@
 
 package views;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -184,21 +185,29 @@ public class Webapp extends DynamicWebPage
 					"\n" + 
 					"<div class=\"container\">\n" + 
 					"  <div class=\"row\">\n" + 
-					"    <div class=\"col s4\">\n" + 
+					"    <div class=\"col s8\">\n" + 
 					"			<h2>Add Artist</h2>\n" + 
-					"			<form action=\"../addartist.html\" method = \"GET\"id = \"addartist\">\n " + 
+					"			<form action=\"../addartist.html\" role=\"form\" method = \"POST\" id = \"addartist\" enctype=\"multipart/form-data\">\n " + 
 					" 			 Artist Name " + 
-					" 			 <input type=\"text\" name=\"artistname\" placeholder=\"Name\">\n" + 
+					" 			 <input type=\"text\" name=\"artistname\" placeholder=\"Name\" required>\n" + 
 					" 			 <br>\n" + 
 					"  			Description<input type=\"text\" name=\"artistdescription\" placeholder=\"description\">\n" + 
-					" 			 <br>\n" + 
-					" 			 image Link <input type=\"text\" name=\"artistimage\" placeholder=\"link to an image\">\n" + 
-					"  			<br>\n" + 
-					"  			<br><br>\n" + 
-					"  			<input class=\"btn waves-effect waves-light  deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
+					" 			 <br><br>Upload Artist Image\n" + 
+					"			<div class=\"form-group\">\n"+
+					"                    <div class=\"col s12\">\n"+
+					"                      <label for=\"artistimage\" class=\"control-label\">Upload an image of the artist</label>\n"+
+					"                    </div>\n"+
+					"                    <div class=\"col s10\">\n"+
+					"                      <input type=\"file\" class=\"form-control\" id=\"artistimage\" name=\"artistimage\"\n"+
+					"                      </div>\n"+
+					"      </div>\n"+
+					"    </div>\n"+
+					"  	<br><br><br><br>"+
+
+					"  			<input class=\"btn waves-effect waves-light deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"			</form> \n" + 
 					"    </div>\n" + 
-					"    <div class=\"col s8\">\n" + 
+					"    <div class=\"col s4\">\n" + 
 					"      <h3>We are always looking for more artists</h3> \n" + 
 					"      <p style = lead>Add an artist on this page</p>\n" + 
 					"      <bt><p>more text...</p>\n" + 
@@ -261,7 +270,12 @@ public class Webapp extends DynamicWebPage
 			iartist.artistName = toProcess.params.get("artistname");	
 			iartist.artistDescription = toProcess.params.get("artistdescription");	
 			iartist.artistImage = toProcess.params.get("artistimage");
-			MVMap<String, Artist> artists= db.s.openMap("Artist");
+			MVMap<String, Artist> artists= db.s.openMap("Artist");		
+			File uploaded = new File(iartist.artistImage);
+			int ind = iartist.artistImage.lastIndexOf('.');
+			String extension = iartist.artistImage.substring(ind);
+			uploaded.renameTo(new File("httpdocs/images/artistimages/"+iartist.uniqueID+extension));
+			iartist.artistImage = "images/artistimages/"+iartist.uniqueID+extension;
 			artists.put(iartist.uniqueID, iartist);
 			db.commit();
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
