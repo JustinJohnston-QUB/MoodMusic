@@ -75,16 +75,25 @@ public class Webapp extends DynamicWebPage
 			 		for(int i = 0; i<moodkeys.size();i++) {
 						String moodUniqueID = moodkeys.get(i);
 							imood = moods.get(moodUniqueID);
-							stringToSendToWebBrowser +=
-									"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-											"<a href = \"../moodpage.html?mood="+imood.moodname+"\"><h5 class=\" flow-text blue-text text-darken-2\">"+imood.moodname+"</h5></a>\n"+ 
-									"          <p class=\"flow-text\">"+imood.shortmooddescription+"</p>\n" + 
-									"        </div>\n";
+						
+								
+									  if(imood.moodimage != null && imood.moodimage != "" ) {
+											stringToSendToWebBrowser +="<div class=\"col s3\"><img class=\"circle responsive-img\" src=\""+imood.moodimage+"\">";
+										}else {
+											stringToSendToWebBrowser +=" div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" ;
+										}
+								
+									
+									
+									  stringToSendToWebBrowser +=
+																	"<a href = \"../moodpage.html?mood="+imood.moodname+"\"><h5 class=\" flow-text blue-text text-darken-2\">"+imood.moodname+"</h5></a>\n"+ 
+																	"          <p class=\"flow-text\">"+imood.shortmooddescription+"</p>\n" + 
+																	"        </div>\n";
 									if(moodcount < 4) {
 										moodcount++;
 									}else {
-										stringToSendToWebBrowser +="        </div>\n"+
-												"      <div class=\"row\">\n" ;
+										stringToSendToWebBrowser +=	"        </div>\n"+
+																	"      <div class=\"row\">\n" ;
 										 moodcount = 1;
 									}
 									
@@ -718,6 +727,11 @@ public class Webapp extends DynamicWebPage
 			imood.shortmooddescription = toProcess.params.get("shortmooddescription");
 			imood.mooddescription = toProcess.params.get("mooddescription");	
 			MVMap<String, Mood> moods= db.s.openMap("Mood");
+			File uploaded = new File(imood.moodimage);
+			int ind = imood.moodimage.lastIndexOf('.');
+			String extension =imood.moodimage.substring(ind);
+			uploaded.renameTo(new File("httpdocs/images/moodimages/"+imood.moodname+extension));
+			imood.moodimage = "images/artistimages/"+imood.moodname+extension;
 			moods.put(imood.moodname, imood);
 			db.commit();
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
@@ -755,16 +769,19 @@ public class Webapp extends DynamicWebPage
 					"  <div class=\"col s12 white\">\n" + 
 					"    <div class=\"container-fluid\">\n" + 
 					"      <div class=\"row\">\n" + 
-					"        <div class=\"col 10 white\">\n" + 
-					"          <div class=\"row offset-s1\">\n" + 
+					"        <div class=\"col 10 offset-s1 white\">\n" + 
+					"          <div class=\"row \">\n" + 
 					"            <div class=\"col s2 white\"></div>\n" + 
 					"            <div class=\"col s12\">\n" + 
 					"              <h1 class=\"\" style=\"\">"+ imood.moodname +"</h1>\n" + 
 					"            </div>\n" + 
 					"          </div>\n" + 
 					"          <div class=\"row\" style=\"\">\n" ;
-				stringToSendToWebBrowser +="            <div class=\"col s2 align-center\" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n";
-
+			  if(imood.moodimage != null && imood.moodimage != "" ) {
+					stringToSendToWebBrowser +="<div class=\"col s3\"><img class=\"circle responsive-img\" src=\""+imood.moodimage+"\"width=\"1600px\" height=\"1600px\" ></div>";
+				}else {
+					stringToSendToWebBrowser +=" div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\"></div>\n" ;
+				}
 			stringToSendToWebBrowser+="            <div class=\"col s8 offset-s1\">\n" + 
 					"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
 					"                <div class=\"col-md-12\" style=\"\">\n" + 
@@ -841,12 +858,22 @@ public class Webapp extends DynamicWebPage
 					"  <div class=\"row\">\n" + 
 					"    <div class=\"col s12\">\n" + 
 					"			<h2>Add Mood</h2>\n" + 
-					"			<form action=\"../addmood.html\" method = \"GET\"id = \"addmood\">\n " + 
+					"			<form action=\"../addmood.html\" role=\"form\" method = \"POST\"id = \"addmood\" enctype=\"multipart/form-data\">\n " + 
 					" 			 Mood Name<input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
+					" 			 <br>image\n" + 
+					//" 			 Mood Image <input type=\"text\" name=\"moodimage\" placeholder=\"image\">\n" + 
+					"			<div class=\"form-group\">\n"+
+					"                    <div class=\"col s12\">\n"+
+					"                      <label for=\"moodimage\" class=\"control-label\">Upload an image for the mood</label>\n"+
+					"                    </div>\n"+
+					"                    <div class=\"col s10\">\n"+
+					"                      <input type=\"file\" class=\"form-control\" id=\"moodimage\" name=\"moodimage\"\n"+
+					"                      </div>\n"+
+					"      </div>\n"+
+					"  </div>\n"+
 					" 			 <br>\n" + 
-					" 			 Mood Image <input type=\"text\" name=\"moodimage\" placeholder=\"image\">\n" + 
 					" 			 <br>\n" + 
-					"  			short Description<input type=\"text\" name=\"shortmooddescription\" placeholder=\"short description\">\n" + 
+					"  			<br>short Description<input type=\"text\" name=\"shortmooddescription\" placeholder=\"short description\">\n" + 
 					"  			<br><br>\n" + 
 					"  			Description<input type=\"text\" name=\"mooddescription\" placeholder=\"description\">\n" + 
 					"  			<br><br>\n" + 
@@ -855,7 +882,6 @@ public class Webapp extends DynamicWebPage
 					"    </div>\n" +  
 					"  </div>\n" + 
 					"</div>"+
-
         			"\n" ;
 					stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 					stringToSendToWebBrowser += 
