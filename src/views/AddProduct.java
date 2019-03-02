@@ -55,7 +55,7 @@ public class AddProduct extends DynamicWebPage
 		}
 		else if(toProcess.path.equalsIgnoreCase("productprocess")) {
 			Product currProduct = new Product();
-			currProduct.uniqueid = "shirt_"+System.currentTimeMillis();
+			currProduct.uniqueid = "product_"+System.currentTimeMillis();
 			currProduct.title = toProcess.params.get("ProdTitle");
 			currProduct.price = toProcess.params.get("price");
 			currProduct.paypalBtn = toProcess.params.get("paypalBtn");

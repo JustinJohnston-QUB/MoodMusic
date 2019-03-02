@@ -2,6 +2,8 @@ package views;
 
 import java.util.List;
 
+
+
 import org.h2.mvstore.MVMap;
 
 import model.Product;
@@ -19,16 +21,21 @@ public class ProductPage extends DynamicWebPage
 
 	public boolean process(WebRequest toProcess)
 	{
-
+		
 		MVMap<String, Product> products = db.s.openMap("products");
 		List<String> productKeys = products.keyList();
 		
 		
-		if (productKeys.size() == 0) {
+		if (productKeys.size() == 0) {	
 			Product emptProd = new Product();
-			emptProd.title = "There were no products!"; 
+			emptProd.title = "There were no products!";
+			System.out.println("ouasbefoasbu");
 		}
 		if(toProcess.path.equalsIgnoreCase("productpage")) {
+			String productID = toProcess.params.get("prodID").toLowerCase();
+			System.out.println(productID);
+			Product product = products.get(productID);
+
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
 					"<html lang=\"en\">\r\n" + 
 					"\r\n" + 
@@ -52,18 +59,16 @@ public class ProductPage extends DynamicWebPage
 					"\r\n" + 
 					"  <div class=\"grid-container\">\r\n" + 
 					"    <div class=\"item1\">\r\n" + 
-					"      <h3>Product Title</h3>\r\n" + 
+					"      <h3>"+product.title+"</h3>\r\n" + 
 					"    </div>\r\n" + 
 					"    <div class=\"item2\">\r\n" + 
 					"    </div>\r\n" + 
 					"    <div class=\"item3\">3</div>\r\n" + 
 					"    <div class=\"item4\">\r\n" + 
-					"      <image class=\"left\" src=\"../images/tshirt1.png\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
+					"      <image class=\"left\" src=\""+product.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
 					"    </div>\r\n" + 
 					"    <div class=\"item5\">\r\n";
 			
-			String productUniqueID = productKeys.get(0);
-			Product product = products.get(productUniqueID);
 			
 			stringToSendToWebBrowser +=
 					"      <p class = \"productDesc\">"+product.description+"</p>\r\n" + 
@@ -79,11 +84,11 @@ public class ProductPage extends DynamicWebPage
 					"    </div>\r\n" + 
 					"    <div class=\"item7\">\r\n" + 
 					"      <div class=\"colourBtn\">\r\n" + 
-					"        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose Colour</a>\r\n" + 
-					"        <ul id='dropdown1' class='dropdown-content'>\r\n" + 
-					"          <li><a href=\"#!\" onclick=\"M.toast({html: 'Red Chosen'})\">Red</a></li>\r\n" + 
-					"          <li><a href=\"#!\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
-					"          <li><a href=\"#!\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
+					"        <a class='dropdown-trigger btn' href='#' data-target='dropdownColour'>Choose Colour</a>\r\n" + 
+					"        <ul id='dropdownColour' class='dropdown-content'>\r\n" + 
+					"          <li><a href=\"#colour=red\" onclick=\"M.toast({html: 'Red Chosen'}); window.location.reload()\">Red</a></li>\r\n" + 
+					"          <li><a href=\"#blue\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
+					"          <li><a href=\"#yellow\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
 					"        </ul>\r\n" + 
 					"      </div>\r\n" + 
 					"    </div>\r\n" + 

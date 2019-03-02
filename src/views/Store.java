@@ -80,40 +80,42 @@ public class Store extends DynamicWebPage
 							"      <img src=\"../images/sampleDeal.png\">\r\n" + 
 							"    </a>\r\n" + 
 							"  </div>" + 
-							"  <div class=\"container\">\r\n" +
-							"    <h4>T-Shirts</h4>\r\n" + 
-							"    <div class=\"section\">\r\n" + 
+							"<div class=\"container\">\r\n" + 
 							"\r\n" + 
-							"      <!--   Icon Section   -->\r\n" + 
-							"      <div class=\"row\">\r\n"; 
+							"<div class=\"grid-container\">\r\n" + 
+							"      <div class=\"item1\">\r\n" + 
+							"        <h2>T-shirts</h2>\r\n" + 
+							"      </div>\r\n" + 
+							"      <div class=\"item2\">\r\n" + 
+							"        2\r\n" + 
+							"      </div>\r\n" + 
+							"      <div class=\"item3\">\r\n" + 
+							"        3\r\n" + 
+							"      </div>"; 
 
 			for (int i = 0; i < productKeys.size(); i++) {
 				String productUniqueID = productKeys.get(i);
 				Product product = products.get(productUniqueID);
+				System.out.println("ID" + productUniqueID);
 
-				stringToSendToWebBrowser += "        <div class=\"col s12 m4\">\r\n" + 
-						"            <a href=\"productpage\">\r\n" + 
-						"              <image class=\"left\" src=\""+product.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
-						"            </a>\r\n" + 
-						"            <h5 class=\"heavy left\">"+product.title+"<br />Only &pound"+product.price+"</h5>\r\n" + 
-						"            <!--Dropdown button to choose colour-->\r\n" + 
-						"            <div class=\"colourBtn\">\r\n" + 
-						"              <a class='dropdown-trigger btn' href='#' data-target='dropdown2'>Choose Colour</a>\r\n" + 
-						"              <ul id='dropdown2' class='dropdown-content'>\r\n" + 
-						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Red Chosen'})\">Red</a></li>\r\n" + 
-						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
-						"                <li><a href=\"#!\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
-						"              </ul>\r\n" + 
-						"            </div>\r\n" + 
-						"            <!--Paypal button-->\r\n" + 
-						"\r\n" + 
-						"            <form class = \"paypalBtn\"target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
-						"              <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\\r\n"+product.paypalBtn+"\">\r\n" + 
-						"              <input type=\"image\" src=\"https://www.paypalobjects.com/en_GB/i/btn/btn_cart_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal – The safer, easier way to pay online!\">\r\n" + 
-						"              <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\">\r\n" + 
-						"            </form>\r\n" + 
-						"\r\n" + 
-						"        </div>"; 
+				stringToSendToWebBrowser += "<div class=\"item"+i+4+"\">\r\n" + 
+						"        <div class=\"row\">\r\n" + 
+						"          <div class=\"col s12 m7\">\r\n" + 
+						"            <a href=\"productpage?prodID="+productUniqueID+"\">\r\n" + 
+						"<div class=\"card hoverable\">\r\n" + 
+						"              <div class=\"card-image\">\r\n" + 
+						"                <img src=\""+product.filePathToImage+"\">\r\n" + 
+						"              </div>\r\n" + 
+						"              <div class=\"card-content\">\r\n" + 
+						"                <h5 class = \"black-text\">"+product.title+"</h5>\r\n" + 
+						"              </div>\r\n" + 
+						"              <div class=\"card-action\">\r\n" + 
+						"                <h5 class = \"black-text\">Only &pound"+product.price+"</h5>\r\n" + 
+						"              </div>\r\n" + 
+						"            </div></a>\r\n" + 
+						"          </div>\r\n" + 
+						"        </div>\r\n" + 
+						"      </div>"; 
 			}
 			//This is the footer
 			stringToSendToWebBrowser += PageElements.footer();
