@@ -731,7 +731,7 @@ public class Webapp extends DynamicWebPage
 			int ind = imood.moodimage.lastIndexOf('.');
 			String extension =imood.moodimage.substring(ind);
 			uploaded.renameTo(new File("httpdocs/images/moodimages/"+imood.moodname+extension));
-			imood.moodimage = "images/artistimages/"+imood.moodname+extension;
+			imood.moodimage = "images/moodimages/"+imood.moodname+extension;
 			moods.put(imood.moodname, imood);
 			db.commit();
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
