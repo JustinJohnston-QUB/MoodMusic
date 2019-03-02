@@ -325,16 +325,16 @@ public class Webapp extends DynamicWebPage
 			if(moodkeys.size() == 0) {
 				stringToSendToWebBrowser += "<div class=\"col s12 white\">\n" + 
 						"      <div class=\"row\">\n" + 
-						"        <div class=\"col s121\">\n" + 
+						"        <div class=\"col s12\">\n" + 
 						"          <div class=\"row\">\n" + 
 						"            <div class=\"col s10  offset-s1\">\n" + 
-						"              <h2 class=\"\">Artist</h2>\n" + 
+						"              <h2 class=\"\">Moods</h2>\n" + 
 						"            </div>\n" + 
 						"          </div>\n" + 
 						"          <div class=\"row\">\n" + 
 						"            <div class=\"col s12\">\n" + 
 						"              <div class=\"row\">\n" + 
-						"                <div class=\"col s12\">\n" + 
+						"                <div class=\"col s10  offset-s1\">\n" + 
 						"                  <p class=\"lead\">No Moods in Database</p>\n" + 
 						"                </div>\n" + 
 						"              </div>\n" + 
@@ -385,14 +385,14 @@ public class Webapp extends DynamicWebPage
 			if(artistkeys.size() == 0) {
 				stringToSendToWebBrowser += "<div class=\"col s12 white\">\n" + 
 						"      <div class=\"row\">\n" + 
-						"        <div class=\"col s121\">\n" + 
+						"        <div class=\"col s12\">\n" + 
 						"          <div class=\"row\">\n" + 
 						"            <div class=\"col s10  offset-s1\">\n" + 
 						"              <h2 class=\"\">Artist</h2>\n" + 
 						"            </div>\n" + 
 						"          </div>\n" + 
 						"          <div class=\"row\">\n" + 
-						"            <div class=\"col s12\">\n" + 
+						"            <div class=\"col s10  offset-s1\">\n" + 
 						"              <div class=\"row\">\n" + 
 						"                <div class=\"col s12\">\n" + 
 						"                  <p class=\"lead\">No Artists in Database</p>\n" + 
