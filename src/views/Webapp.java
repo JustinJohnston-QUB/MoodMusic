@@ -772,7 +772,7 @@ public class Webapp extends DynamicWebPage
 					"        <div class=\"col 10 offset-s1 white\">\n" + 
 					"          <div class=\"row \">\n" + 
 					"            <div class=\"col s2 white\"></div>\n" + 
-					"            <div class=\"col s12\">\n" + 
+					"            <div class=\"col s10  offset-s1\">\n" + 
 					"              <h1 class=\"\" style=\"\">"+ imood.moodname +"</h1>\n" + 
 					"            </div>\n" + 
 					"          </div>\n" + 
@@ -783,20 +783,22 @@ public class Webapp extends DynamicWebPage
 					stringToSendToWebBrowser +=" div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\"></div>\n" ;
 				}
 			stringToSendToWebBrowser+="            <div class=\"col s8 offset-s1\">\n" + 
-					"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
-					"                <div class=\"col-md-12\" style=\"\">\n" + 
-					"                  <p class=\"lead\" style=\"\">"+ imood.mooddescription +"<br></p>\n" + 
+					"              <div class=\"col-s10 offset-s2>\n" + 
+					"                <div class=\"col-s12\">\n" + 
+					"                  <p>"+ imood.mooddescription +"<br></p>\n" + 
 					"                </div>\n" + 
+
 					"              </div>\n" + 
 
             				"              <div class=\"row\">\n" + 
-            				"                <div class=\"col s12 \">\n" + 
+            				"                <div class=\"col s9 offset-s3\">\n" + 
             				"                  <h3 class=\"\">Songs</h3>\n"+
             				"<div class=\"row\">";       
 
 			if (imood.songID == null) {
-				stringToSendToWebBrowser += 	"                    <div class=\"col s12 \">\n" + 
+				stringToSendToWebBrowser += 	"                    <div class=\"col 10 offset-s2 \">\n" + 
 						"                      <p class=\"lead\">no songs found for this mood</p>\n" +
+						"                    </div>\n"+
 						"                    </div>\n";
 			}else {
 				for(int i = 0; i < songkeys.size();i++) {
