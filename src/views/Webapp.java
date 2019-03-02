@@ -77,7 +77,7 @@ public class Webapp extends DynamicWebPage
 							stringToSendToWebBrowser +=
 									"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
 											"<a href = \"../moodpage.html?mood="+imood.moodname+"\"><h5 class=\" flow-text blue-text text-darken-2\">"+imood.moodname+"</h5></a>\n"+ 
-									"          <p class=\"flow-text\">"+imood.mooddescription+"</p>\n" + 
+									"          <p class=\"flow-text\">"+imood.shortmooddescription+"</p>\n" + 
 									"        </div>\n";
 									if(moodcount < 4) {
 										moodcount++;
@@ -91,7 +91,7 @@ public class Webapp extends DynamicWebPage
 			 	}
 				
 
-				stringToSendToWebBrowser +=
+			 	stringToSendToWebBrowser +=
 					"      </div>\n" + 
 
 					"      </div>\n" + 
@@ -206,7 +206,7 @@ public class Webapp extends DynamicWebPage
 					"  </div>\n" + 
 					"</div>";
 			stringToSendToWebBrowser += PageElements.scripts();
-			stringToSendToWebBrowser += 
+			stringToSendToWebBrowser +=
 					"\n" + 
 							"</body>\n" + 
 							"</html> ";
@@ -686,37 +686,11 @@ public class Webapp extends DynamicWebPage
 					"</html>";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
-		}else if(toProcess.path.equalsIgnoreCase("mood.html")){
-			String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-					PageElements.header()+ "<body>\n"  + PageElements.Navbar()+ PageElements.Search()+
-					"\n" + 
-					"<div class=\"container\">\n" + 
-					"  <div class=\"row\">\n" + 
-					"    <div class=\"col s12\">\n" + 
-					"			<h2>Add Mood</h2>\n" + 
-					"			<form action=\"../addmood.html\" method = \"GET\"id = \"addmood\">\n " + 
-					" 			 Mood Name " + 
-					" 			 <input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
-					" 			 <br>\n" + 
-					"  			Description<input type=\"text\" name=\"mooddescription\" placeholder=\"description\">\n" + 
-					"  			<br><br>\n" + 
-					"  			<input type=\"submit\" value=\"Submit\">\n" + 
-					"			</form> \n" + 
-					"    </div>\n" +  
-					"  </div>\n" + 
-					"</div>"+
-
-        			"\n" ;
-					stringToSendToWebBrowser += PageElements.scripts();
-					stringToSendToWebBrowser += 
-        			"</body>\n" + 
-        			"</html> ";
-			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
-			return true;      	
 		}else if(toProcess.path.equalsIgnoreCase("addmood.html")) {
 			Mood imood = new Mood();
 			imood.moodname = toProcess.params.get("moodname");	
-			imood.moodimage = toProcess.params.get("moodimage");	
+			imood.moodimage = toProcess.params.get("moodimage");
+			imood.shortmooddescription = toProcess.params.get("shortmooddescription");
 			imood.mooddescription = toProcess.params.get("mooddescription");	
 			MVMap<String, Mood> moods= db.s.openMap("Mood");
 			moods.put(imood.moodname, imood);
@@ -831,12 +805,12 @@ public class Webapp extends DynamicWebPage
 					"    <div class=\"col s12\">\n" + 
 					"			<h2>Add Mood</h2>\n" + 
 					"			<form action=\"../addmood.html\" method = \"GET\"id = \"addmood\">\n " + 
-					" 			 Mood Image " + 
-					" 			 <input type=\"text\" name=\"moodimage\" placeholder=\"image\">\n" + 
+					" 			 Mood Name<input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
 					" 			 <br>\n" + 
-					" 			 Mood Name " + 
-					" 			 <input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
+					" 			 Mood Image <input type=\"text\" name=\"moodimage\" placeholder=\"image\">\n" + 
 					" 			 <br>\n" + 
+					"  			short Description<input type=\"text\" name=\"shortmooddescription\" placeholder=\"short description\">\n" + 
+					"  			<br><br>\n" + 
 					"  			Description<input type=\"text\" name=\"mooddescription\" placeholder=\"description\">\n" + 
 					"  			<br><br>\n" + 
 					"  			<input type=\"submit\" value=\"Submit\">\n" + 
