@@ -29,7 +29,6 @@ public class ProductPage extends DynamicWebPage
 		if (productKeys.size() == 0) {	
 			Product emptProd = new Product();
 			emptProd.title = "There were no products!";
-			System.out.println("ouasbefoasbu");
 		}
 		if(toProcess.path.equalsIgnoreCase("productpage")) {
 			String productID = toProcess.params.get("prodID").toLowerCase();

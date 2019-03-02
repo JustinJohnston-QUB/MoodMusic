@@ -45,6 +45,40 @@ public class PageElements {
 				"\r\n";
 		return footerString;
 		}
+	
+	
+	public static String footer2() {
+		String footerString = 
+				"  <footer class=\"page-footer blue\">\r\n" + 
+				"    <div class=\"container\">\r\n" + 
+				"      <div class=\"row\">\r\n" + 
+				"        <div class=\"col l6 s12\">\r\n" + 
+				"          <h5 class=\"white-text\">Company Bio</h5>\r\n" + 
+				"          <p class=\"grey-text text-lighten-4\"></p>\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"        </div>\r\n" + 
+				"        <div class=\"col 20 s12\">\r\n" + 
+				"          <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\r\n" + 
+				"				<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\" />\r\n" + 
+				"				<input type=\"hidden\" name=\"hosted_button_id\" value=\"JCGQUETZC6DMN\" />\r\n" + 
+				"				<input type=\"image\" src=\"https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif\" border=\"0\" name=\"submit\" title=\"PayPal - The safer, easier way to pay online!\" alt=\"Donate with PayPal button\" />\r\n" + 
+				"				<img alt=\"\" border=\"0\" src=\"https://www.paypal.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\" />\r\n" + 
+				"			</form>\r\n" + 
+				"\r\n" + 
+				"        </div>\r\n" + 
+				"      </div>\r\n" + 
+				"    </div>\r\n" + 
+				"    <div class=\"footer-copyright\">\r\n" + 
+				"      <div class=\"container\">\r\n" + 
+				"		<h5>&copy 2019 Feelin' It</h5>\r\n" + 
+				"      </div>\r\n" + 
+				"    </div>\r\n" + 
+				"  </footer>\r\n" + 
+				"\r\n" + 
+				"\r\n";
+		return footerString;
+		}
 	public static String Navbar() {
 		
 
