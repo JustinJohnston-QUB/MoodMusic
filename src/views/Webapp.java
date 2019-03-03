@@ -131,14 +131,26 @@ public class Webapp extends DynamicWebPage
 
 					"<div class=\"container\">\n" + 
 					"  <div class=\"row\">\n" + 
-					"    <div class=\"col s6\">\n" + 
+					"    <div class=\"col s8\">\n" + 
 					"		<h2>Add song</h2>\n" + 
-					"		<form action=\"../addsong.html\" method = \"GET\"id = \"addsong\">\n " + 
+					"		<form action=\"../addsong.html\" role=\"form\" method = \"POST\" id = \"addsong\" enctype=\"multipart/form-data\">\n" + 
 					"  			Song Title " + 
 					"  			<input type=\"text\" name=\"songtitle\" placeholder=\"title\">\n" + 
 					"  			<br>\n" + 
-					" 			song Length <input type=\"time\" name=\"songlength\" value=\"time\">\n" + 
+					" 			song Length <input type=\"time\" name=\"songlength\" default value=\"00:00\">\n" + 
 					"  			<br>\n" + 
+					" 			<br>Upload Song Image\n" + 
+					"			<div class=\"form-group\">\n"+
+					"                    <div class=\"col s12\">\n"+
+					"                      <label for=\"songimage\" class=\"control-label\">Upload an image for this song</label>\n"+
+					"                    </div>\n"+
+					"                    <div class=\"col s11 offset-s1\">\n"+
+					"                      <input type=\"file\" class=\"form-control\" id=\"songimage\" name=\"songimage\"\n"+
+					"                      </div>\n"+
+					"      		</div>\n"+
+					"  			<br>\n" +
+					"      </div>\n"+
+					"  			<br>\n" +
 					"  			song Link <input type=\"text\" name=\"songlink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
 					"  			<br>\n" +
 					"			<div class=\"input-field\"> "+
@@ -169,7 +181,7 @@ public class Webapp extends DynamicWebPage
 					"  <input class=\"btn waves-effect waves-light  deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"</form> \n" + 
 					"    </div>\n" + 
-					"    <div class=\"col s6 m0\">\n" + 
+					"    <div class=\"col s4 m0\">\n" + 
 					"      <h3>We are always looking for more artists</h3> \n" + 
 					"      <p style = lead>Add an artist on this page</p>\n" + 
 					"      <bt><p>more text...</p>\n" + 
@@ -243,7 +255,8 @@ public class Webapp extends DynamicWebPage
 			isong.uniqueID = "song_"+System.currentTimeMillis();
 			isong.songtitle= toProcess.params.get("songtitle");	
 			isong.songlength =  toProcess.params.get("songlength");	
-			isong.songLink =  toProcess.params.get("songlink");	
+			isong.songLink =  toProcess.params.get("songlink");
+			isong.songImage =  toProcess.params.get("songimage");	
 			MVMap<String, Song> songs= db.s.openMap("Song");
 			if(art1.artistSongs !=null) {
 				art1.artistSongs.add(isong.uniqueID);
@@ -257,6 +270,13 @@ public class Webapp extends DynamicWebPage
 				mood1.songID  = new ArrayList<String>();
 				mood1.songID .add(isong.uniqueID);
 			}
+			//
+			File uploaded = new File(isong.songImage);
+			int ind = isong.songImage.lastIndexOf('.');
+			String extension = isong.songImage.substring(ind);
+			uploaded.renameTo(new File("httpdocs/images/songimages/"+isong.uniqueID+extension));
+			isong.songImage = "images/songimages/"+isong.uniqueID+extension;
+			//
 			songs.put(isong.uniqueID, isong);
 			artists.put(art1.uniqueID, art1);
 			moods.put(mood1.moodname, mood1);
