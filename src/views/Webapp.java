@@ -981,19 +981,21 @@ public class Webapp extends DynamicWebPage
         			"</html> ";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;      	
-		}else if(toProcess.path.equalsIgnoreCase("addartistimages")) {
+		}else if(toProcess.path.equalsIgnoreCase("addartistimages.html")) {
 			MVMap<String, Artist> artists= db.s.openMap("Artist");
 			Artist iartist = artists.get(toProcess.params.get("artistid"));
 			String newimage = toProcess.params.get("addartistimages");
 			File uploaded = new File(newimage);
 			int ind = newimage.lastIndexOf('.');
 			String extension = newimage.substring(ind);
-			uploaded.renameTo(new File("httpdocs/images/artistimages/"+"Gallery_"+iartist.uniqueID+System.currentTimeMillis()+extension));
-			newimage = "images/artist/"+"Gallery_"+iartist.uniqueID+System.currentTimeMillis()+extension;
 			if(iartist.artistImages !=null) {
+				uploaded.renameTo(new File("httpdocs/images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension));
+				newimage = "images/artist/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension;
 				iartist.artistImages.add(newimage);
 			}else {
-				iartist.artistSongs = new ArrayList<String>();
+				iartist.artistImages = new ArrayList<String>();
+				uploaded.renameTo(new File("httpdocs/images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension));
+				newimage = "images/artist/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension;
 				iartist.artistImages.add(newimage);
 			}
 			artists.put(iartist.uniqueID, iartist);
