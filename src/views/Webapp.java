@@ -693,7 +693,7 @@ public class Webapp extends DynamicWebPage
 					"      <div class=\"row\">\n" + 
 					"        <div class=\"col 10 offset-s1 white\">\n" + 
 					"          <div class=\"row\">\n" + 
-					"            <div class=\"col s2\"></div>\n" + 
+					"            <div class=\"col s1\"></div>\n" + 
 					"            <div class=\"col s12\">\n" + 
 					"              <h1 class=\"\" style=\"\">"+ iartist.artistName +"</h1>\n" + 
 					"            </div>\n" + 
@@ -748,7 +748,64 @@ public class Webapp extends DynamicWebPage
 					"                    </div>\n"+
 					"                    </div>\n"+
 					"                    </div>\n"+
-					PageElements.scripts()+ PageElements.footer2();
+					//artist images carousel
+					"<div class=\"row white\">\n" + 
+					"  <div class=\"col s12 white \">\n" +
+					"        <div class=\"col 10 offset-s2 white\">\n" + 
+					"         		<h1>"+iartist.artistName+ " Images</h1>\n"+
+					"         </div>\n"+
+					"  </div>\n";
+					if (iartist.artistImages == null ) {
+						stringToSendToWebBrowser +=	
+						"<div class=\"row white\">\n" + 
+								"  <div class=\"col s12 white \">\n" +
+								"        <div class=\"col 9 offset-s3 white\">\n" + 
+								"         		<h5>We dont seem to have any images of "+" "+iartist.artistName +"</h5>\n"+
+								"         </div>\n"+
+								"  </div>\n";
+
+
+					}else {
+						stringToSendToWebBrowser +=
+								"<div class=\"carousel carousel-slider\">\r\n" + 
+										"    <div class=\"carousel-fixed-item\">\r\n" + 
+										"    </div>\r\n";
+										for(int i = 0; i <iartist.artistImages.size();i++) {
+											stringToSendToWebBrowser += 
+													"    <a class=\"carousel-item\"\">\r\n" + 
+													"      <img src=\""+iartist.artistImages.get(i) + "\">\r\n" + 
+													"    </a>\r\n" ; 
+										}
+										stringToSendToWebBrowser += "  </div>";
+					}
+					stringToSendToWebBrowser += "<div class=\"row white z-depth-3\">\n" +
+												"        <div class=\"col 9 offset-s3 white\">\n" + 
+												"         		<h5> Upload a picture below</h5>\n"+
+												"         </div>\n"+
+												"  <div class=\"col s12 white \">\n" +
+												"        <div class=\"col 9 offset-s3 white\">\n" + 
+												"			<form action=\"../addartistimages.html\" role=\"form\" method = \"POST\" id = \"addartistimages\" enctype=\"multipart/form-data\">\n " +  
+												" 			Upload an Image\n" + 
+												"			<input type=\"hidden\" id=\"artistid\" name=\"artistid\" value=\""+iartist.uniqueID+"\">"+
+												"			<div class=\"form-group\">\n"+
+												"                    <div class=\"col s12\">\n"+
+												"                      <label for=\"addartistimages\" class=\"control-label\">Upload an image of the artist</label>\n"+
+												"                    </div>\n"+
+												"                    <div class=\"col s10\">\n"+
+												"                      <input type=\"file\" class=\"form-control\" id=\"addartistimages\" name=\"addartistimages\"\n"+
+												"                      </div>\n"+
+												"      </div>\n"+
+												"    </div>\n"+
+												"  	<br><br><br><br>"+
+
+												"  			<input class=\"btn waves-effect waves-light deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
+												"  	<br><br><br><br>"+
+												"			</form> \n" + 
+												"         </div>\n"+
+												"  </div>\n";
+					
+
+			stringToSendToWebBrowser +="  </div>\n" + PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -924,6 +981,33 @@ public class Webapp extends DynamicWebPage
         			"</html> ";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;      	
+		}else if(toProcess.path.equalsIgnoreCase("addartistimages")) {
+			MVMap<String, Artist> artists= db.s.openMap("Artist");
+			Artist iartist = artists.get(toProcess.params.get("artistid"));
+			String newimage = toProcess.params.get("addartistimages");
+			File uploaded = new File(newimage);
+			int ind = newimage.lastIndexOf('.');
+			String extension = newimage.substring(ind);
+			uploaded.renameTo(new File("httpdocs/images/artistimages/"+"Gallery_"+iartist.uniqueID+System.currentTimeMillis()+extension));
+			newimage = "images/artist/"+"Gallery_"+iartist.uniqueID+System.currentTimeMillis()+extension;
+			if(iartist.artistImages !=null) {
+				iartist.artistImages.add(newimage);
+			}else {
+				iartist.artistSongs = new ArrayList<String>();
+				iartist.artistImages.add(newimage);
+			}
+			artists.put(iartist.uniqueID, iartist);
+			db.commit();
+			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+					"<body>\n" + 
+					"	<h2>Image Added</h2>\n";
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser +=
+					"</body>\n" + 
+							"</html>\n" + 
+							"";
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;          		
 		}
 
 		return false;   
