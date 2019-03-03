@@ -990,12 +990,12 @@ public class Webapp extends DynamicWebPage
 			String extension = newimage.substring(ind);
 			if(iartist.artistImages !=null) {
 				uploaded.renameTo(new File("httpdocs/images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension));
-				newimage = "images/artist/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension;
+				newimage = "images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension;
 				iartist.artistImages.add(newimage);
 			}else {
 				iartist.artistImages = new ArrayList<String>();
 				uploaded.renameTo(new File("httpdocs/images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension));
-				newimage = "images/artist/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension;
+				newimage = "images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension;
 				iartist.artistImages.add(newimage);
 			}
 			artists.put(iartist.uniqueID, iartist);
