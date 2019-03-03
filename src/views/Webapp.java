@@ -757,7 +757,7 @@ public class Webapp extends DynamicWebPage
 					"  </div>\n";
 					if (iartist.artistImages == null ) {
 						stringToSendToWebBrowser +=	
-						"<div class=\"row white\">\n" + 
+						"<div class=\"row white\" >\n" + 
 								"  <div class=\"col s12 white \">\n" +
 								"        <div class=\"col 9 offset-s3 white\">\n" + 
 								"         		<h5>We dont seem to have any images of "+" "+iartist.artistName +"</h5>\n"+
@@ -767,9 +767,7 @@ public class Webapp extends DynamicWebPage
 
 					}else {
 						stringToSendToWebBrowser +=
-								"<div class=\"carousel carousel-slider\">\r\n" + 
-										"    <div class=\"carousel-fixed-item\">\r\n" + 
-										"    </div>\r\n";
+								"<div class=\"carousel carousel-slider\">\r\n" ;
 										for(int i = 0; i <iartist.artistImages.size();i++) {
 											stringToSendToWebBrowser += 
 													"    <a class=\"carousel-item\"\">\r\n" + 
@@ -782,7 +780,7 @@ public class Webapp extends DynamicWebPage
 												"        <div class=\"col 9 offset-s3 white\">\n" + 
 												"         		<h5> Upload a picture below</h5>\n"+
 												"         </div>\n"+
-												"  <div class=\"col s12 white \">\n" +
+												"  <div class=\"col s12 white \" max-height =  \"500px>\"\n" +
 												"        <div class=\"col 9 offset-s3 white\">\n" + 
 												"			<form action=\"../addartistimages.html\" role=\"form\" method = \"POST\" id = \"addartistimages\" enctype=\"multipart/form-data\">\n " +  
 												" 			Upload an Image\n" + 
