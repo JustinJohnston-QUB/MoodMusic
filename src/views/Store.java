@@ -96,7 +96,6 @@ public class Store extends DynamicWebPage
 			for (int i = 0; i < productKeys.size(); i++) {
 				String productUniqueID = productKeys.get(i);
 				Product product = products.get(productUniqueID);
-				System.out.println("ID" + productUniqueID);
 
 				stringToSendToWebBrowser += "<div class=\"item"+i+4+"\">\r\n" + 
 						"        <div class=\"row\">\r\n" + 

@@ -12,6 +12,6 @@ public class Product implements Serializable {
 	public String title;
 	public String paypalBtn;
 	public String description;
-	public ArrayList<Integer> reviews;
+	public ArrayList<Integer> reviews = new ArrayList<Integer>();
 
 }

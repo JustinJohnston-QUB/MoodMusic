@@ -75,16 +75,25 @@ public class Webapp extends DynamicWebPage
 			 		for(int i = 0; i<moodkeys.size();i++) {
 						String moodUniqueID = moodkeys.get(i);
 							imood = moods.get(moodUniqueID);
-							stringToSendToWebBrowser +=
-									"        <div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-											"<a href = \"../moodpage.html?mood="+imood.moodname+"\"><h5 class=\" flow-text blue-text text-darken-2\">"+imood.moodname+"</h5></a>\n"+ 
-									"          <p class=\"flow-text\">"+imood.shortmooddescription+"</p>\n" + 
-									"        </div>\n";
+						
+								
+									  if(imood.moodimage != null && imood.moodimage != "" ) {
+											stringToSendToWebBrowser +="<div class=\"col s3\"><img class=\"circle responsive-img\" src=\""+imood.moodimage+"\">";
+										}else {
+											stringToSendToWebBrowser +=" div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" ;
+										}
+								
+									
+									
+									  stringToSendToWebBrowser +=
+																	"<a href = \"../moodpage.html?mood="+imood.moodname+"\"><h5 class=\" flow-text blue-text text-darken-2\">"+imood.moodname+"</h5></a>\n"+ 
+																	"          <p class=\"flow-text\">"+imood.shortmooddescription+"</p>\n" + 
+																	"        </div>\n";
 									if(moodcount < 4) {
 										moodcount++;
 									}else {
-										stringToSendToWebBrowser +="        </div>\n"+
-												"      <div class=\"row\">\n" ;
+										stringToSendToWebBrowser +=	"        </div>\n"+
+																	"      <div class=\"row\">\n" ;
 										 moodcount = 1;
 									}
 									
@@ -122,14 +131,26 @@ public class Webapp extends DynamicWebPage
 
 					"<div class=\"container\">\n" + 
 					"  <div class=\"row\">\n" + 
-					"    <div class=\"col s6\">\n" + 
+					"    <div class=\"col s8\">\n" + 
 					"		<h2>Add song</h2>\n" + 
-					"		<form action=\"../addsong.html\" method = \"GET\"id = \"addsong\">\n " + 
+					"		<form action=\"../addsong.html\" role=\"form\" method = \"POST\" id = \"addsong\" enctype=\"multipart/form-data\">\n" + 
 					"  			Song Title " + 
 					"  			<input type=\"text\" name=\"songtitle\" placeholder=\"title\">\n" + 
 					"  			<br>\n" + 
-					" 			song Length <input type=\"time\" name=\"songlength\" value=\"time\">\n" + 
+					" 			song Length <input type=\"time\" name=\"songlength\" default value=\"00:00\">\n" + 
 					"  			<br>\n" + 
+					" 			<br>Upload Song Image\n" + 
+					"			<div class=\"form-group\">\n"+
+					"                    <div class=\"col s12\">\n"+
+					"                      <label for=\"songimage\" class=\"control-label\">Upload an image for this song</label>\n"+
+					"                    </div>\n"+
+					"                    <div class=\"col s11 offset-s1\">\n"+
+					"                      <input type=\"file\" class=\"form-control\" id=\"songimage\" name=\"songimage\"\n"+
+					"                      </div>\n"+
+					"      		</div>\n"+
+					"  			<br>\n" +
+					"      </div>\n"+
+					"  			<br>\n" +
 					"  			song Link <input type=\"text\" name=\"songlink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
 					"  			<br>\n" +
 					"			<div class=\"input-field\"> "+
@@ -160,7 +181,7 @@ public class Webapp extends DynamicWebPage
 					"  <input class=\"btn waves-effect waves-light  deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"</form> \n" + 
 					"    </div>\n" + 
-					"    <div class=\"col s6 m0\">\n" + 
+					"    <div class=\"col s4 m0\">\n" + 
 					"      <h3>We are always looking for more artists</h3> \n" + 
 					"      <p style = lead>Add an artist on this page</p>\n" + 
 					"      <bt><p>more text...</p>\n" + 
@@ -234,7 +255,8 @@ public class Webapp extends DynamicWebPage
 			isong.uniqueID = "song_"+System.currentTimeMillis();
 			isong.songtitle= toProcess.params.get("songtitle");	
 			isong.songlength =  toProcess.params.get("songlength");	
-			isong.songLink =  toProcess.params.get("songlink");	
+			isong.songLink =  toProcess.params.get("songlink");
+			isong.songImage =  toProcess.params.get("songimage");	
 			MVMap<String, Song> songs= db.s.openMap("Song");
 			if(art1.artistSongs !=null) {
 				art1.artistSongs.add(isong.uniqueID);
@@ -248,6 +270,13 @@ public class Webapp extends DynamicWebPage
 				mood1.songID  = new ArrayList<String>();
 				mood1.songID .add(isong.uniqueID);
 			}
+			//
+			File uploaded = new File(isong.songImage);
+			int ind = isong.songImage.lastIndexOf('.');
+			String extension = isong.songImage.substring(ind);
+			uploaded.renameTo(new File("httpdocs/images/songimages/"+isong.uniqueID+extension));
+			isong.songImage = "images/songimages/"+isong.uniqueID+extension;
+			//
 			songs.put(isong.uniqueID, isong);
 			artists.put(art1.uniqueID, art1);
 			moods.put(mood1.moodname, mood1);
@@ -605,15 +634,29 @@ public class Webapp extends DynamicWebPage
 					"					<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h3 class=\"blue-text text-darken-2\">"+"Artist: "+iartist.artistName+"</h3></a>\n"+
 					"            </div>\n" + 
 					"          </div>\n" + 
-					"          <div class=\"row offset-s1\">\n" + 
-					"            <div class=\"col s2 \" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n" + 
-					"            <div class=\"col s10\">\n" + 
+					"          <div class=\"row offset-s1\">\n"; 
+					if(isong.songImage != null && isong.songImage != "" ) {
+						stringToSendToWebBrowser +="<div class=\"col s2\"><img class=\"circle responsive-img\" src=\""+isong.songImage+"\"></div>";
+					}else {
+						stringToSendToWebBrowser +=" <div class=\"col s2\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"200px\" alt=\"Card image cap\"></div>\n" ;
+					}
+					//"            <div class=\"col s2 \" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n" + 
+					stringToSendToWebBrowser +=	"            <div class=\"col s10\">\n" + 
 					"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
 					"                <div class=\"col s12\" style=\"\">\n" + 
 					"                  <p class=\"lead\" style=\"\">" + "song length: " + isong.songlength +"<br></p>\n" + 
-					"                  <p class=\"lead\" style=\"\">" + "song link: " + isong.songLink +"<br></p>\n" + 
-					"                  <p class=\"lead\" style=\"\">" + "song mood: " + imood.moodname +"<br></p>\n" + 
-					"                </div>\n" + 
+					"                  <p class=\"lead\" style=\"\">" + "song mood: " + imood.moodname +"<br></p>\n" ; 
+					if(isong.songLink == null) {
+						stringToSendToWebBrowser += "                  <p class=\"lead\" style=\"\">" + "video: no youtube video <br></p>\n" ; 
+					}else {
+						stringToSendToWebBrowser += "<p>video:</p> ";
+						String[] youtubeparts =isong.songLink.split("=");
+						String youtubevideono = youtubeparts[1].trim();
+						//stringToSendToWebBrowser += "<iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/"+ youtubevideono.trim() +">" + "</iframe> ";
+						stringToSendToWebBrowser +="                <a href =\"" + isong.songLink + "\"> <p class=\"blue-text\" style=\"\">" + "song link: " + isong.songLink +"<br></p></a>\n"; 
+					}	
+					
+					stringToSendToWebBrowser += "                </div>\n" + 
 					"              </div>\n" + 
 					"					</div>\n" + 
 					"                </div>\n" + 
@@ -650,7 +693,7 @@ public class Webapp extends DynamicWebPage
 					"      <div class=\"row\">\n" + 
 					"        <div class=\"col 10 offset-s1 white\">\n" + 
 					"          <div class=\"row\">\n" + 
-					"            <div class=\"col s2\"></div>\n" + 
+					"            <div class=\"col s1\"></div>\n" + 
 					"            <div class=\"col s12\">\n" + 
 					"              <h1 class=\"\" style=\"\">"+ iartist.artistName +"</h1>\n" + 
 					"            </div>\n" + 
@@ -705,7 +748,62 @@ public class Webapp extends DynamicWebPage
 					"                    </div>\n"+
 					"                    </div>\n"+
 					"                    </div>\n"+
-					PageElements.scripts()+ PageElements.footer2();
+					//artist images carousel
+					"<div class=\"row white\">\n" + 
+					"  <div class=\"col s12 white \">\n" +
+					"        <div class=\"col 10 offset-s2 white\">\n" + 
+					"         		<h1>"+iartist.artistName+ " Images</h1>\n"+
+					"         </div>\n"+
+					"  </div>\n";
+					if (iartist.artistImages == null ) {
+						stringToSendToWebBrowser +=	
+						"<div class=\"row white\" >\n" + 
+								"  <div class=\"col s12 white \">\n" +
+								"        <div class=\"col 9 offset-s3 white\">\n" + 
+								"         		<h5>We dont seem to have any images of "+" "+iartist.artistName +"</h5>\n"+
+								"         </div>\n"+
+								"  </div>\n";
+
+
+					}else {
+						stringToSendToWebBrowser +=
+								"<div class=\"carousel carousel-slider\">\r\n" ;
+										for(int i = 0; i <iartist.artistImages.size();i++) {
+											stringToSendToWebBrowser += 
+													"    <a class=\"carousel-item\"\">\r\n" + 
+													"      <img src=\""+iartist.artistImages.get(i) + "\">\r\n" + 
+													"    </a>\r\n" ; 
+										}
+										stringToSendToWebBrowser += "  </div>";
+					}
+					stringToSendToWebBrowser += "<div class=\"row white z-depth-3\">\n" +
+												"        <div class=\"col 9 offset-s3 white\">\n" + 
+												"         		<h5> Upload a picture below</h5>\n"+
+												"         </div>\n"+
+												"  <div class=\"col s12 white \" max-height =  \"500px>\"\n" +
+												"        <div class=\"col 9 offset-s3 white\">\n" + 
+												"			<form action=\"../addartistimages.html\" role=\"form\" method = \"POST\" id = \"addartistimages\" enctype=\"multipart/form-data\">\n " +  
+												" 			Upload an Image\n" + 
+												"			<input type=\"hidden\" id=\"artistid\" name=\"artistid\" value=\""+iartist.uniqueID+"\">"+
+												"			<div class=\"form-group\">\n"+
+												"                    <div class=\"col s12\">\n"+
+												"                      <label for=\"addartistimages\" class=\"control-label\">Upload an image of the artist</label>\n"+
+												"                    </div>\n"+
+												"                    <div class=\"col s10\">\n"+
+												"                      <input type=\"file\" class=\"form-control\" id=\"addartistimages\" name=\"addartistimages\"\n"+
+												"                      </div>\n"+
+												"      </div>\n"+
+												"    </div>\n"+
+												"  	<br><br><br><br>"+
+
+												"  			<input class=\"btn waves-effect waves-light deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
+												"  	<br><br><br><br>"+
+												"			</form> \n" + 
+												"         </div>\n"+
+												"  </div>\n";
+					
+
+			stringToSendToWebBrowser +="  </div>\n" + PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -718,6 +816,11 @@ public class Webapp extends DynamicWebPage
 			imood.shortmooddescription = toProcess.params.get("shortmooddescription");
 			imood.mooddescription = toProcess.params.get("mooddescription");	
 			MVMap<String, Mood> moods= db.s.openMap("Mood");
+			File uploaded = new File(imood.moodimage);
+			int ind = imood.moodimage.lastIndexOf('.');
+			String extension =imood.moodimage.substring(ind);
+			uploaded.renameTo(new File("httpdocs/images/moodimages/"+imood.moodname+extension));
+			imood.moodimage = "images/moodimages/"+imood.moodname+extension;
 			moods.put(imood.moodname, imood);
 			db.commit();
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
@@ -755,31 +858,36 @@ public class Webapp extends DynamicWebPage
 					"  <div class=\"col s12 white\">\n" + 
 					"    <div class=\"container-fluid\">\n" + 
 					"      <div class=\"row\">\n" + 
-					"        <div class=\"col 10 white\">\n" + 
-					"          <div class=\"row offset-s1\">\n" + 
+					"        <div class=\"col 10 offset-s1 white\">\n" + 
+					"          <div class=\"row \">\n" + 
 					"            <div class=\"col s2 white\"></div>\n" + 
-					"            <div class=\"col s12\">\n" + 
+					"            <div class=\"col s10  offset-s1\">\n" + 
 					"              <h1 class=\"\" style=\"\">"+ imood.moodname +"</h1>\n" + 
 					"            </div>\n" + 
 					"          </div>\n" + 
 					"          <div class=\"row\" style=\"\">\n" ;
-				stringToSendToWebBrowser +="            <div class=\"col s2 align-center\" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n";
-
+			  if(imood.moodimage != null && imood.moodimage != "" ) {
+					stringToSendToWebBrowser +="<div class=\"col s3\"><img class=\"circle responsive-img\" src=\""+imood.moodimage+"\"width=\"500px\" height=\"500px\" ></div>";
+				}else {
+					stringToSendToWebBrowser +=" div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\"></div>\n" ;
+				}
 			stringToSendToWebBrowser+="            <div class=\"col s8 offset-s1\">\n" + 
-					"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
-					"                <div class=\"col-md-12\" style=\"\">\n" + 
-					"                  <p class=\"lead\" style=\"\">"+ imood.mooddescription +"<br></p>\n" + 
+					"              <div class=\"col-s10 offset-s2>\n" + 
+					"                <div class=\"col-s12\">\n" + 
+					"                  <p>"+ imood.mooddescription +"<br></p>\n" + 
 					"                </div>\n" + 
+
 					"              </div>\n" + 
 
             				"              <div class=\"row\">\n" + 
-            				"                <div class=\"col s12 \">\n" + 
+            				"                <div class=\"col s9 offset-s3\">\n" + 
             				"                  <h3 class=\"\">Songs</h3>\n"+
             				"<div class=\"row\">";       
 
 			if (imood.songID == null) {
-				stringToSendToWebBrowser += 	"                    <div class=\"col s12 \">\n" + 
+				stringToSendToWebBrowser += 	"                    <div class=\"col 10 offset-s2 \">\n" + 
 						"                      <p class=\"lead\">no songs found for this mood</p>\n" +
+						"                    </div>\n"+
 						"                    </div>\n";
 			}else {
 				for(int i = 0; i < songkeys.size();i++) {
@@ -841,12 +949,21 @@ public class Webapp extends DynamicWebPage
 					"  <div class=\"row\">\n" + 
 					"    <div class=\"col s12\">\n" + 
 					"			<h2>Add Mood</h2>\n" + 
-					"			<form action=\"../addmood.html\" method = \"GET\"id = \"addmood\">\n " + 
+					"			<form action=\"../addmood.html\" role=\"form\" method = \"POST\"id = \"addmood\" enctype=\"multipart/form-data\">\n " + 
 					" 			 Mood Name<input type=\"text\" name=\"moodname\" placeholder=\"Name\">\n" + 
+					" 			 <br>image\n" + 
+					"			<div class=\"form-group\">\n"+
+					"                    <div class=\"col s12\">\n"+
+					"                      <label for=\"moodimage\" class=\"control-label\">Upload an image for the mood</label>\n"+
+					"                    </div>\n"+
+					"                    <div class=\"col s10\">\n"+
+					"                      <input type=\"file\" class=\"form-control\" id=\"moodimage\" name=\"moodimage\"\n"+
+					"                      </div>\n"+
+					"      </div>\n"+
+					"  </div>\n"+
 					" 			 <br>\n" + 
-					" 			 Mood Image <input type=\"text\" name=\"moodimage\" placeholder=\"image\">\n" + 
 					" 			 <br>\n" + 
-					"  			short Description<input type=\"text\" name=\"shortmooddescription\" placeholder=\"short description\">\n" + 
+					"  			<br>short Description<input type=\"text\" name=\"shortmooddescription\" placeholder=\"short description\">\n" + 
 					"  			<br><br>\n" + 
 					"  			Description<input type=\"text\" name=\"mooddescription\" placeholder=\"description\">\n" + 
 					"  			<br><br>\n" + 
@@ -855,7 +972,6 @@ public class Webapp extends DynamicWebPage
 					"    </div>\n" +  
 					"  </div>\n" + 
 					"</div>"+
-
         			"\n" ;
 					stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 					stringToSendToWebBrowser += 
@@ -863,6 +979,35 @@ public class Webapp extends DynamicWebPage
         			"</html> ";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;      	
+		}else if(toProcess.path.equalsIgnoreCase("addartistimages.html")) {
+			MVMap<String, Artist> artists= db.s.openMap("Artist");
+			Artist iartist = artists.get(toProcess.params.get("artistid"));
+			String newimage = toProcess.params.get("addartistimages");
+			File uploaded = new File(newimage);
+			int ind = newimage.lastIndexOf('.');
+			String extension = newimage.substring(ind);
+			if(iartist.artistImages !=null) {
+				uploaded.renameTo(new File("httpdocs/images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension));
+				newimage = "images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension;
+				iartist.artistImages.add(newimage);
+			}else {
+				iartist.artistImages = new ArrayList<String>();
+				uploaded.renameTo(new File("httpdocs/images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension));
+				newimage = "images/artistimages/"+"Gallery_"+iartist.uniqueID+iartist.artistImages.size()+extension;
+				iartist.artistImages.add(newimage);
+			}
+			artists.put(iartist.uniqueID, iartist);
+			db.commit();
+			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+					"<body>\n" + 
+					"	<h2>Image Added</h2>\n";
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser +=
+					"</body>\n" + 
+							"</html>\n" + 
+							"";
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;          		
 		}
 
 		return false;   

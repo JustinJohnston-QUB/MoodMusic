@@ -1,8 +1,7 @@
 package views;
 
+import java.util.ArrayList;
 import java.util.List;
-
-
 
 import org.h2.mvstore.MVMap;
 
@@ -32,7 +31,6 @@ public class ProductPage extends DynamicWebPage
 		}
 		if(toProcess.path.equalsIgnoreCase("productpage")) {
 			String productID = toProcess.params.get("prodID").toLowerCase();
-			System.out.println(productID);
 			Product product = products.get(productID);
 
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
@@ -74,12 +72,16 @@ public class ProductPage extends DynamicWebPage
 					"    </div>\r\n" + 
 					"    <div class=\"item6\">\r\n" + 
 					"      <h5>Review Section</h5>\r\n" + 
-					"      <p>How would you rate this T-Shirt out of 5?</p>\r\n" + 
-					"      <form action=\"#\">\r\n" + 
-					"    <p class=\"range-field\">\r\n" + 
-					"      <input type=\"range\" id=\"tshirtReview\" min=\"0\" max=\"5\" />\r\n" + 
-					"    </p>\r\n" + 
-					"  </form>\r\n" + 
+					"      <p>How would you rate this T-Shirt out of 5?</p>\r\n" +
+					"<form action=\"submitprocess\">\r\n" + 
+					"          <p class=\"range-field\">\r\n" + 
+					"            <input type=\"range\" name=\"tshirtReview\" min=\"0\" max=\"5\" />\r\n" + 
+					"          </p>\r\n" +
+					"          <input class = \"hiddendiv\" type=\"text\" name=\"prodID\" value=\""+productID+"\">\r\n" +
+					"          <button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Submit\r\n" + 
+					"            <i class=\"material-icons right\">send</i>\r\n" + 
+					"          </button>\r\n" + 
+					"        </form>\r\n" + 
 					"    </div>\r\n" + 
 					"    <div class=\"item7\">\r\n" + 
 					"      <div class=\"colourBtn\">\r\n" + 
@@ -129,6 +131,24 @@ public class ProductPage extends DynamicWebPage
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 
+		}
+		else if(toProcess.path.equalsIgnoreCase("submitprocess")) {
+			
+			String productID = toProcess.params.get("prodID").toLowerCase();
+			Product product = products.get(productID);
+			
+			int revScore = Integer.parseInt(toProcess.params.get("tshirtReview"));
+			ArrayList<Integer> revArr = product.reviews;
+			product.reviews.add(revScore);
+			products.put(productID, product);
+
+			db.commit();
+			String stringToSendToWebBrowser = "<html><body><p>Review Submitted</p><a\r\n" + 
+					"href=\"productpage?prodID="+productID+">Home</a></body></html>";
+
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+
+			return true;
 		}
 		return false;
 	}

@@ -167,7 +167,7 @@ public class PageElements {
 				"\r\n" + 
 				"<script>\r\n" + 
 				"    $(document).ready(function() {\r\n" + 
-				"      $('.carousel').carousel();\r\n" + 
+				"      $('.carousel').carousel();\r\n" +
 				"\r\n" + 
 				"      $('.carousel.carousel-slider').carousel({\r\n" + 
 				"        fullWidth: true,\r\n" + 
@@ -186,4 +186,6 @@ public class PageElements {
 		
 		return stringToSendToWebBrowser;
 	}
+	
+	
 }

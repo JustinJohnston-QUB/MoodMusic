@@ -9,6 +9,7 @@ public class Song implements Serializable {
 	public String songtitle;
 	public String songlength;
 	public String songLink;
+	public String songImage;
 	public String uniqueID;
 
 }
