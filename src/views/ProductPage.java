@@ -78,20 +78,14 @@ public class ProductPage extends DynamicWebPage
 					"            <input type=\"range\" name=\"tshirtReview\" min=\"0\" max=\"5\" />\r\n" + 
 					"          </p>\r\n" +
 					"          <input class = \"hiddendiv\" type=\"text\" name=\"prodID\" value=\""+productID+"\">\r\n" +
-					"          <button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Submit\r\n" + 
+					"          <button class=\"btn waves-effect waves-light\" type=\"submit\">Submit\r\n" + 
 					"            <i class=\"material-icons right\">send</i>\r\n" + 
 					"          </button>\r\n" + 
 					"        </form>\r\n" + 
 					"    </div>\r\n" + 
 					"    <div class=\"item7\">\r\n" + 
-					"      <div class=\"colourBtn\">\r\n" + 
-					"        <a class='dropdown-trigger btn' href='#' data-target='dropdownColour'>Choose Colour</a>\r\n" + 
-					"        <ul id='dropdownColour' class='dropdown-content'>\r\n" + 
-					"          <li><a href=\"#colour=red\" onclick=\"M.toast({html: 'Red Chosen'}); window.location.reload()\">Red</a></li>\r\n" + 
-					"          <li><a href=\"#blue\" onclick=\"M.toast({html: 'Blue Chosen'})\">Blue</a></li>\r\n" + 
-					"          <li><a href=\"#yellow\" onclick=\"M.toast({html: 'Yellow Chosen'})\">Yellow</a></li>\r\n" + 
-					"        </ul>\r\n" + 
-					"      </div>\r\n" + 
+					"        <h6>Average Review: "+product.avgReview()+"/5</h6>\r\n" + 
+					"<p>Left by: "+product.reviews.size()+" customers</p>\r\n" +
 					"    </div>\r\n" + 
 					"    <div class=\"item8\">\r\n" + 
 					"\r\n" + 

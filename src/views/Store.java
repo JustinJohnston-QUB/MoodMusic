@@ -34,7 +34,6 @@ public class Store extends DynamicWebPage
 
 
 
-
 			//start of html and imports of materialize cs
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
 					"<html lang=\"en\">\r\n" + 
@@ -96,6 +95,7 @@ public class Store extends DynamicWebPage
 			for (int i = 0; i < productKeys.size(); i++) {
 				String productUniqueID = productKeys.get(i);
 				Product product = products.get(productUniqueID);
+				
 
 				stringToSendToWebBrowser += "<div class=\"item"+i+4+"\">\r\n" + 
 						"        <div class=\"row\">\r\n" + 
@@ -106,7 +106,8 @@ public class Store extends DynamicWebPage
 						"                <img src=\""+product.filePathToImage+"\">\r\n" + 
 						"              </div>\r\n" + 
 						"              <div class=\"card-content\">\r\n" + 
-						"                <h5 class = \"black-text\">"+product.title+"</h5>\r\n" + 
+						"                <h5 class = \"black-text\">"+product.title+"</h5>\r\n" +
+						"<p class = \"black-text\">Average review: <b>"+product.avgReview()+"/5</b> ("+product.reviews.size()+")</p>\r\n" +
 						"              </div>\r\n" + 
 						"              <div class=\"card-action\">\r\n" + 
 						"                <h6 class = \"black-text\">Only &pound"+product.price+"</h6>\r\n" + 
