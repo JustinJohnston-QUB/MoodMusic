@@ -135,9 +135,9 @@ public class Webapp extends DynamicWebPage
 					"		<h2>Add song</h2>\n" + 
 					"		<form action=\"../addsong.html\" role=\"form\" method = \"POST\" id = \"addsong\" enctype=\"multipart/form-data\">\n" + 
 					"  			Song Title " + 
-					"  			<input type=\"text\" name=\"songtitle\" placeholder=\"title\">\n" + 
+					"  			<input type=\"text\" name=\"songtitle\" placeholder=\"title\" required>\n" + 
 					"  			<br>\n" + 
-					" 			song Length <input type=\"time\" name=\"songlength\" default value=\"00:00\">\n" + 
+					" 			song Length <input type=\"time\" name=\"songlength\" default value=\"00:00\"required>\n" + 
 					"  			<br>\n" + 
 					" 			<br>Upload Song Image\n" + 
 					"			<div class=\"form-group\">\n"+
@@ -145,7 +145,7 @@ public class Webapp extends DynamicWebPage
 					"                      <label for=\"songimage\" class=\"control-label\">Upload an image for this song</label>\n"+
 					"                    </div>\n"+
 					"                    <div class=\"col s11 offset-s1\">\n"+
-					"                      <input type=\"file\" class=\"form-control\" id=\"songimage\" name=\"songimage\"\n"+
+					"                      <input type=\"file\" class=\"form-control\" id=\"songimage\" name=\"songimage\" required\n"+
 					"                      </div>\n"+
 					"      		</div>\n"+
 					"  			<br>\n" +
@@ -154,7 +154,7 @@ public class Webapp extends DynamicWebPage
 					"  			song Link <input type=\"text\" name=\"songlink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
 					"  			<br>\n" +
 					"			<div class=\"input-field\"> "+
-					"			Artist Name<select name=\"Artist\" class = \"browser-default\" form=\"addsong\">\n"+
+					"			Artist Name<select name=\"Artist\" class = \"browser-default\" form=\"addsong\"required>\n"+
 					"			option value=\"\" disabled selected>Choose your option</option>" ;
 
 			for(int i = 0; i < artistkeys.size();i++) {
@@ -212,14 +212,14 @@ public class Webapp extends DynamicWebPage
 					" 			 Artist Name " + 
 					" 			 <input type=\"text\" name=\"artistname\" placeholder=\"Name\" required>\n" + 
 					" 			 <br>\n" + 
-					"  			Description<input type=\"text\" name=\"artistdescription\" placeholder=\"description\">\n" + 
+					"  			Description<input type=\"text\" name=\"artistdescription\" placeholder=\"description\"required>\n" + 
 					" 			 <br><br>Upload Artist Image\n" + 
 					"			<div class=\"form-group\">\n"+
 					"                    <div class=\"col s12\">\n"+
 					"                      <label for=\"artistimage\" class=\"control-label\">Upload an image of the artist</label>\n"+
 					"                    </div>\n"+
 					"                    <div class=\"col s10\">\n"+
-					"                      <input type=\"file\" class=\"form-control\" id=\"artistimage\" name=\"artistimage\"\n"+
+					"                      <input type=\"file\" class=\"form-control\" id=\"artistimage\" name=\"artistimage\"required\n"+
 					"                      </div>\n"+
 					"      </div>\n"+
 					"    </div>\n"+
@@ -256,7 +256,10 @@ public class Webapp extends DynamicWebPage
 			isong.songtitle= toProcess.params.get("songtitle");	
 			isong.songlength =  toProcess.params.get("songlength");	
 			isong.songLink =  toProcess.params.get("songlink");
-			isong.songImage =  toProcess.params.get("songimage");	
+			isong.songImage =  toProcess.params.get("songimage");
+			if(!isong.songLink.contains("www.youtube.com/watch?v=")) {
+				isong.songLink = null;
+			}
 			MVMap<String, Song> songs= db.s.openMap("Song");
 			if(art1.artistSongs !=null) {
 				art1.artistSongs.add(isong.uniqueID);
@@ -649,11 +652,11 @@ public class Webapp extends DynamicWebPage
 					if(isong.songLink == null) {
 						stringToSendToWebBrowser += "                  <p class=\"lead\" style=\"\">" + "video: no youtube video <br></p>\n" ; 
 					}else {
-						stringToSendToWebBrowser += "<p>video:</p> ";
-						String[] youtubeparts =isong.songLink.split("=");
-						String youtubevideono = youtubeparts[1].trim();
-						//stringToSendToWebBrowser += "<iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/"+ youtubevideono.trim() +">" + "</iframe> ";
-						stringToSendToWebBrowser +="                <a href =\"" + isong.songLink + "\"> <p class=\"blue-text\" style=\"\">" + "song link: " + isong.songLink +"<br></p></a>\n"; 
+							stringToSendToWebBrowser += "<p>video:</p> ";
+							String[] youtubeparts =isong.songLink.split("=");
+							String youtubevideono = youtubeparts[1].trim();
+							stringToSendToWebBrowser += "<iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/"+ youtubevideono.trim() +"\">" + "</iframe> ";		
+							//stringToSendToWebBrowser +="                <a href =\"" + isong.songLink + "\"> <p class=\"blue-text\" style=\"\">" + "song link: " + isong.songLink +"<br></p></a>\n"; 
 					}	
 					
 					stringToSendToWebBrowser += "                </div>\n" + 
