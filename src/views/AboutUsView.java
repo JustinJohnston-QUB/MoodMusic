@@ -1,10 +1,13 @@
 package views;
 
+import java.io.File;
 import java.util.List;
 
 import org.h2.mvstore.MVMap;
 
+import model.Artist;
 import model.Mood;
+import model.Subscriber;
 import storage.DatabaseInterface;
 import storage.FileStoreInterface;
 import web.WebRequest;
@@ -105,13 +108,15 @@ public class AboutUsView extends DynamicWebPage{
 					"        </div>\r\n" + 
 					"      </div>\r\n" + 
 					"\r\n"+
-					"		<form action=\"../subscribe.html\" role=\"form\" method = \"GET\" id = \"subscribe\">\n" + 
+					"		<form action=\"../subscribe\" role=\"form\" method = \"GET\" id = \"subscribe\">\n" + 
 					"  		Email Address " + 
 					"  		<input type=\"email\" name=\"email\" placeholder=\"email\" required>\n" + 
+					"  		Name " + 
+					"  		<input type=\"text\" name=\"name\" placeholder=\"Enter your Name\" required>\n" + 
 					"  		<br>Choose your mood\n" + 
 					"		</select>" + 
 					"			<div class=\"input-field\"> "+
-					"			Mood<select name=\"mood\" class = \"browser-default\" form=\"addsong\">\n"+
+					"			Mood<select name=\"mood\" class = \"browser-default\" form=\"subscribe\">\n"+
 					"			option value=\"\" disabled selected>Choose your option</option>" ;
 				
 					MVMap<String, Mood> moods= db.s.openMap("Mood");
@@ -127,7 +132,7 @@ public class AboutUsView extends DynamicWebPage{
 					stringToSendToWebBrowser += "</select>" + 
 							"  </div>"+
 							"  <br><br>\n" + 
-							"  <button class=\"btn waves-effect waves-light Deep-Orange\" type=\"submit\" name=\"action\">Subscribe\r\n" + 
+							"  <button class=\"btn waves-effect waves-light Deep-Orange\" type=\"submit\" name=\"action\">subscribe\r\n" + 
 							"    <i class=\"material-icons right\">send</i>\r\n" + 
 							"  </button>" +
 					"        </div>\r\n" + 
@@ -164,6 +169,25 @@ public class AboutUsView extends DynamicWebPage{
 					"</html>";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK,
 			WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;
+		}else if(toProcess.path.equalsIgnoreCase("subscribe")) {
+			Subscriber isubscriber = new Subscriber();
+			isubscriber.uniqueid= "sub_"+System.currentTimeMillis();
+			isubscriber.emailaddress = toProcess.params.get("email");	
+			isubscriber.name = toProcess.params.get("name");	
+			isubscriber.mood = toProcess.params.get("mood");
+			MVMap<String, Subscriber> subscribers= db.s.openMap("Subscribers");
+			subscribers.put(isubscriber.uniqueid, isubscriber);
+			db.commit();
+			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+					"<body>\n" + 
+					"	<h2>thank you "+isubscriber.name+" you are now a subscriber to our newsletter</h2>\n";
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser +=
+					"</body>\n" + 
+							"</html>\n" + 
+							"";
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 		}
 	return false;
