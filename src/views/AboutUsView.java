@@ -1,6 +1,9 @@
 package views;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import org.h2.mvstore.MVMap;
@@ -182,6 +185,39 @@ public class AboutUsView extends DynamicWebPage{
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>thank you "+isubscriber.name+" you are now a subscriber to our newsletter</h2>\n";
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser +=
+					"</body>\n" + 
+							"</html>\n" + 
+							"";
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;
+		}else if(toProcess.path.equalsIgnoreCase("exportsubs")) {
+			String filelocation = "httpdocs/subscribers.csv";
+			File csvfile = new File(filelocation);
+			Subscriber isubscriber = new Subscriber();
+			MVMap<String, Subscriber> subscribers= db.s.openMap("Subscribers");
+			List<String> subkeys = subscribers.keyList() ;
+			try {
+				FileWriter fw = new FileWriter(csvfile,false);
+				PrintWriter pw = new PrintWriter(fw);
+				pw.println("name,email-address,mood");
+				for(int i = 0;i < subkeys.size();i++ ) {
+					String sub = subkeys.get(i);
+					isubscriber = subscribers.get(sub);
+					pw.println(isubscriber.name+","+isubscriber.emailaddress+","+isubscriber.mood);
+				}
+				pw.close();
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.getMessage();
+			}
+
+		
+			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+					"<body>\n" + 
+					"	<h2>a csv file has been exported to the httpdocs folder</h2>\n";
 			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
