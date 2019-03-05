@@ -19,17 +19,9 @@ public class AboutUsView extends DynamicWebPage{
 		{
 			
 			String exampleUserName = "Ellen";
-			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
-					"<html>\r\n" + 
+			String stringToSendToWebBrowser = PageElements.header()+
 					"\r\n" + 
-					"<head>\r\n" + 
-					"  <meta charset=\"utf-8\">\r\n" + 
-					"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
-					"  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\" type=\"text/css\">\r\n" + 
-					"  <link rel=\"stylesheet\" href=\"theme.css\" type=\"text/css\">\r\n" + 
-					"</head>\r\n" + 
-					"\r\n" + 
-					"<body >\r\n" + 
+					"<body >\r\n" + PageElements.Navbar()+PageElements.Search()+
 					"  <div class=\"py-5 bg-primary\">\r\n" + 
 					"    <div class=\"container\">\r\n" + 
 					"      <div class=\"row\">\r\n" + 
@@ -91,11 +83,7 @@ public class AboutUsView extends DynamicWebPage{
 					"        </div>\r\n" + 
 					"      </div>\r\n" + 
 					"    </div>\r\n" + 
-					"  </div>\r\n" + 
-					"  <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\" style=\"\"></script>\r\n" + 
-					"  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\" crossorigin=\"anonymous\"></script>\r\n" + 
-					"  <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js\" integrity=\"sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k\" crossorigin=\"anonymous\" style=\"\"></script>\r\n" + 
-					"  <pingendo onclick=\"window.open('https://pingendo.com/', '_blank')\" style=\"cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white\">Made with Pingendo Free&nbsp;&nbsp;<img src=\"https://pingendo.com/site-assets/Pingendo_logo_big.png\" class=\"d-block\" alt=\"Pingendo logo\" height=\"16\"></pingendo>\r\n" + 
+					"  </div>\r\n" + PageElements.footer2()+PageElements.scripts()+
 					"</body>\r\n" + 
 					"\r\n" + 
 					"</html>";

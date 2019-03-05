@@ -89,7 +89,7 @@ public class PageElements {
 			 "  <li><a href=\"artist.html\">Add Artist</a></li>\r\n" + 
 			 "</ul>" +
 			"  <nav class=\"orange\" role=\"navigation\">\r\n" + 
-					"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage.html\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
+					"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
 					"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
 					"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown1\">Music<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
 					"		<li><a href=\"store\">Store</a></li>\r\n" + 
@@ -98,7 +98,12 @@ public class PageElements {
 					"" +
 					"      </ul>\r\n" + 
 					"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
-					"        <li><a href=\"#\">Navbar Link</a></li>\r\n" + 
+					"		<li><a href=\"homepage\">home</a></li>\r\n" + 
+					"		<li><a href=\"webapp\">Music</a></li>\r\n" +
+					"		<li><a href=\"song.html\">Add Song</a></li>\r\n" +
+					"		<li><a href=\"artist.html\">Add Artist</a></li>\r\n" +
+					"		<li><a href=\"store\">Store</a></li>\r\n" + 
+					"		<li><a href=\"indexview\">About Us</a></li>\r\n" +
 					"      </ul>\r\n" + 
 					"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger\"><i class=\"material-icons\">menu</i></a>\r\n" + 
 					"    </div>\r\n" +
