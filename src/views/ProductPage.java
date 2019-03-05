@@ -60,7 +60,7 @@ public class ProductPage extends DynamicWebPage
 					"    </div>\r\n" + 
 					"    <div class=\"item2\">\r\n" + 
 					"    </div>\r\n" + 
-					"    <div class=\"item3\">3</div>\r\n" + 
+					"    <div class=\"item3\"></div>\r\n" + 
 					"    <div class=\"item4\">\r\n" + 
 					"      <image class=\"left\" src=\""+product.filePathToImage+"\" alt=\"Picture of tshirt\" width=200px></image>\r\n" + 
 					"    </div>\r\n" + 
@@ -91,7 +91,7 @@ public class ProductPage extends DynamicWebPage
 					"\r\n" + 
 					"\r\n" + 
 					"    </div>\r\n" + 
-					"    <div class=\"item9\">9</div>\r\n" + 
+					"    <div class=\"item9\"></div>\r\n" + 
 					"  </div>\r\n" + 
 					"</div>\r\n" + 
 					"\r\n" + 
