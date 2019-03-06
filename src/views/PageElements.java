@@ -105,7 +105,7 @@ public class PageElements {
 					"		<li><a href=\"store\">Store</a></li>\r\n" + 
 					"		<li><a href=\"indexview\">About Us</a></li>\r\n" +
 					"      </ul>\r\n" + 
-					"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger\"><i class=\"material-icons\">menu</i></a>\r\n" + 
+					"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger orange \"><i class=\"material-icons\">menu</i></a>\r\n" + 
 					"    </div>\r\n" +
 					"  </nav>\r\n";
 	
@@ -168,7 +168,7 @@ public class PageElements {
 		String stringToSendToWebBrowser = "  <!--  Scripts-->\r\n" + 
 				"  <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\r\n" + 
 				"  <script src=\"js/materialize.js\"></script>\r\n" + 
-				"  <script src=\"js/init.js\"></script>\r\n" + 
+				"  <script src=\"js/init2.js\"></script>\r\n" + 
 				"\r\n" + 
 				"<script>\r\n" + 
 				"    $(document).ready(function() {\r\n" + 

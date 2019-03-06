@@ -160,11 +160,7 @@ public class AboutUsView extends DynamicWebPage{
 					
 					"\r\n" + 
 					"\r\n" + 
-					"  <!--  Scripts-->\r\n" + 
-					"  <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\r\n" + 
-					"  <script src=\"js/materialize.js\"></script>\r\n" + 
-					"  <script src=\"js/init2.js\"></script>\r\n" + 
-					"\r\n" + 
+					PageElements.scripts()+
 					"  </body>"+
 					PageElements.footer2()+
 					"</body>\r\n" + 
