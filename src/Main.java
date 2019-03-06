@@ -137,7 +137,7 @@ public class Main
 				//this will mean that a static index.html page will be loaded as default
 				//the example dynamic page will process the request if the index.html file is not present
 				if(toProcess.path.length()==0)
-					toProcess.path = "index.html";	
+					toProcess.path = "homepage";	
 
 				//Uncomment this code to see an example dynamic page or an example dynamic page that responds to a form
 				if(exampleDynamicPage.process(toProcess))
@@ -194,7 +194,7 @@ public class Main
 				//either way respond with a redirection message to the index page
 				if(toProcess.r == null)
 				{
-					if(toProcess.path.equalsIgnoreCase("index.html"))
+					if(toProcess.path.equalsIgnoreCase("homepage"))
 					{
 						toProcess.r = new WebResponse( WebResponse.HTTP_NOTFOUND, WebResponse.MIME_PLAINTEXT,
 								"Error 404, file not found." );
