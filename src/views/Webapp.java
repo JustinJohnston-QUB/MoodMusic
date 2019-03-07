@@ -66,12 +66,32 @@ public class Webapp extends DynamicWebPage
 					"      <div class=\"row\">\n" ;
 			 	int moodcount = 1;
 			 	if(moodkeys.size() == 0) {
-					stringToSendToWebBrowser +=
-							"        <div class=\"col s12\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" + 
-									"<h5 class=\" flow-text blue-text text-darken-2\">Moods Missing</h5><br>\n"+ 
-							"          <p class=\"flow-text\">there are no moods only xanax</p>\n" + 
-							"        </div>\n";
-			 	}else {
+			 		Mood imood0 = new Mood();
+					imood0.moodname = "Ecstatic";	
+					imood0.shortmooddescription = "Get Happy!";
+					imood0.mooddescription ="If you're blissful, you're happy and at peace.<br> You can never have too many blissful moments. <br>If you're feeling blissful, then you're lucky.<br> This is a word for total contentment and major happiness, along with a kind of Zen-like peace.";	
+					imood0.moodimage = "images/moodimages/happy.jpg";
+					moods.put(imood0.moodname, imood0);
+					Mood imood1 = new Mood();
+					imood1.moodname = "Rage";	
+					imood1.shortmooddescription = "Get Even,Get Angry";
+					imood1.mooddescription ="If you're mad about something and you're not going to take it anymore, you're feeling anger, a strong emotion you experience when you think someone has done you wrong.<br> If you want to scream and kick, you're feeling anger.";	
+					imood1.moodimage = "images/moodimages/angry.jpg";
+					moods.put(imood1.moodname, imood1);
+					Mood imood2 = new Mood();
+					imood2.moodname = "Melancholy";	
+					imood2.shortmooddescription = "Cry it Out";
+					imood2.mooddescription ="When you're sad, you feel unhappy. ... You might use the adjective sad informally to describe something that's pathetic or that you feel scornful or disdainful about.<br>For example, you might comment on your friend's elaborate homemade hat by saying, \"That hat is just sad,\" though it wouldn't be very nice of you to say it.";	
+					imood2.moodimage = "images/moodimages/Melancholy.jpg";
+					moods.put(imood2.moodname, imood2);
+			 		Mood imood4= new Mood();
+					imood4.moodname = "Romance";	
+					imood4.shortmooddescription = "Love is in the Air";
+					imood4.mooddescription ="Love encompasses a range of strong and positive emotional and mental states, from the most sublime virtue or good habit, the deepest interpersonal affection and to the simplest pleasure.<br>Love is unconditional. The word unconditional means that there are no expectations or limitations set. To love unconditionally is a difficult thing, and most humans aren't good at that.<br>But true love really does love without trying to change the other person";	
+					imood4.moodimage = "images/moodimages/Romantic.jpg";
+					moods.put(imood4.moodname, imood4);
+					db.commit();
+			 	}
 			 		for(int i = 0; i<moodkeys.size();i++) {
 						String moodUniqueID = moodkeys.get(i);
 							imood = moods.get(moodUniqueID);
@@ -98,7 +118,7 @@ public class Webapp extends DynamicWebPage
 									}
 									
 					}
-			 	}
+
 				
 
 			 	stringToSendToWebBrowser +=
