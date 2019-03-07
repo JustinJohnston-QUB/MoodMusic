@@ -594,6 +594,7 @@ public class Webapp extends DynamicWebPage
 
 			// page which displays songs          	
 		}else if(toProcess.path.equalsIgnoreCase("songpage")) {
+
 			String song;
 			song = toProcess.params.get("song").toLowerCase();
 			Song isong = new Song();
@@ -645,48 +646,166 @@ public class Webapp extends DynamicWebPage
 			}		
 
 			// end of mood loop 
-			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
-					"  <div class=\" col s12 white\">\n" + 
-					"    <div class=\"container-fluid\">\n" + 
-					"      <div class=\"row\">\n" + 
-					"        <div class=\"col s10 offset-s1 white\">\n" + 
-					"          <div class=\"row\">\n" + 
-					"            <div class=\"col s2\"></div>\n" + 
-					"            <div class=\"col s12\">\n" + 
-					"              <h1>"+isong.songtitle +"</h1>\n" + 
-					"					<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h3 class=\"blue-text text-darken-2\">"+"Artist: "+iartist.artistName+"</h3></a>\n"+
-					"            </div>\n" + 
-					"          </div>\n" + 
-					"          <div class=\"row offset-s1\">\n"; 
-					if(isong.songImage != null && isong.songImage != "" ) {
-						stringToSendToWebBrowser +="<div class=\"col s2\"><img class=\"circle responsive-img\" src=\""+isong.songImage+"\"></div>";
-					}else {
-						stringToSendToWebBrowser +=" <div class=\"col s2\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"200px\" alt=\"Card image cap\"></div>\n" ;
-					}
-					//"            <div class=\"col s2 \" style=\"\"><img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-3.svg\" width=\"200px\" height=\"200px\"></div>\n" + 
-					stringToSendToWebBrowser +=	"            <div class=\"col s10\">\n" + 
-					"              <div class=\"row\" style=\"	min-height: 200px;\">\n" + 
-					"                <div class=\"col s12\" style=\"\">\n" + 
-					"                  <p class=\"lead\" style=\"\">" + "song length: " + isong.songlength +"<br></p>\n" + 
-					"                  <p class=\"lead\" style=\"\">" + "song mood: " + imood.moodname +"<br></p>\n" ; 
-					if(isong.songLink == null) {
-						stringToSendToWebBrowser += "                  <p class=\"lead\" style=\"\">" + "video: no youtube video <br></p>\n" ; 
-					}else {
-							stringToSendToWebBrowser += "<p>video:</p> ";
-							String[] youtubeparts =isong.songLink.split("=");
-							String youtubevideono = youtubeparts[1].trim();
-							stringToSendToWebBrowser += "<iframe width=\"420\" height=\"315\" src=\"http://www.youtube.com/embed/"+ youtubevideono.trim() +"\">" + "</iframe> ";		
-							//stringToSendToWebBrowser +="                <a href =\"" + isong.songLink + "\"> <p class=\"blue-text\" style=\"\">" + "song link: " + isong.songLink +"<br></p></a>\n"; 
-					}	
+			String videoString = "";
+			String thissong = isong.uniqueID;
+			String songtitle = isong.songtitle;
+			if(isong.songLink == null) {
+				videoString += "                  <p class=\"lead\" style=\"\">" + "video: no youtube video <br></p>\n" ; 
+			}else {
+					String[] youtubeparts =isong.songLink.split("=");
+					String youtubevideono = youtubeparts[1].trim();
+					videoString +="			<div class=\"video-container\">\r\n" + 
+									"			<iframe src=\"http://www.youtube.com/embed/"+ youtubevideono.trim() +"\"></iframe>"+
+									"      </div>\r\n" + 
+									"        ";	
+			}	
+
+			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search();
 					
-					stringToSendToWebBrowser += "                </div>\n" + 
-					"              </div>\n" + 
-					"					</div>\n" + 
-					"                </div>\n" + 
-					"              </div>\n" + 
-					"            </div>\n" + 
-					"          </div>\n" + 
-					"        </div>\n" ;
+			stringToSendToWebBrowser +=
+			"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
+			"    <div class=\"section no-pad-bot\">\r\n" + 
+			"      <div class=\"container\">\r\n" + 
+			"        <br><br>\r\n" + 
+			"        <h1 class=\"header center white-text text-lighten-2\"><b>Song: "+isong.songtitle+"</b></h1>\r\n" + 
+			"        <h2 class=\"header center white-text text-lighten-2\"><b>Artist:"+iartist.artistName+"</b></h2>\r\n" + 
+			"        <div class=\"row center\">\r\n" + 
+			"        </div>\r\n" + 
+			"        <div class=\"row center\">\r\n" + 
+			"        </div>\r\n" + 
+			"        <br><br>\r\n" + 
+			"\r\n" + 
+			"      </div>\r\n" + 
+			"    </div>\r\n" ;
+			if(iartist.artistImage != null && iartist.artistImage != "" ) {
+			stringToSendToWebBrowser +=	"    <div class=\"parallax\"><img src=\""+isong.songImage+"\" alt=\"Artist Image\"></div>\r\n" +
+							"  </div> ";
+			}else {
+			stringToSendToWebBrowser +=	"    <div class=\"parallax\"><img src=\"https://static.pingendo.com/img-placeholder-3.svg\" alt=\"Artist Image\"></div>\r\n" +
+							"  </div> ";			
+			}
+			stringToSendToWebBrowser+=	"  <div class=\"container\">\r\n" + 
+		"    <div class=\"section\">\r\n" + 
+			"\r\n" + 
+			"      <div class=\"row\">\r\n" + 
+			"        <div class=\"col s12 center\">\r\n" + 
+			"          <h3><i class=\"mdi-content-send black-text\"></i></h3>\r\n" + 
+			"          <h4>Song Information</h4><br>\r\n" + 
+			"          <p class=\"left-align light\">Song title: "+isong.songtitle+"</p>\r\n" + 
+			"          <a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><p class=\"left-align blue-text text-darken-2\">Artist: "+iartist.artistName+"</p></a>\r\n" + 
+			"          <p class=\"left-align light\">Song Length: "+isong.songlength+"</p>\r\n" + 
+			"          <a href = \"../moodpage.html?mood="+imood.moodname+"\"><p class=\"left-align blue-text text-darken-2\">Mood: "+imood.moodname+"</p></a>\r\n" + 
+			"        </div>\r\n" + 
+			"      </div>\r\n" + 
+			"\r\n" + 
+			"    </div>\r\n" + 
+			"  </div>";    
+			stringToSendToWebBrowser += "  <div class=\"container\">\r\n"+
+			"         		<h2>"+songtitle+" Music Video</h2>\n"+videoString;
+			if (imood.songID == null || imood.songID.size()<=1) {
+			stringToSendToWebBrowser += 	"  <div class=\"container\">\r\n" + 
+						"    <div class=\"section\">\r\n" + 
+						"\r\n" + 
+						"      <div class=\"row\">\r\n" + 
+						"        <div class=\"col s12 center\">\r\n" + 
+						"          <h3><i class=\"mdi-content-send black-text\"></i></h3>\r\n" + 
+						"          <h4>You Might also Like</h4><br>\r\n" + 
+						"          <a href = \"song.html\"<h4 class=\"left-align blue-text text-darken-2\">We Dont have any similar songs,click here to add one?</h4></a>\r\n" + 
+						"        </div>\r\n" + 
+						"      </div>\r\n" + 
+						"\r\n" + 
+						"    </div>\r\n" + 
+						"  </div>";    	
+			}else {
+				
+			stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n" + 
+					"    <div class=\"section\">\r\n" + 
+					"\r\n" + 
+					"      <div class=\"row\">\r\n" + 
+					"        <div class=\"col s12 center\">\r\n" + 
+					"          <h3><i class=\"mdi-content-send black-text\"></i></h3>\r\n" + 
+					"          <h4>You Might also Like</h4><br>\r\n" + 
+					"        </div>\r\n" + 
+					"      </div>\r\n" + 
+					"\r\n" + 
+					"    </div>\r\n" + 
+					"  </div>\r\n"; 
+			stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n";
+			
+			if(imood.songID.size()<4) {
+				for(int i = 0; i < imood.songID.size();i++) {  
+					String songId = imood.songID.get(i);
+					isong = songs.get(songId);
+					String songName = isong.uniqueID;
+					
+					for(int j = 0; j < iartist.artistSongs.size() ;j++) {
+					String artistSong = iartist.artistSongs.get(j);
+						if(songName.equalsIgnoreCase(artistSong) && !songName.equalsIgnoreCase(thissong)) {
+						
+						stringToSendToWebBrowser +=	"      <div class=\"row\">\r\n" +
+													"    <div class=\"col s10 offset-s1 m6 l4\">\r\n" + 
+													"      <div class=\"card small\">\r\n" + 
+													"        <div class=\"card-image\">\r\n" + 
+													"          <img src=\""+isong.songImage+"\">\r\n" + 
+													"          <span class=\"card-title\">Same Mood</span>\r\n" + 
+													"        </div>\r\n" + 
+													"        <div class=\"card-content\">\r\n" + 
+													"          <p class = \"flow-text\">"+isong.songtitle+"</p>\r\n" + 
+													"        </div>\r\n" + 
+													"        <div class=\"card-action\">\r\n" + 
+													"          <a href=\"../songpage?song="+isong.uniqueID+"\">click to View</a>\r\n" + 
+													"        </div>\r\n" + 
+													"      </div>\r\n" + 
+													"    </div>";
+						
+						
+						}
+					}
+				}
+			}else {
+				for(int i = 0; i < 4 ;i++) {  
+					int r = (int) ((Math.random()*imood.songID.size())+ 1);
+					String songId = imood.songID.get(r);
+					isong = songs.get(songId);
+					String songName = isong.uniqueID;
+					
+					for(int j = 0; j < iartist.artistSongs.size() ;j++) {
+					String artistSong = iartist.artistSongs.get(j);
+						if(songName.equalsIgnoreCase(artistSong) && !songName.equalsIgnoreCase(thissong)) {
+						
+						stringToSendToWebBrowser +=	"      <div class=\"row\">\r\n" +
+													"    <div class=\"col s10 offset-s1 m6 l4\">\r\n" + 
+													"      <div class=\"card small\">\r\n" + 
+													"        <div class=\"card-image\">\r\n" + 
+													"          <img src=\""+isong.songImage+"\">\r\n" + 
+													"          <span class=\"card-title\">Same Mood</span>\r\n" + 
+													"        </div>\r\n" + 
+													"        <div class=\"card-content\">\r\n" + 
+													"          <p class = \"flow-text\">"+isong.songtitle+"</p>\r\n" + 
+													"        </div>\r\n" + 
+													"        <div class=\"card-action\">\r\n" + 
+													"          <a href=\"../songpage?song="+isong.uniqueID+"\">click to View</a>\r\n" + 
+													"        </div>\r\n" + 
+													"      </div>\r\n" + 
+													"    </div>";
+						
+						
+						}
+					}
+				}
+			}
+			
+			stringToSendToWebBrowser +=				"    </div>\r\n" +
+								"   </div>\r\n" +
+								"   </div>\r\n" +
+								"   </div>\r\n" +
+								"  </div>";
+			
+			}
+			stringToSendToWebBrowser +=			"    </div>\r\n" +
+												"    </div>\r\n" +
+												"    </div>\r\n" +
+												"  </div>\n";
 			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
@@ -773,7 +892,6 @@ public class Webapp extends DynamicWebPage
 											"    </div>\r\n" + 
 											"  </div>\r\n"; 
 				stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n";
-				int rowcount = 0;
 				for(int i = 0; i < songkeys.size();i++) {  
 					String songId = songkeys.get(i);
 					isong = songs.get(songId);
