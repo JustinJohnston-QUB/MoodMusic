@@ -186,7 +186,10 @@ public class PageElements {
 				"        setTimeout(autoplay, 4500);\r\n" + 
 				"      }\r\n" +
 				"      $('.dropdown-trigger').dropdown();\r\n" + 
-				"    });\r\n" + 
+				"    });\r\n" +
+				" $(document).ready(function(){\r\n" + 
+				"    $('.materialboxed').materialbox();\r\n" + 
+				"  });"+
 				"  </script>";
 		
 		return stringToSendToWebBrowser;
