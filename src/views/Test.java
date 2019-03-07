@@ -99,8 +99,7 @@ public class Test extends DynamicWebPage
 											"\r\n" + 
 											"    </div>\r\n" + 
 											"  </div>\r\n"; 
-				stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n" + 
-											"    <div class=\"section\">\r\n";
+				stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n";
 				int rowcount = 0;
 				for(int i = 0; i < songkeys.size();i++) {  
 					String songId = songkeys.get(i);
@@ -111,10 +110,8 @@ public class Test extends DynamicWebPage
 						String artistSong = iartist.artistSongs.get(j);
 						if(songName.equalsIgnoreCase(artistSong)) {
 							
-							stringToSendToWebBrowser +=	"      <div class=\"row\">\r\n" ;
-							if(rowcount < 3) {
-								rowcount++;
-								stringToSendToWebBrowser +=	"    <div class=\"col s4\">\r\n" + 
+							stringToSendToWebBrowser +=	"      <div class=\"row\">\r\n" +
+										"    <div class=\"col s10 offset-s1 m6 l4\">\r\n" + 
 										"      <div class=\"card small\">\r\n" + 
 										"        <div class=\"card-image\">\r\n" + 
 										"          <img src=\""+isong.songImage+"\">\r\n" + 
@@ -128,49 +125,22 @@ public class Test extends DynamicWebPage
 										"        </div>\r\n" + 
 										"      </div>\r\n" + 
 										"    </div>";
-							}else {
-								rowcount = 0;
-								stringToSendToWebBrowser +=				"    </div>\r\n" ;
-								stringToSendToWebBrowser +=	"      <div class=\"row\">\r\n" ;
-								stringToSendToWebBrowser +=	"    <div class=\"col s4\">\r\n" + 
-										"      <div class=\"card small\">\r\n" + 
-										"        <div class=\"card-image\">\r\n" + 
-										"          <img src=\""+isong.songImage+"\">\r\n" + 
-										"          <span class=\"card-title\">Song</span>\r\n" + 
-										"        </div>\r\n" + 
-										"        <div class=\"card-content\">\r\n" + 
-										"          <p class = \"flow-text\">"+isong.songtitle+"</p>\r\n" + 
-										"        </div>\r\n" + 
-										"        <div class=\"card-action\">\r\n" + 
-										"          <a href=\"../songpage?song="+isong.uniqueID+"\">click to View</a>\r\n" + 
-										"        </div>\r\n" + 
-										"      </div>\r\n" + 
-										"    </div>";
-							}
+							
 							
 						}
 					}
 				}
-				stringToSendToWebBrowser +=				"    </div>\r\n" ;
-				stringToSendToWebBrowser +=				"    </div>\r\n" + 
+				stringToSendToWebBrowser +=				"    </div>\r\n" +
+														"   </div>\r\n" +
+														"   </div>\r\n" +
+														"   </div>\r\n" +
 														"  </div>";
 
 			}
-//here above we divide the songs into rrows of 3 and display their cards z-dpeth =1
-			stringToSendToWebBrowser += "                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
-					"                    </div>\n"+
+			stringToSendToWebBrowser += "  <div class=\"container\">\r\n"+
 					//artist images carousel
 					"<div class=\"row white\">\n" + 
-					"  <div class=\"col s12 white \">\n" +
+					"  <div class=\"col s12\">\n" +
 					"        <div class=\"col 10 offset-s2 white\">\n" + 
 					"         		<h1>"+iartist.artistName+ " Images</h1>\n"+
 					"         </div>\n"+
@@ -223,7 +193,9 @@ public class Test extends DynamicWebPage
 												"  </div>\n";
 					
 
-			stringToSendToWebBrowser +="  </div>\n" + PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser +=			"    </div>\r\n" +
+												"    </div>\r\n" +
+												"  </div>\n" + PageElements.scripts()+ PageElements.footer2();
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
