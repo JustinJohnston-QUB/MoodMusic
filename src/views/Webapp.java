@@ -663,43 +663,43 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search();
 					
 			stringToSendToWebBrowser +=
-			"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
-			"    <div class=\"section no-pad-bot\">\r\n" + 
-			"      <div class=\"container\">\r\n" + 
-			"        <br><br>\r\n" + 
-			"        <h1 class=\"header center white-text text-lighten-2\"><b>Song: "+isong.songtitle+"</b></h1>\r\n" + 
-			"        <h2 class=\"header center white-text text-lighten-2\"><b>Artist:"+iartist.artistName+"</b></h2>\r\n" + 
-			"        <div class=\"row center\">\r\n" + 
-			"        </div>\r\n" + 
-			"        <div class=\"row center\">\r\n" + 
-			"        </div>\r\n" + 
-			"        <br><br>\r\n" + 
-			"\r\n" + 
-			"      </div>\r\n" + 
-			"    </div>\r\n" ;
+										"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
+										"    <div class=\"section no-pad-bot\">\r\n" + 
+										"      <div class=\"container\">\r\n" + 
+										"        <br><br>\r\n" + 
+										"        <h1 class=\"header center white-text text-lighten-2\"><b>Song: "+isong.songtitle+"</b></h1>\r\n" + 
+										"        <h2 class=\"header center white-text text-lighten-2\"><b>Artist:"+iartist.artistName+"</b></h2>\r\n" + 
+										"        <div class=\"row center\">\r\n" + 
+										"        </div>\r\n" + 
+										"        <div class=\"row center\">\r\n" + 
+										"        </div>\r\n" + 
+										"        <br><br>\r\n" + 
+										"\r\n" + 
+										"      </div>\r\n" + 
+										"    </div>\r\n" ;
 			if(iartist.artistImage != null && iartist.artistImage != "" ) {
 			stringToSendToWebBrowser +=	"    <div class=\"parallax\"><img src=\""+isong.songImage+"\" alt=\"Artist Image\"></div>\r\n" +
-							"  </div> ";
+										"  </div> ";
 			}else {
 			stringToSendToWebBrowser +=	"    <div class=\"parallax\"><img src=\"https://static.pingendo.com/img-placeholder-3.svg\" alt=\"Artist Image\"></div>\r\n" +
-							"  </div> ";			
+										"  </div> ";			
 			}
 			stringToSendToWebBrowser+=	"  <div class=\"container\">\r\n" + 
-		"    <div class=\"section\">\r\n" + 
-			"\r\n" + 
-			"      <div class=\"row\">\r\n" + 
-			"        <div class=\"col s12 center\">\r\n" + 
-			"          <h3><i class=\"mdi-content-send black-text\"></i></h3>\r\n" + 
-			"          <h4>Song Information</h4><br>\r\n" + 
-			"          <p class=\"left-align light\">Song title: "+isong.songtitle+"</p>\r\n" + 
-			"          <a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><p class=\"left-align blue-text text-darken-2\">Artist: "+iartist.artistName+"</p></a>\r\n" + 
-			"          <p class=\"left-align light\">Song Length: "+isong.songlength+"</p>\r\n" + 
-			"          <a href = \"../moodpage.html?mood="+imood.moodname+"\"><p class=\"left-align blue-text text-darken-2\">Mood: "+imood.moodname+"</p></a>\r\n" + 
-			"        </div>\r\n" + 
-			"      </div>\r\n" + 
-			"\r\n" + 
-			"    </div>\r\n" + 
-			"  </div>";    
+										"    <div class=\"section\">\r\n" + 
+										"\r\n" + 
+										"      <div class=\"row\">\r\n" + 
+										"        <div class=\"col s12 center\">\r\n" + 
+										"          <h3><i class=\"mdi-content-send black-text\"></i></h3>\r\n" + 
+										"          <h4>Song Information</h4><br>\r\n" + 
+										"          <p class=\"left-align light\">Song title: "+isong.songtitle+"</p>\r\n" + 
+										"          <a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><p class=\"left-align blue-text text-darken-2\">Artist: "+iartist.artistName+"</p></a>\r\n" + 
+										"          <p class=\"left-align light\">Song Length: "+isong.songlength+"</p>\r\n" + 
+										"          <a href = \"../moodpage.html?mood="+imood.moodname+"\"><p class=\"left-align blue-text text-darken-2\">Mood: "+imood.moodname+"</p></a>\r\n" + 
+										"        </div>\r\n" + 
+										"      </div>\r\n" + 
+										"\r\n" + 
+										"    </div>\r\n" + 
+										"  </div>";    
 			stringToSendToWebBrowser += "  <div class=\"container\">\r\n"+
 			"         		<h2>"+songtitle+" Music Video</h2>\n"+videoString;
 			if (imood.songID == null || imood.songID.size()<=1) {
@@ -730,17 +730,17 @@ public class Webapp extends DynamicWebPage
 					"\r\n" + 
 					"    </div>\r\n" + 
 					"  </div>\r\n"; 
-			stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n";
+			//stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n";
 			
-			if(imood.songID.size()<4) {
+			if(imood.songID.size()<3) {
 				for(int i = 0; i < imood.songID.size();i++) {  
 					String songId = imood.songID.get(i);
 					isong = songs.get(songId);
-					String songName = isong.uniqueID;
-					
-					for(int j = 0; j < iartist.artistSongs.size() ;j++) {
-					String artistSong = iartist.artistSongs.get(j);
-						if(songName.equalsIgnoreCase(artistSong) && !songName.equalsIgnoreCase(thissong)) {
+					String songName = isong.uniqueID;	
+					for(int j = 0; j < songkeys.size() ;j++) {
+						String songUniqueID = songkeys.get(j);
+						isong = songs.get(songUniqueID);
+						if(songName.equalsIgnoreCase(isong.uniqueID) && !songName.equalsIgnoreCase(thissong)) {
 						
 						stringToSendToWebBrowser +=	"      <div class=\"row\">\r\n" +
 													"    <div class=\"col s10 offset-s1 m6 l4\">\r\n" + 
@@ -763,15 +763,16 @@ public class Webapp extends DynamicWebPage
 					}
 				}
 			}else {
-				for(int i = 0; i < 4 ;i++) {  
-					int r = (int) ((Math.random()*imood.songID.size())+ 1);
+				for(int i = 0; i < 3 ;i++) {  
+					int r = (int) ((Math.random()*imood.songID.size()));
 					String songId = imood.songID.get(r);
 					isong = songs.get(songId);
 					String songName = isong.uniqueID;
 					
-					for(int j = 0; j < iartist.artistSongs.size() ;j++) {
-					String artistSong = iartist.artistSongs.get(j);
-						if(songName.equalsIgnoreCase(artistSong) && !songName.equalsIgnoreCase(thissong)) {
+					for(int j = 0; j < songkeys.size() ;j++) {
+						String songUniqueID = songkeys.get(j);
+						isong = songs.get(songUniqueID);
+						if(songName.equalsIgnoreCase(isong.uniqueID) && !songName.equalsIgnoreCase(thissong)) {
 						
 						stringToSendToWebBrowser +=	"      <div class=\"row\">\r\n" +
 													"    <div class=\"col s10 offset-s1 m6 l4\">\r\n" + 
@@ -795,7 +796,7 @@ public class Webapp extends DynamicWebPage
 				}
 			}
 			
-			stringToSendToWebBrowser +=				"    </div>\r\n" +
+			stringToSendToWebBrowser +=				//"    </div>\r\n" +
 								"   </div>\r\n" +
 								"   </div>\r\n" +
 								"   </div>\r\n" +

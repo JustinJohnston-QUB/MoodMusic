@@ -160,7 +160,7 @@ public class Test extends DynamicWebPage
 					"\r\n" + 
 					"    </div>\r\n" + 
 					"  </div>\r\n"; 
-			stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n";
+			//stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n";
 			
 			if(imood.songID.size()<4) {
 				for(int i = 0; i < imood.songID.size();i++) {  
@@ -225,7 +225,7 @@ public class Test extends DynamicWebPage
 				}
 			}
 			
-			stringToSendToWebBrowser +=				"    </div>\r\n" +
+			stringToSendToWebBrowser +=			//	"    </div>\r\n" +
 								"   </div>\r\n" +
 								"   </div>\r\n" +
 								"   </div>\r\n" +
