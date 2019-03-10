@@ -11,6 +11,7 @@ import views.HomePage;
 import views.ProductPage;
 import views.Registration;
 import views.Store;
+import views.Test;
 import views.TestForm;
 import views.Webapp;
 import web.Base64;
@@ -94,7 +95,7 @@ public class Main
 		Registration registerPage = new Registration(databaseInterface,fileStoreInterface);
 		Store store= new Store(databaseInterface,fileStoreInterface);
 		AddProduct addproduct = new AddProduct(databaseInterface, fileStoreInterface);
-
+		Test test = new Test(databaseInterface, fileStoreInterface);
 		ProductPage productpage = new ProductPage(databaseInterface, fileStoreInterface);
 		//this variable indicates that the program should keep running
 		//by setting this variable to false the program will exit
@@ -174,7 +175,9 @@ public class Main
 				}
 				else if (productpage.process(toProcess))
 				{
-					
+				}
+				else if (test.process(toProcess))
+				{	
 				}
 				
 				else
