@@ -56,7 +56,8 @@ public class ProductPage extends DynamicWebPage
 					"\r\n" + 
 					"  <div class=\"grid-container\">\r\n" + 
 					"    <div class=\"item1\">\r\n" + 
-					"      <h3>"+product.title+"</h3>\r\n" + 
+					"      <h3>"+product.title+"</h3>\r\n"+
+					"        <h6>Average Review: "+product.avgReview()+"/5 ("+product.reviews.size()+" customers)</h6>\r\n" + 
 					"    </div>\r\n" + 
 					"    <div class=\"item2\">\r\n" + 
 					"    </div>\r\n" + 
@@ -69,23 +70,32 @@ public class ProductPage extends DynamicWebPage
 			
 			stringToSendToWebBrowser +=
 					"      <p class = \"productDesc\">"+product.description+"</p>\r\n" + 
-					"    </div>\r\n" + 
-					"    <div class=\"item6\">\r\n" + 
-					"      <h5>Review Section</h5>\r\n" + 
-					"      <p>How would you rate this T-Shirt out of 5?</p>\r\n" +
-					"<form action=\"submitprocess\">\r\n" + 
-					"          <p class=\"range-field\">\r\n" + 
-					"            <input type=\"range\" name=\"tshirtReview\" min=\"0\" max=\"5\" />\r\n" + 
-					"          </p>\r\n" +
-					"          <input class = \"hiddendiv\" type=\"text\" name=\"prodID\" value=\""+productID+"\">\r\n" +
-					"          <button class=\"btn waves-effect waves-light\" type=\"submit\">Submit\r\n" + 
-					"            <i class=\"material-icons right\">send</i>\r\n" + 
-					"          </button>\r\n" + 
-					"        </form>\r\n" + 
-					"    </div>\r\n" + 
-					"    <div class=\"item7\">\r\n" + 
-					"        <h6>Average Review: "+product.avgReview()+"/5</h6>\r\n" + 
-					"<p>Left by: "+product.reviews.size()+" customers</p>\r\n" +
+					"    </div>\r\n"
+					+ "        <div class=\"container\">\r\n" + 
+					"" + 
+					"<div class=\"item6\">\r\n" + 
+							"      <h5>Review Section</h5>\r\n" + 
+							"      <p>How would you rate this T-Shirt out of 5?</p>\r\n" +
+							"<form action=\"submitprocess\">\r\n" + 
+							"          <p class=\"range-field\">\r\n" + 
+							"            <input type=\"range\" name=\"tshirtReview\" min=\"0\" max=\"5\" />\r\n" + 
+							"          </p>\r\n" +
+							"          <input class = \"hiddendiv\" type=\"text\" name=\"prodID\" value=\""+productID+"\">\r\n" +
+							"          <button class=\"btn waves-effect waves-light\" type=\"submit\">Submit\r\n" + 
+							"            <i class=\"material-icons right\">send</i>\r\n" + 
+							"          </button>\r\n" + 
+							"        </form>\r\n" + 
+							"    </div>\r\n" + 
+							"    </div>\r\n" + 
+					"    <div class=\"item7\">\r\n"
+					+ "<div class=\"paypalBtn\">\r\n" + 
+					"            <form target=\"paypal\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\r\n" + 
+					"              <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\r\n" + 
+					"              <input type=\"hidden\" name=\"hosted_button_id\" value=\""+product.paypalBtn+"\">\r\n" + 
+					"              <input type=\"image\" src=\"https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png\" border=\"0\" name=\"submit\" alt=\"PayPal – The safer, easier way to pay online!\">\r\n" + 
+					"              <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_GB/i/scr/pixel.gif\" width=\"1\" height=\"1\">\r\n" + 
+					"            </form>\r\n" + 
+					"          </div>" + 
 					"    </div>\r\n" + 
 					"    <div class=\"item8\">\r\n" + 
 					"\r\n" + 
@@ -103,20 +113,9 @@ public class ProductPage extends DynamicWebPage
 			//Footer
 			stringToSendToWebBrowser += PageElements.footer();
 					
+			stringToSendToWebBrowser += PageElements.scripts();
 			stringToSendToWebBrowser +=
-					"  <!--  Scripts-->\r\n" + 
-					"  <script src=\"https://code.jquery.com/jquery-2.1.1.min.js\"></script>\r\n" + 
-					"  <script src=\"../js/materialize.js\"></script>\r\n" + 
-					"  <script src=\"../js/init.js\"></script>\r\n" + 
-					"  <script>\r\n" + 
-					"    $(document).ready(function() {\r\n" + 
-					"      $('.dropdown-trigger').dropdown();\r\n" + 
-					"\r\n" + 
-					"      $('#textarea1').val('New Text');\r\n" + 
-					"  M.textareaAutoResize($('#textarea1'));\r\n" + 
-					"    });\r\n" + 
-					"  </script>\r\n" + 
-					"\r\n" + 
+					
 					"</body>\r\n" + 
 					"\r\n" + 
 					"</html>\r\n" + 

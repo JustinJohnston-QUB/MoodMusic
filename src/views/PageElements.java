@@ -171,7 +171,7 @@ public class PageElements {
 				"  <script src=\"js/init2.js\"></script>\r\n" + 
 				"\r\n" + 
 				"<script>\r\n" + 
-				"    $(document).ready(function() {\r\n" + 
+				"    $(document).ready(function() {\r\n"	 + 
 				"      $('.carousel').carousel();\r\n" +
 				"\r\n" + 
 				"      $('.carousel.carousel-slider').carousel({\r\n" + 
@@ -189,7 +189,8 @@ public class PageElements {
 				"    });\r\n" +
 				" $(document).ready(function(){\r\n" + 
 				"    $('.materialboxed').materialbox();\r\n" + 
-				"  });"+
+				"  });"
+				+ ""+
 				"  </script>";
 		
 		return stringToSendToWebBrowser;
