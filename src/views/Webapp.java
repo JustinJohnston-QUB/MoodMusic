@@ -304,6 +304,7 @@ public class Webapp extends DynamicWebPage
 			artists.put(art1.uniqueID, art1);
 			moods.put(mood1.moodname, mood1);
 			db.commit();
+			//"songpage.html?song ="+isong.uniqueID
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>song Added</h2>\n";
@@ -312,7 +313,13 @@ public class Webapp extends DynamicWebPage
 					"</body>\n" + 
 							"</html>\n" + 
 							"";
-			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			//toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			
+			String url = "/songpage?song="+isong.uniqueID;
+			toProcess.r = new WebResponse( WebResponse.HTTP_REDIRECT, WebResponse.MIME_HTML,
+					stringToSendToWebBrowser);
+			toProcess.r.addHeader( "Location", url );
+
 			return true;
 
 			//Page which adds Artists to the database             		
