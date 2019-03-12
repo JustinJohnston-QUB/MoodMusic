@@ -20,7 +20,7 @@ public class Registration extends DynamicWebPage
 
 	public boolean process(WebRequest toProcess)
 	{
-		if(toProcess.path.equalsIgnoreCase("registration"))
+		if(toProcess.path.equalsIgnoreCase("use"))
 		{
 			//Lab 1 Task 4
 			//Change this string so that it contains HTML from a page you created in Pingendo 
@@ -127,7 +127,7 @@ public class Registration extends DynamicWebPage
 
 			return true;
 		}
-		else if(toProcess.path.equalsIgnoreCase("user")){
+		else if(toProcess.path.equalsIgnoreCase("register")){
 			User newUser = new User();
 
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
@@ -194,6 +194,7 @@ public class Registration extends DynamicWebPage
 							"                </div>\r\n" + 
 							"              </div>\r\n" + 
 							"            \r\n" + 
+							"            <div class=\"row\">\r\n" + 
 							"            <button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Register\r\n" + 
 							"              <i class=\"material-icons right\">send</i>\r\n" + 
 							"              </button>\r\n" + 
@@ -201,6 +202,7 @@ public class Registration extends DynamicWebPage
 							"              <i class=\"material-icons right\">clear</i>\r\n" + 
 							"              </button>	\r\n" + 
 							"              \r\n" + 
+							"              </div>\r\n" + 
 							"            </form>\r\n" + 
 							"          </div></p>\r\n" + 
 							"        </div>\r\n" + 

@@ -77,7 +77,7 @@ public class PageElements {
 				"  </footer>\r\n" + 
 				"\r\n" + 
 				"\r\n";
-		return footerString;
+		return footerString; 
 		}
 	public static String Navbar() {
 		
@@ -94,7 +94,8 @@ public class PageElements {
 					"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown1\">Music<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
 					"		<li><a href=\"store\">Store</a></li>\r\n" + 
 					"		<li><a href=\"indexview\">About Us</a></li>\r\n" + 
-					"		<li><a href=\"user\">Account</a></li>\r\n" + 
+					"		<li><a href=\"user\" class=\"waves-effect waves-light blue lighten-1 btn-small\">Login</a></li>\r\n" + 
+					"		<li><a href=\"register\" class=\"waves-effect waves-light blue lighten-1 btn-small\">Sign Up</a></li>\r\n" + 
 					"" +
 					"      </ul>\r\n" + 
 					"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
