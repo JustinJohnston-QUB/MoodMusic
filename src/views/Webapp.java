@@ -345,7 +345,12 @@ public class Webapp extends DynamicWebPage
 					"</body>\n" + 
 							"</html>\n" + 
 							"";
-			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			//toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			String url = "/artistpage.html?artist="+iartist.uniqueID;
+			toProcess.r = new WebResponse( WebResponse.HTTP_REDIRECT, WebResponse.MIME_HTML,
+					stringToSendToWebBrowser);
+			toProcess.r.addHeader( "Location", url );
+
 			return true;
 
 
