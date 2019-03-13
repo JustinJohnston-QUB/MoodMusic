@@ -152,11 +152,8 @@ public class Registration extends DynamicWebPage
 					"  \r\n" + 
 							"  <!--Registration Form-->\r\n" + 
 							"\r\n" + 
-							"  <div class=\"col s12 m7\">\r\n" + 
-							"    <h2 class=\"header\">Registration</h2>\r\n" + 
-							"    <div class=\"card horizontal\">\r\n" + 
-							"      <div class=\"card-stacked\">\r\n" + 
-							"        <div class=\"card-content\">\r\n" + 
+							"                    <div class=\"card-panel teal lighten-2\" style=\"width:10000px\"><h2 class=\"header\" style=\"color:#1565c0\"><b>Registration</b></h2></div>\r\n" + 
+							"                    \r\n" + 
 							"          <p>   <div class=\"row\">\r\n" + 
 							"            <form class=\"col s12\" method=\"GET\" action=\"/adduser\" name=\"regForm\">\r\n" + 
 							"              <div class=\"row\">\r\n" + 
@@ -187,12 +184,6 @@ public class Registration extends DynamicWebPage
 							"                  <label for=\"email\" class=\"active\"><i class=\"material-icons\">email</i></label>\r\n" + 
 							"                </div>	\r\n" + 
 							"              </div>\r\n" + 
-							"             <div class=\"row\">\r\n" + 
-							"                <div class=\"input-field col s12\">\r\n" + 
-							"                  <input id=\"dob\" name=\"dob\" type=\"text\" class=\"validate\" placeholder=\"D.O.B\">\r\n" + 
-							"                  <label for=\"dob\" class=\"active\"><i class=\"material-icons\">date_range</i></label>\r\n" + 
-							"                </div>\r\n" + 
-							"              </div>\r\n" + 
 							"            \r\n" + 
 							"            <div class=\"row\">\r\n" + 
 							"            <button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Register\r\n" + 
@@ -201,17 +192,12 @@ public class Registration extends DynamicWebPage
 							"            <button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Cancel\r\n" + 
 							"              <i class=\"material-icons right\">clear</i>\r\n" + 
 							"              </button>	\r\n" + 
+							"             <h6><a href=\"login\" style=\"color:#1976d2\">Already registered? Click to Log in.</a></h6>\r\n" +
 							"              \r\n" + 
 							"              </div>\r\n" + 
 							"            </form>\r\n" + 
-							"          </div></p>\r\n" + 
+							"          </div>\r\n" + 
 							"        </div>\r\n" + 
-							"        <div class=\"card-action\">\r\n" + 
-							"          <a href=\"#\">Already registered? Click here to login</a>\r\n" + 
-							"        </div>\r\n" + 
-							"      </div>\r\n" + 
-							"    </div>\r\n" + 
-							"  </div>\r\n" + 
 							"            \r\n" + 
 							"  \r\n" + 
 							"\r\n";
@@ -243,8 +229,7 @@ public class Registration extends DynamicWebPage
 			newUser.username = toProcess.params.get("username");
 			newUser.setPassword(toProcess.params.get("password"));
 			newUser.email = toProcess.params.get("email");
-			newUser.dob = toProcess.params.get("dob");
-
+			
 			MVMap<String, User> users = db.s.openMap("User");
 			users.put(newUser.uniqueID, newUser);
 			db.commit();
@@ -271,17 +256,18 @@ public class Registration extends DynamicWebPage
 					"<html>\n" + 
 					"<body>\n";
 			if(userList.size() == 0) {
-				stringToSendToWebBrowser += "<p> no songs in database</p>";
+				stringToSendToWebBrowser += "<p> no users in database</p>";
 			}else {
 				stringToSendToWebBrowser += "<div>";
 				for(int i = 0; i<userList.size();i++) {
 					String userUniqueID = userList.get(i);
 					newUser = users.get(userUniqueID);
-					stringToSendToWebBrowser += "<h4>First Name:</h4> <p>"+ newUser.firstname +"</p><\n" + 
+					stringToSendToWebBrowser += "<h4>First Name:</h4> <p>"+ newUser.firstname +"</p>" + 
 							"<h4>Surname:</h4> <p>"+ newUser.surname +"</p>\n" + 
 							"<h4>Username:</h4> <p>"+newUser.username+"</p>\n" +
 							"<h4>Email:</h4> <p>"+newUser.email+"</p>\n" +
-							"<h4>Date of birth:</h4> <p>"+newUser.dob+"</p>\n";
+							"<h4>Password:</h4> <p>"+newUser.getPassword()+"</p>\n" +
+							"<h4> -------- </h4>";
 				}
 				stringToSendToWebBrowser += "</div>";
 			}
