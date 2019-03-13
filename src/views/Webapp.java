@@ -3,8 +3,10 @@ package views;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
+import org.h2.command.dml.Set;
 import org.h2.mvstore.MVMap;
 
 import model.Artist;
@@ -775,9 +777,15 @@ public class Webapp extends DynamicWebPage
 					}
 				}
 			}else {
-				for(int i = 0; i < 3 ;i++) {  
+				HashSet<Integer> randomSet = new HashSet<Integer>();
+				for(int i = 0; i < 3 ;i++) { 
 					int r = (int) ((Math.random()*imood.songID.size()));
-					String songId = imood.songID.get(r);
+					randomSet.add(r);
+				}
+				ArrayList<Integer> randoms = new ArrayList<Integer>(randomSet);
+				for(int i = 0; i < randoms.size() ;i++) {  
+					
+					String songId = imood.songID.get(randoms.get(i));
 					isong = songs.get(songId);
 					String songName = isong.uniqueID;
 					
@@ -791,9 +799,9 @@ public class Webapp extends DynamicWebPage
 													"      <div class=\"card small\">\r\n" + 
 													"        <div class=\"card-image\">\r\n" + 
 													"          <img src=\""+isong.songImage+"\">\r\n" + 
-													"          <span class=\"card-title\">Same Mood</span>\r\n" + 
+													"          <span class=\"card-title orange darken-3\"><b>More of the Same Mood</b></span>\r\n" + 
 													"        </div>\r\n" + 
-													"        <div class=\"card-content\">\r\n" + 
+													"        <div class=\"card-content flow-text\">\r\n" + 
 													"          <p class = \"flow-text\">"+isong.songtitle+"</p>\r\n" + 
 													"        </div>\r\n" + 
 													"        <div class=\"card-action\">\r\n" + 
