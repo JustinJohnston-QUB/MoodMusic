@@ -26,57 +26,46 @@ public class Test extends DynamicWebPage
 	{
         if(toProcess.path.equalsIgnoreCase("aboutus.html"))
         {
-        	ArrayList<String> pageimages = new ArrayList<String>();
-        	pageimages.add("images/homepage/1.gif");
-        	pageimages.add("images/homepage/2.gif");
-        	pageimages.add("images/homepage/3.gif");
-        	pageimages.add("images/homepage/4.gif");
-        	pageimages.add("images/homepage/5.gif");
-        	pageimages.add("images/homepage/6.gif");//( max - min )) + min 
-        	Random rn = new Random();
-        	int randomimage = rn.nextInt(pageimages.size());
-        	String stringToSendToWebBrowser = PageElements.header()+PageElements.Navbar()+PageElements.Search()+
-        			"    <div class=\"row\">\r\n" + 
+        	String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
+					PageElements.header()+ "<body>\n"  + PageElements.Navbar()+ PageElements.Search()+
+					"    <div class=\"row\">\r\n" + 
         			"\r\n" + 
         			"      <div class=\"col s12 m6 l6\"> <!Right Hand Side Panel-->\r\n" + 
-        			"<img class=\"materialboxed\" width=\"100%\" src=\""+pageimages.get(randomimage)+"\">"+
+        			"<img class=\"materialboxed\" width=\"100%\" src=\"images/homepage/addartist.gif\">"+
         			"   </div>\r\n" + 
         			"\r\n" + 
         			"      <div class=\"col s12 m6 l6\"> <!-- Left Hand Panel -->\r\n" + 
-        			"  <div class=\"carousel carousel-slider center \">\r\n" + 
-        			"    <div class=\"carousel-item orange white-text\" href=\"#one!\">\r\n" + 
-        			"      <h2>First Panel</h2>\r\n" + 
-        			"      <p class=\"white-text\">This is your first panel</p>\r\n" + 
-        			"    </div>\r\n" + 
-        			"    <div class=\"carousel-item white black-text\" href=\"#two!\">\r\n" + 
-        			"      <h2>Second Panel</h2>\r\n" + 
-        			"      <p class=\"white-text\">This is your second panel</p>\r\n" + 
-        			"    </div>\r\n" + 
-        			"    <div class=\"carousel-item orange white-text\" href=\"#three!\">\r\n" + 
-        			"      <h2>Third Panel</h2>\r\n" + 
-        			"      <p class=\"white-text\">This is your third panel</p>\r\n" + 
-        			"    </div>\r\n" + 
-        			"    <div class=\"carousel-item white black-text\" href=\"#four!\">\r\n" + 
-        			"      <h2>Fourth Panel</h2>\r\n" + 
-        			"      <p class=\"white-text\">This is your fourth panel</p>\r\n" + 
-        			"    </div>\r\n" + 
-        			"  </div>\r\n" + 
-        			"        "+
-        			"      </div>\r\n" + 
-        			"\r\n" + 
+        			"			<h2>Add Artist</h2>\n" + 
+					"			<form action=\"../addartist.html\" role=\"form\" method = \"POST\" id = \"addartist\" enctype=\"multipart/form-data\">\n " + 
+					" 			 Artist Name " + 
+					" 			 <input type=\"text\" name=\"artistname\" placeholder=\"Name\" required>\n" + 
+					" 			 <br>\n" + 
+					"  			Description<input type=\"text\" name=\"artistdescription\" placeholder=\"description\"required>\n" + 
+					" 			 <br><br>Upload Artist Image\n" + 
+					"			<div class=\"form-group\">\n"+
+					"                    <div class=\"col s12\">\n"+
+					"                      <label for=\"artistimage\" class=\"control-label\">Upload an image of the artist</label>\n"+
+					"                    </div>\n"+
+					"                    <div class=\"col s10\">\n"+
+					"                      <input type=\"file\" class=\"form-control\" id=\"artistimage\" name=\"artistimage\"required\n"+
+					"                      </div>\n"+
+					"      </div>\n"+
+					"    </div>\n"+
+					"  	<br><br><br><br>"+
+
+					"  			<input class=\"btn waves-effect waves-light deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
+					"			</form> \n" + 
+        			"    </div>"+
         			"    </div>"+
         			"        <!-- Footer -->\r\n" + PageElements.scripts()+ PageElements.footer2()+
-        	
-        			"  <!-- Footer -->\r\n" + 
-        			"\r\n" + 
-        			"        \r\n" + 
-        			"    </head>\r\n" + 
-        			"</html>";
-        	
-        	
-        	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 
-        	return true;
+        			"\r\n" + 
+					"\n" + 
+							"</body>\n" + 
+							"</html> ";
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;
+
         }
         return false;
 	}

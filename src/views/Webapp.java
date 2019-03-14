@@ -148,12 +148,14 @@ public class Webapp extends DynamicWebPage
 			Mood imood = new Mood();
 			String stringToSendToWebBrowser = PageElements.header() +
 					"<body>\n" + PageElements.Navbar()+ PageElements.Search()+
-
-					"\n" + 
-
-					"<div class=\"container\">\n" + 
-					"  <div class=\"row\">\n" + 
-					"    <div class=\"col s8\">\n" + 
+					"    <div class=\"row\">\r\n" + 
+        			"\r\n" + 
+        			"      <div class=\"col s12 m6 l6\"> <!Right Hand Side Panel-->\r\n" + 
+        			"<img class=\"materialboxed\" width=\"100%\" src=\"images/homepage/addsong.gif\">"+
+        			"   </div>\r\n" + 
+        			"\r\n" + 
+        			"      <div class=\"col s12 m6 l6 \"> <!-- Left Hand Panel -->\r\n" + 
+        			//
 					"		<h2>Add song</h2>\n" + 
 					"		<form action=\"../addsong.html\" role=\"form\" method = \"POST\" id = \"addsong\" enctype=\"multipart/form-data\">\n" + 
 					"  			Song Title " + 
@@ -202,34 +204,31 @@ public class Webapp extends DynamicWebPage
 					"  <br><br>\n" + 
 					"  <input class=\"btn waves-effect waves-light  deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"</form> \n" + 
-					"    </div>\n" + 
-					"    <div class=\"col s4 m0\">\n" + 
-					"      <h3>We are always looking for more artists</h3> \n" + 
-					"      <p style = lead>Add an artist on this page</p>\n" + 
-					"      <bt><p>more text...</p>\n" + 
-					"    </div>\n" + 
-					"  </div>\n" + 
-					"</div>";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
-
-			stringToSendToWebBrowser += 
-					"\n" + 
-							"</body>\n" + 
-							"</html> ";
+        			//
+        			"      </div>\r\n" + 
+        			"\r\n" + 
+        			"    </div>"+
+        			"        <!-- Footer -->\r\n" + PageElements.scripts()+ PageElements.footer2()+
+        			"\r\n" + 
+        			"        \r\n" + 
+        			"    </head>\r\n" + 
+        			"</html>";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
-
 
 
 			//Page with form for adding Artists           	
 		}else if(toProcess.path.equalsIgnoreCase("artist.html")){
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
 					PageElements.header()+ "<body>\n"  + PageElements.Navbar()+ PageElements.Search()+
-					"\n" + 
-					"<div class=\"container\">\n" + 
-					"  <div class=\"row\">\n" + 
-					"    <div class=\"col s8\">\n" + 
-					"			<h2>Add Artist</h2>\n" + 
+					"    <div class=\"row\">\r\n" + 
+        			"\r\n" + 
+        			"      <div class=\"col s12 m6 l6\"> <!Right Hand Side Panel-->\r\n" + 
+        			"<img class=\"materialboxed\" width=\"100%\" src=\"images/homepage/addartist.gif\">"+
+        			"   </div>\r\n" + 
+        			"\r\n" + 
+        			"      <div class=\"col s12 m6 l6\"> <!-- Left Hand Panel -->\r\n" + 
+        			"			<h2>Add Artist</h2>\n" + 
 					"			<form action=\"../addartist.html\" role=\"form\" method = \"POST\" id = \"addartist\" enctype=\"multipart/form-data\">\n " + 
 					" 			 Artist Name " + 
 					" 			 <input type=\"text\" name=\"artistname\" placeholder=\"Name\" required>\n" + 
@@ -249,16 +248,11 @@ public class Webapp extends DynamicWebPage
 
 					"  			<input class=\"btn waves-effect waves-light deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"			</form> \n" + 
-					"    </div>\n" + 
-					"    <div class=\"col s4\">\n" + 
-					"      <h3>We are always looking for more artists</h3> \n" + 
-					"      <p style = lead>Add an artist on this page</p>\n" + 
-					"      <bt><p>more text...</p>\n" + 
-					"    </div>\n" + 
-					"  </div>\n" + 
-					"</div>";
-			stringToSendToWebBrowser +=	PageElements.scripts()+ PageElements.footer2();
-			stringToSendToWebBrowser +=
+        			"    </div>"+
+        			"    </div>"+
+        			"        <!-- Footer -->\r\n" + PageElements.scripts()+ PageElements.footer2()+
+
+        			"\r\n" + 
 					"\n" + 
 							"</body>\n" + 
 							"</html> ";
