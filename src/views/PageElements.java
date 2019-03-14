@@ -191,6 +191,9 @@ public class PageElements {
 				+ " });\r\n" +
 				" $(document).ready(function(){\r\n" + 
 				"    $('.materialboxed').materialbox();\r\n" + 
+				"  });"
+				+ "  $(document).ready(function(){\r\n" + 
+				"    $('.tabs').tabs();\r\n" + 
 				"  });"+
 				"  </script>";
 		
