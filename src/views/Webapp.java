@@ -155,8 +155,8 @@ public class Webapp extends DynamicWebPage
         			"   </div>\r\n" + 
         			"\r\n" + 
         			"      <div class=\"col s12 m6 l6 \"> <!-- Left Hand Panel -->\r\n" + 
-        			//
 					"		<h2>Add song</h2>\n" + 
+					"			<P class = \"flow-text\">That song you love is missing! Dont worry you can add it right here, if the singer/band is missing, you should head over to the add artist page and add that first.</p>\n" + 
 					"		<form action=\"../addsong.html\" role=\"form\" method = \"POST\" id = \"addsong\" enctype=\"multipart/form-data\">\n" + 
 					"  			Song Title " + 
 					"  			<input type=\"text\" name=\"songtitle\" placeholder=\"title\" required>\n" + 
@@ -175,7 +175,7 @@ public class Webapp extends DynamicWebPage
 					"  			<br>\n" +
 					"      </div>\n"+
 					"  			<br>\n" +
-					"  			song Link <input type=\"text\" name=\"songlink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
+					"  			song Link <input type=\"text\" name=\"songlink\" placeholder=\"Enter a link to a YouTube video if one is available \">\n" + 
 					"  			<br>\n" +
 					"			<div class=\"input-field\"> "+
 					"			Artist Name<select name=\"Artist\" class = \"browser-default\" form=\"addsong\"required>\n"+
@@ -229,6 +229,7 @@ public class Webapp extends DynamicWebPage
         			"\r\n" + 
         			"      <div class=\"col s12 m6 l6\"> <!-- Left Hand Panel -->\r\n" + 
         			"			<h2>Add Artist</h2>\n" + 
+        			"			<P class = \"flow-text\">Add your favourite artist or if you sing or play an instrument, go ahead and add yourself, we are always looking for artists to add to our ever expending list.<br> Dont forget to add some songs so people can hear the music! </p>\n" + 
 					"			<form action=\"../addartist.html\" role=\"form\" method = \"POST\" id = \"addartist\" enctype=\"multipart/form-data\">\n " + 
 					" 			 Artist Name " + 
 					" 			 <input type=\"text\" name=\"artistname\" placeholder=\"Name\" required>\n" + 
