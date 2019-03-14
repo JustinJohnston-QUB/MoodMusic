@@ -35,13 +35,20 @@ public class HomePage extends DynamicWebPage
         			"<img class=\"materialboxed\" width=\"100%\" src=\""+pageimages.get(randomimage)+"\">"+
         			"   </div>\r\n" + 
         			"\r\n" + 
-        			"      <div class=\"col s12 m6 l6\"> <!-- Left Hand Panel -->\r\n" + 
+        			"      <div class=\"col s12 m6 l6 orange\"> <!-- Left Hand Panel -->\r\n" + 
+        			"  <div>\r\n" + 
+        			"    <h1 class=\"center-align orange white-text\">Welcome</h1>\r\n" + 
+        			"  </div>\r\n" + 
+        			"   <div>\r\n" + 
+        			"    <p class=\"orange white-text\">Created and designed by Google, Material Design is a design language that combines the classic principles of successful design along with innovation and technology. Google's goal is to develop a system of design that allows for a unified user experience across all their products on any platform.</p>\r\n" + 
+        			"  </div>\r\n" + 
+        			" "+
         			"  <div class=\"carousel carousel-slider center \">\r\n" + 
         			"    <div class=\"carousel-item orange white-text\" href=\"#one!\">\r\n" + 
         			"      <h2>First Panel</h2>\r\n" + 
         			"      <p class=\"white-text\">This is your first panel</p>\r\n" + 
         			"    </div>\r\n" + 
-        			"    <div class=\"carousel-item white black-text\" href=\"#two!\">\r\n" + 
+        			"    <div class=\"carousel-item orange white-text\" href=\"#two!\">\r\n" + 
         			"      <h2>Second Panel</h2>\r\n" + 
         			"      <p class=\"white-text\">This is your second panel</p>\r\n" + 
         			"    </div>\r\n" + 
@@ -49,7 +56,7 @@ public class HomePage extends DynamicWebPage
         			"      <h2>Third Panel</h2>\r\n" + 
         			"      <p class=\"white-text\">This is your third panel</p>\r\n" + 
         			"    </div>\r\n" + 
-        			"    <div class=\"carousel-item white black-text\" href=\"#four!\">\r\n" + 
+        			"    <div class=\"carousel-item orange white-text\" href=\"#four!\">\r\n" + 
         			"      <h2>Fourth Panel</h2>\r\n" + 
         			"      <p class=\"white-text\">This is your fourth panel</p>\r\n" + 
         			"    </div>\r\n" + 
