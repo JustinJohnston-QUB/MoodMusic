@@ -104,6 +104,14 @@ public class Store extends DynamicWebPage
 						"        </div>\r\n" + 
 						"      </div>"; 
 			}
+			stringToSendToWebBrowser += "</div>\r\n" + 
+					"        </div>\r\n" + 
+					"      </div>\r\n" + 
+					"\r\n" + 
+					"    </div>\r\n" + 
+					"    <br><br>\r\n" + 
+					"  </div>\r\n" + 
+					"\r\n";
 			//This is the footer
 			stringToSendToWebBrowser += PageElements.footer();
 			//Scripts

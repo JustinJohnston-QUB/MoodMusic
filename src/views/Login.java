@@ -95,6 +95,15 @@ public class Login extends DynamicWebPage
 					"                          \r\n" + 
 					"                        </div>\r\n" + 
 					"                      </div>";
+			
+			stringToSendToWebBrowser += "</div>\r\n" + 
+					"        </div>\r\n" + 
+					"      </div>\r\n" + 
+					"\r\n" + 
+					"    </div>\r\n" + 
+					"    <br><br>\r\n" + 
+					"  </div>\r\n" + 
+					"\r\n";
 			//footer
 			stringToSendToWebBrowser+= PageElements.footer();
 

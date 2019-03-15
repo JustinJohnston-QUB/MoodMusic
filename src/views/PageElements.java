@@ -7,14 +7,7 @@ public class PageElements {
 	}
 
 	public static String footer() {
-		String footerString = "</div>\r\n" + 
-				"        </div>\r\n" + 
-				"      </div>\r\n" + 
-				"\r\n" + 
-				"    </div>\r\n" + 
-				"    <br><br>\r\n" + 
-				"  </div>\r\n" + 
-				"\r\n" + 
+		String footerString =  
 				"  <footer class=\"page-footer blue\">\r\n" + 
 				"    <div class=\"container\">\r\n" + 
 				"      <div class=\"row\">\r\n" + 

@@ -90,11 +90,14 @@ public class ProductPage extends DynamicWebPage
 					"    <div class=\"item9\"></div>\r\n" + 
 					"  </div>\r\n" + 
 					"</div>\r\n" + 
+					"</div>\r\n" + 
+					"        </div>\r\n" + 
+					"      </div>\r\n" + 
 					"\r\n" + 
-					"\r\n" + 
-					"\r\n" + 
-					"\r\n" + 
-					"  <!--Footer-->\r\n";
+					"    </div>\r\n" + 
+					"    <br><br>\r\n" + 
+					"  </div>\r\n" + 
+					"\r\n";
 			
 			//Footer
 			stringToSendToWebBrowser += PageElements.footer();
@@ -141,7 +144,7 @@ public class ProductPage extends DynamicWebPage
 					"      </div>\r\n" + 
 					"      <div class=\"item5\">\r\n" + 
 					"        <h1 class=\"center\">Thank You!</h1>\r\n" + 
-					"        <h5 class=\"center\">Your feedback is valued</h5>\r\n" + 
+					"        <h4 class=\"center\">Your feedback is valued</h4>\r\n" + 
 					"\r\n" + 
 					"      </div>\r\n" + 
 					"\r\n" + 
@@ -159,9 +162,13 @@ public class ProductPage extends DynamicWebPage
 					"      </div>\r\n" + 
 					"    </div>\r\n" + 
 					"  </div>\r\n" + 
+					"</div>\r\n" + 
+					"        </div>\r\n" + 
+					"      </div>\r\n" + 
 					"\r\n" + 
-					"\r\n" + 
-					"\r\n" + 
+					"    </div>\r\n" + 
+					"    <br><br>\r\n" + 
+					"  </div>\r\n" + 
 					"\r\n";
 					stringToSendToWebBrowser += PageElements.footer();
 					stringToSendToWebBrowser += PageElements.scripts();
