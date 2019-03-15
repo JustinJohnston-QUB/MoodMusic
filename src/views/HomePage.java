@@ -181,7 +181,7 @@ public class HomePage extends DynamicWebPage
         			"  </div>\r\n" + 
         			"	<a href = \"productpage?prodID="+iproduct.uniqueid+"\"><img class=\"circle\" width=\"30%\" src=\""+iproduct.filePathToImage+"\"></a>"+
         			"   <div>\r\n" + 
-        			"    <p class=\"flow-text\"><br>Check out our fans favourite product!</p>\r\n" + 
+        			"    <p class=\"flow-text\"><br>Voted fans favourite product!</p>\r\n" + 
         			"  </div>\r\n" + 
         			" </div>\r\n" +
         			//end card 4
