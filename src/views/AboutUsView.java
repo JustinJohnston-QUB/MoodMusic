@@ -54,14 +54,23 @@ public class AboutUsView extends DynamicWebPage{
 					"    <div class=\"section\">\r\n" + 
 					"\r\n" + 
 					"      <!--   Icon Section   -->\r\n" + 
+					"      <div id=\"team\">\r\n" + 
 					"      <div class=\"row\">\r\n" + 
 					"        <h1 class=\"header center \"><b>Meet the Team</b></h1>\r\n" + 
 					"        <div class=\"col s12 m4\">\r\n" + 
 					"          <div class=\"icon-block center\">\r\n" + 
 					"            <img src=\"images/face.jpg\" alt=\"\" class=\"circle responsive-img \">\r\n" + 
-					"            <h5 class=\"center\">Johnny Hume</h5>\r\n" + 
+					"            <h5 class=\"center\">Johnny Hume</h5>\r\n"
+					+ "<a target=\"_blank\" title=\"follow me on Twitter\" href=\"https://www.twitter.com/PLACEHOLDER\"><img alt=\"follow me on Twitter\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/twitter30x30.png\" border=0></a>" + 
+					"<a target=\"_blank\" title=\"follow me on instagram\" href=\"https://www.instagram.com/PLACEHOLDER\"><img alt=\"follow me on instagram\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png\" border=0></a>\r\n" + 
 					"\r\n" + 
-					"            <p class=\"light left-align\">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>\r\n" + 
+					""
+					+ "<a target=\"_blank\" title=\"follow me on facebook\" href=\"https://www.facebook.com/PLACEHOLDER\"><img alt=\"follow me on facebook\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png\" border=0></a>"
+					+ "\r\n" + 
+					"            <p class=\"light left-align\">Hey, I'm Johnny and im part of the terrific trio here at Feelin' It."
+					+ " There's nothing I like more than long walks on the beach and a good cold shower in the morning."
+					+ "When I use this beautiful site, I really enjoy the Ecstatic selection of music as I feel it boosts "
+					+ "my productivity - why not give it a shot! </p>\r\n" + 
 					"          </div>\r\n" + 
 					"        </div>\r\n" + 
 					"\r\n" + 
@@ -69,22 +78,33 @@ public class AboutUsView extends DynamicWebPage{
 					"          <div class=\"icon-block center\">\r\n" + 
 					"            <img src=\"images/face.jpg\" alt=\"\" class=\"circle responsive-img \">\r\n" + 
 					"            <h5 class=\"center\">Justin Johnston</h5>\r\n" + 
+					"\r\n"
+					+ "<a target=\"_blank\" title=\"follow me on Twitter\" href=\"https://www.twitter.com/PLACEHOLDER\"><img alt=\"follow me on Twitter\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/twitter30x30.png\" border=0></a>" + 
+					"<a target=\"_blank\" title=\"follow me on instagram\" href=\"https://www.instagram.com/PLACEHOLDER\"><img alt=\"follow me on instagram\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png\" border=0></a>\r\n" + 
 					"\r\n" + 
-					"            <p class=\"light left-align\">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>\r\n" + 
+					""
+					+ "<a target=\"_blank\" title=\"follow me on facebook\" href=\"https://www.facebook.com/PLACEHOLDER\"><img alt=\"follow me on facebook\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png\" border=0></a>"
+					+ "            <p class=\"light left-align\">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>\r\n" + 
 					"          </div>\r\n" + 
 					"        </div>\r\n" + 
 					"\r\n" + 
 					"        <div class=\"col s12 m4\">\r\n" + 
 					"          <div class=\"icon-block center\">\r\n" + 
 					"            <img src=\"images/face.jpg\" alt=\"\" class=\"circle responsive-img\">\r\n" + 
-					"            <h5 class=\"center\">Karolis katauskas</h5>\r\n" + 
+					"            <h5 class=\"center\">Karolis Katauskas</h5>\r\n" + 
+					"\r\n"
+					+ "<a target=\"_blank\" title=\"follow me on Twitter\" href=\"https://www.twitter.com/PLACEHOLDER\"><img alt=\"follow me on Twitter\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/twitter30x30.png\" border=0></a>" + 
+					"<a target=\"_blank\" title=\"follow me on instagram\" href=\"https://www.instagram.com/PLACEHOLDER\"><img alt=\"follow me on instagram\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png\" border=0></a>\r\n" + 
 					"\r\n" + 
-					"            <p class=\"light left-align\">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>\r\n" + 
+					""
+					+ "<a target=\"_blank\" title=\"follow me on facebook\" href=\"https://www.facebook.com/PLACEHOLDER\"><img alt=\"follow me on facebook\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png\" border=0></a>"
+					+ "            <p class=\"light left-align\">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>\r\n" + 
 					"          </div>\r\n" + 
 					"        </div>\r\n" + 
 					"      </div>\r\n" + 
 					"\r\n" + 
 					"    </div>\r\n" + 
+					"  </div>\r\n" + 
 					"  </div>\r\n" + 
 					"\r\n" + 
 					"\r\n" + 
