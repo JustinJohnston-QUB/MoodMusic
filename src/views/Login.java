@@ -41,7 +41,7 @@ public class Login extends DynamicWebPage
 			stringToSendToWebBrowser +=
 					"  <<!--Login Form-->\r\n" + 
 					"               <div class=\"row\">\r\n" + 
-					"              <form class=\"col s12\" method=\"POST\" action=\"login\" name=\"logForm\">\r\n" + 
+					"              <form class=\"col s12\" method=\"POST\" action=\"loginsubmit\" name=\"logForm\">\r\n" + 
 					"                  <div class=\"col s5\">\r\n" + 
 					"                      <div class=\"card-panel teal lighten-2\" style=\"width:470px\"><h2 class=\"header\" style=\"color:#1565c0\"><b>Community</b></h2></div>\r\n" + 
 					"\r\n" + 

@@ -222,6 +222,8 @@ public class Registration extends DynamicWebPage
 		else if (toProcess.path.equalsIgnoreCase("adduser")) {
 
 			User newUser = new User();
+			
+			
 
 			newUser.uniqueID = "user_"+System.currentTimeMillis();
 			newUser.firstname = toProcess.params.get("firstname");
@@ -231,13 +233,46 @@ public class Registration extends DynamicWebPage
 			newUser.email = toProcess.params.get("email");
 			
 			MVMap<String, User> users = db.s.openMap("User");
-			users.put(newUser.uniqueID, newUser);
+			
+			if(users.containsKey(newUser.username))
+			{
+				String stringToSendToWebBrowser = "";
+				stringToSendToWebBrowser += "<!DOCTYPE html>\n";
+				stringToSendToWebBrowser += "<html>\n";
+				stringToSendToWebBrowser += "  <head>\n";
+				stringToSendToWebBrowser += "    <title>SignUpSubmit</title>\n";
+				stringToSendToWebBrowser += "    <meta charset=\"utf-8\">\n";
+				stringToSendToWebBrowser += "    <meta  name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/css/font-awesome.min.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/css/blocks.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <!--[if lt IE 9]>\n";
+				stringToSendToWebBrowser += "      <script src=\"/js/html5shiv.js\"></script>\n";
+				stringToSendToWebBrowser += "      <script src=\"/js/respond.min.js\"></script>\n";
+				stringToSendToWebBrowser += "    <![endif]-->\n";
+				stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/jquery-1.11.1.min.js\"></script>\n";
+				stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/bootstrap.min.js\"></script>\n";
+				stringToSendToWebBrowser += "  </head>\n";
+				stringToSendToWebBrowser += "  <body>\n";
+				stringToSendToWebBrowser += "    <h1>Username Already Taken<h1>\n";
+				stringToSendToWebBrowser += "    <h1><a href='/SignUp.html'>Click here to choose another</a><h1>\n";
+				stringToSendToWebBrowser += "  </body>\n";
+				stringToSendToWebBrowser += "</html>\n";
+				toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+				return true;
+
+			}
+			
+			users.put(newUser.username, newUser);
 			db.commit();
 
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
 					"<html>\n" + 
 					"<body>\n" + 
 					"	<h2>User has been successfully created.</h2>\n" + 
+					"    <h1><a href='login'>Click here to log in!</a><h1>\n" +
 					"</body>\n" + 
 					"</html>\n" + 
 					"";
