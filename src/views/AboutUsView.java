@@ -162,7 +162,7 @@ public class AboutUsView extends DynamicWebPage{
 					"\r\n" + 
 					PageElements.scripts()+
 					"  </body>"+
-					PageElements.footer2()+
+					PageElements.footer()+
 					"</body>\r\n" + 
 					"\r\n" + 
 					"</html>";
@@ -181,7 +181,7 @@ public class AboutUsView extends DynamicWebPage{
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>thank you "+isubscriber.name+" you are now a subscriber to our newsletter</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 
@@ -214,7 +214,7 @@ public class AboutUsView extends DynamicWebPage{
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>a csv file has been exported to the httpdocs folder</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 

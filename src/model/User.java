@@ -12,7 +12,6 @@ public class User implements Serializable {
 	public String username;
 	private String password;
 	public String email;
-	public String dob;
 	
 	
 	public String getPassword() {

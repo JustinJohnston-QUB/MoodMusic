@@ -8,6 +8,8 @@ import views.AboutUsView;
 import views.AddProduct;
 import views.ExampleView;
 import views.HomePage;
+import views.Login;
+import views.LoginSubmit;
 import views.ProductPage;
 import views.Registration;
 import views.Store;
@@ -97,6 +99,8 @@ public class Main
 		AddProduct addproduct = new AddProduct(databaseInterface, fileStoreInterface);
 		Test test = new Test(databaseInterface, fileStoreInterface);
 		ProductPage productpage = new ProductPage(databaseInterface, fileStoreInterface);
+		Login loginpage = new Login(databaseInterface, fileStoreInterface);
+		LoginSubmit loginsubmit = new LoginSubmit(databaseInterface, fileStoreInterface);
 		//this variable indicates that the program should keep running
 		//by setting this variable to false the program will exit
 		boolean shouldKeepRunning = true;
@@ -178,6 +182,14 @@ public class Main
 				}
 				else if (test.process(toProcess))
 				{	
+				}
+				else if(loginpage.process(toProcess))
+				{
+					
+				}
+				else if(loginsubmit.process(toProcess))
+				{
+					
 				}
 				
 				else

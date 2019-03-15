@@ -3,8 +3,10 @@ package views;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
+import org.h2.command.dml.Set;
 import org.h2.mvstore.MVMap;
 
 import model.Artist;
@@ -127,7 +129,7 @@ public class Webapp extends DynamicWebPage
 					"      </div>\n" + 
 					"    </div>\n" + 
 					"  </div>\n";
-			stringToSendToWebBrowser += PageElements.scripts() + PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts() + PageElements.footer();
 			stringToSendToWebBrowser += "</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -146,13 +148,15 @@ public class Webapp extends DynamicWebPage
 			Mood imood = new Mood();
 			String stringToSendToWebBrowser = PageElements.header() +
 					"<body>\n" + PageElements.Navbar()+ PageElements.Search()+
-
-					"\n" + 
-
-					"<div class=\"container\">\n" + 
-					"  <div class=\"row\">\n" + 
-					"    <div class=\"col s8\">\n" + 
+					"    <div class=\"row\">\r\n" + 
+        			"\r\n" + 
+        			"      <div class=\"col s12 m6 l6\"> <!Right Hand Side Panel-->\r\n" + 
+        			"<img class=\"materialboxed\" width=\"100%\" src=\"images/homepage/addsong.gif\">"+
+        			"   </div>\r\n" + 
+        			"\r\n" + 
+        			"      <div class=\"col s12 m6 l6 \"> <!-- Left Hand Panel -->\r\n" + 
 					"		<h2>Add song</h2>\n" + 
+					"			<P class = \"flow-text\">That song you love is missing! Dont worry you can add it right here, if the singer/band is missing, you should head over to the add artist page and add that first.</p>\n" + 
 					"		<form action=\"../addsong.html\" role=\"form\" method = \"POST\" id = \"addsong\" enctype=\"multipart/form-data\">\n" + 
 					"  			Song Title " + 
 					"  			<input type=\"text\" name=\"songtitle\" placeholder=\"title\" required>\n" + 
@@ -171,7 +175,7 @@ public class Webapp extends DynamicWebPage
 					"  			<br>\n" +
 					"      </div>\n"+
 					"  			<br>\n" +
-					"  			song Link <input type=\"text\" name=\"songlink\" placeholder=\"Enter a link to the music if one is available \">\n" + 
+					"  			song Link <input type=\"text\" name=\"songlink\" placeholder=\"Enter a link to a YouTube video if one is available \">\n" + 
 					"  			<br>\n" +
 					"			<div class=\"input-field\"> "+
 					"			Artist Name<select name=\"Artist\" class = \"browser-default\" form=\"addsong\"required>\n"+
@@ -200,34 +204,32 @@ public class Webapp extends DynamicWebPage
 					"  <br><br>\n" + 
 					"  <input class=\"btn waves-effect waves-light  deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"</form> \n" + 
-					"    </div>\n" + 
-					"    <div class=\"col s4 m0\">\n" + 
-					"      <h3>We are always looking for more artists</h3> \n" + 
-					"      <p style = lead>Add an artist on this page</p>\n" + 
-					"      <bt><p>more text...</p>\n" + 
-					"    </div>\n" + 
-					"  </div>\n" + 
-					"</div>";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
-
-			stringToSendToWebBrowser += 
-					"\n" + 
-							"</body>\n" + 
-							"</html> ";
+        			//
+        			"      </div>\r\n" + 
+        			"\r\n" + 
+        			"    </div>"+
+        			"        <!-- Footer -->\r\n" + PageElements.scripts()+ PageElements.footer()+
+        			"\r\n" + 
+        			"        \r\n" + 
+        			"    </head>\r\n" + 
+        			"</html>";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
-
 
 
 			//Page with form for adding Artists           	
 		}else if(toProcess.path.equalsIgnoreCase("artist.html")){
 			String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
 					PageElements.header()+ "<body>\n"  + PageElements.Navbar()+ PageElements.Search()+
-					"\n" + 
-					"<div class=\"container\">\n" + 
-					"  <div class=\"row\">\n" + 
-					"    <div class=\"col s8\">\n" + 
-					"			<h2>Add Artist</h2>\n" + 
+					"    <div class=\"row\">\r\n" + 
+        			"\r\n" + 
+        			"      <div class=\"col s12 m6 l6\"> <!Right Hand Side Panel-->\r\n" + 
+        			"<img class=\"materialboxed\" width=\"100%\" src=\"images/homepage/addartist.gif\">"+
+        			"   </div>\r\n" + 
+        			"\r\n" + 
+        			"      <div class=\"col s12 m6 l6\"> <!-- Left Hand Panel -->\r\n" + 
+        			"			<h2>Add Artist</h2>\n" + 
+        			"			<P class = \"flow-text\">Add your favourite artist or if you sing or play an instrument, go ahead and add yourself, we are always looking for artists to add to our ever expending list.<br> Dont forget to add some songs so people can hear the music! </p>\n" + 
 					"			<form action=\"../addartist.html\" role=\"form\" method = \"POST\" id = \"addartist\" enctype=\"multipart/form-data\">\n " + 
 					" 			 Artist Name " + 
 					" 			 <input type=\"text\" name=\"artistname\" placeholder=\"Name\" required>\n" + 
@@ -247,16 +249,11 @@ public class Webapp extends DynamicWebPage
 
 					"  			<input class=\"btn waves-effect waves-light deep-orange \" type=\"submit\" value=\"Submit\">\n" + 
 					"			</form> \n" + 
-					"    </div>\n" + 
-					"    <div class=\"col s4\">\n" + 
-					"      <h3>We are always looking for more artists</h3> \n" + 
-					"      <p style = lead>Add an artist on this page</p>\n" + 
-					"      <bt><p>more text...</p>\n" + 
-					"    </div>\n" + 
-					"  </div>\n" + 
-					"</div>";
-			stringToSendToWebBrowser +=	PageElements.scripts()+ PageElements.footer2();
-			stringToSendToWebBrowser +=
+        			"    </div>"+
+        			"    </div>"+
+        			"        <!-- Footer -->\r\n" + PageElements.scripts()+ PageElements.footer()+
+
+        			"\r\n" + 
 					"\n" + 
 							"</body>\n" + 
 							"</html> ";
@@ -304,15 +301,22 @@ public class Webapp extends DynamicWebPage
 			artists.put(art1.uniqueID, art1);
 			moods.put(mood1.moodname, mood1);
 			db.commit();
+			//"songpage.html?song ="+isong.uniqueID
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>song Added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 
 							"";
-			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			//toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			
+			String url = "/songpage?song="+isong.uniqueID;
+			toProcess.r = new WebResponse( WebResponse.HTTP_REDIRECT, WebResponse.MIME_HTML,
+					stringToSendToWebBrowser);
+			toProcess.r.addHeader( "Location", url );
+
 			return true;
 
 			//Page which adds Artists to the database             		
@@ -333,12 +337,17 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>artist Added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 
 							"";
-			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			//toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			String url = "/artistpage.html?artist="+iartist.uniqueID;
+			toProcess.r = new WebResponse( WebResponse.HTTP_REDIRECT, WebResponse.MIME_HTML,
+					stringToSendToWebBrowser);
+			toProcess.r.addHeader( "Location", url );
+
 			return true;
 
 
@@ -584,7 +593,7 @@ public class Webapp extends DynamicWebPage
 			}
 				
 			//scripts
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			//end of song  Search  
 			stringToSendToWebBrowser += "</body>\n" + 
 					"</html>\n" + 
@@ -763,9 +772,15 @@ public class Webapp extends DynamicWebPage
 					}
 				}
 			}else {
-				for(int i = 0; i < 3 ;i++) {  
+				HashSet<Integer> randomSet = new HashSet<Integer>();
+				for(int i = 0; i < 3 ;i++) { 
 					int r = (int) ((Math.random()*imood.songID.size()));
-					String songId = imood.songID.get(r);
+					randomSet.add(r);
+				}
+				ArrayList<Integer> randoms = new ArrayList<Integer>(randomSet);
+				for(int i = 0; i < randoms.size() ;i++) {  
+					
+					String songId = imood.songID.get(randoms.get(i));
 					isong = songs.get(songId);
 					String songName = isong.uniqueID;
 					
@@ -779,9 +794,9 @@ public class Webapp extends DynamicWebPage
 													"      <div class=\"card small\">\r\n" + 
 													"        <div class=\"card-image\">\r\n" + 
 													"          <img src=\""+isong.songImage+"\">\r\n" + 
-													"          <span class=\"card-title\">Same Mood</span>\r\n" + 
+													"          <span class=\"card-title orange darken-3\"><b>More of the Same Mood</b></span>\r\n" + 
 													"        </div>\r\n" + 
-													"        <div class=\"card-content\">\r\n" + 
+													"        <div class=\"card-content flow-text\">\r\n" + 
 													"          <p class = \"flow-text\">"+isong.songtitle+"</p>\r\n" + 
 													"        </div>\r\n" + 
 													"        <div class=\"card-action\">\r\n" + 
@@ -807,7 +822,7 @@ public class Webapp extends DynamicWebPage
 												"    </div>\r\n" +
 												"    </div>\r\n" +
 												"  </div>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"\n" + 
@@ -987,7 +1002,7 @@ public class Webapp extends DynamicWebPage
 
 			stringToSendToWebBrowser +=			"    </div>\r\n" +
 												"    </div>\r\n" +
-												"  </div>\n" + PageElements.scripts()+ PageElements.footer2();
+												"  </div>\n" + PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -1010,7 +1025,7 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>Mood added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser += 
 					"</body>\n" + 
 					"</html>\n" + 
@@ -1119,7 +1134,7 @@ public class Webapp extends DynamicWebPage
 					 "                    </div>\n"+
 					 "                    </div>\n"+
 					 
-			PageElements.scripts()+ PageElements.footer2()+"                    </div>\n";
+			PageElements.scripts()+ PageElements.footer()+"                    </div>\n";
 			stringToSendToWebBrowser +="</body>\n" + 
 					"\n" + 
 					"</html>";
@@ -1157,7 +1172,7 @@ public class Webapp extends DynamicWebPage
 					"  </div>\n" + 
 					"</div>"+
         			"\n" ;
-					stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+					stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 					stringToSendToWebBrowser += 
         			"</body>\n" + 
         			"</html> ";
@@ -1185,7 +1200,7 @@ public class Webapp extends DynamicWebPage
 			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>Image Added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer2();
+			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
 			stringToSendToWebBrowser +=
 					"</body>\n" + 
 							"</html>\n" + 

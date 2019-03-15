@@ -35,20 +35,7 @@ public class Store extends DynamicWebPage
 
 
 			//start of html and imports of materialize cs
-			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
-					"<html lang=\"en\">\r\n" + 
-					"<head>\r\n" + 
-					"  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\r\n" + 
-					"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1.0\"/>\r\n" + 
-					"  <title>Store</title>\r\n" + 
-					"\r\n" + 
-					"  <!-- CSS  -->\r\n" + 
-					"  <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\r\n" + 
-					"  <link href=\"../css/materialize.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/>\r\n" + 
-					"  <link href=\"../css/style.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/>\r\n" + 
-					"</head>\r\n" + 
-					"\r\n" + 
-					"<body>\r\n";
+			String stringToSendToWebBrowser = PageElements.header();
 			//navbar
 			stringToSendToWebBrowser += PageElements.Navbar();
 

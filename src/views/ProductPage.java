@@ -33,21 +33,7 @@ public class ProductPage extends DynamicWebPage
 			String productID = toProcess.params.get("prodID").toLowerCase();
 			Product product = products.get(productID);
 
-			String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
-					"<html lang=\"en\">\r\n" + 
-					"\r\n" + 
-					"<head>\r\n" + 
-					"  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n" + 
-					"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1.0\" />\r\n" + 
-					"  <title>Product</title>\r\n" + 
-					"\r\n" + 
-					"  <!-- CSS  -->\r\n" + 
-					"  <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\r\n" + 
-					"  <link href=\"../css/materialize.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\" />\r\n" + 
-					"  <link href=\"../css/style.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\" />\r\n" + 
-					"</head>\r\n" + 
-					"\r\n" + 
-					"<body>\r\n";
+			String stringToSendToWebBrowser = PageElements.header();
 			stringToSendToWebBrowser += PageElements.Navbar();
 			
 			stringToSendToWebBrowser +=
@@ -136,8 +122,54 @@ public class ProductPage extends DynamicWebPage
 			products.put(productID, product);
 
 			db.commit();
-			String stringToSendToWebBrowser = "<html><body><p>Review Submitted</p><a\r\n" + 
-					"href=\"productpage?prodID="+productID+">Home</a></body></html>";
+			String stringToSendToWebBrowser = PageElements.header();
+			stringToSendToWebBrowser += PageElements.Navbar();
+			stringToSendToWebBrowser +=
+					
+					"\r\n" + 
+					"  <!--Main body of content-->\r\n" + 
+					"  <div class=\"container\">\r\n" + 
+					"\r\n" + 
+					"    <div class=\"grid-container\">\r\n" + 
+					"      <div class=\"item1\">\r\n" + 
+					"      </div>\r\n" + 
+					"      <div class=\"item2\">\r\n" + 
+					"      </div>\r\n" + 
+					"      <div class=\"item3\">\r\n" + 
+					"      </div>\r\n" + 
+					"      <div class=\"item4\">\r\n" + 
+					"      </div>\r\n" + 
+					"      <div class=\"item5\">\r\n" + 
+					"        <h1 class=\"center\">Thank You!</h1>\r\n" + 
+					"        <h5 class=\"center\">Your feedback is valued</h5>\r\n" + 
+					"\r\n" + 
+					"      </div>\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"      <div class=\"item6\">\r\n" + 
+					"      </div>\r\n" + 
+					"      <div class=\"item7\">\r\n" + 
+					"      </div>\r\n";
+					stringToSendToWebBrowser +=
+					"            <a class=\"waves-effect waves-light btn\" href=\"productpage?prodID="+productID+"\">Back</a>\r\n"; 
+					stringToSendToWebBrowser +=
+					"      <div class=\"item8\">\r\n" + 
+					"      </div>\r\n" + 
+					"      <div class=\"item9\">\r\n" + 
+					"      </div>\r\n" + 
+					"    </div>\r\n" + 
+					"  </div>\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"\r\n";
+					stringToSendToWebBrowser += PageElements.footer();
+					stringToSendToWebBrowser += PageElements.scripts();
+					stringToSendToWebBrowser +=
+					"</body>\r\n" + 
+					"\r\n" + 
+					"</html>\r\n" + 
+					"";
 
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 
