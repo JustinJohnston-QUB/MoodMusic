@@ -88,7 +88,7 @@ public class HomePage extends DynamicWebPage
 			String randomsongid = songkeys.get(random);
 			isong =songs.get(randomsongid);
 			}else {
-				isong.songImage = "/images/homepage/addartist.gif";
+				isong.songImage = "/images/homepage/addsong.gif";
 				isong.songtitle = "songs missing";
 				isong.uniqueID = "";
 			}

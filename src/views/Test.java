@@ -26,121 +26,129 @@ public class Test extends DynamicWebPage
 	{
         if(toProcess.path.equalsIgnoreCase("test"))
         {
-           	MVMap<String, Product> products= db.s.openMap("products");
-        	List<String> productkeys = products.keyList() ;
-        	Product iproduct = new Product();
-        	MVMap<String, Mood> moods= db.s.openMap("Mood");
-			List<String> moodkeys = moods.keyList() ;
-			Mood imood = new Mood();
-			MVMap<String, Artist> artists= db.s.openMap("Artist");
-			List<String> artistkeys = artists.keyList() ;
+        	String mood;
+			mood = toProcess.params.get("mood").toLowerCase();
+			Song isong = new Song();
 			Artist iartist = new Artist();
 			MVMap<String, Song> songs= db.s.openMap("Song");
 			List<String> songkeys = songs.keyList() ;
-			Song isong = new Song();
-			Random rn = new Random();
-			//Random Mood
-			int random = rn.nextInt(moodkeys.size());
-			String randommoodid = moodkeys.get(random);
-			imood = moods.get(randommoodid);
-			//Random Artist
-			random = rn.nextInt(artistkeys.size());
-			String randomartistid = artistkeys.get(random);
-			iartist =artists.get(randomartistid);
-			//Random Song
-			random = rn.nextInt(songkeys.size());
-			String randomsongid = songkeys.get(random);
-			isong =songs.get(randomsongid);
-			//Random Product
-			random = rn.nextInt(productkeys.size());
-			String randomproductid = productkeys.get(random);
-			iproduct =products.get(randomproductid);
+			MVMap<String, Artist> artists= db.s.openMap("Artist");
+			List<String> artistkeys = artists.keyList() ;
+			MVMap<String, Mood> moods= db.s.openMap("Mood");
+			List<String> moodkeys = moods.keyList() ;
+			Mood imood = new Mood();
+			for(int i = 0; i<moodkeys.size();i++) {
+				String moodUniqueID = moodkeys.get(i);
+				if(mood.equalsIgnoreCase(moodUniqueID)) {
+					imood = moods.get(moodUniqueID);
+				}
+			}
+			String stringToSendToWebBrowser = 	PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+												"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
+												"    <div class=\"section no-pad-bot\">\r\n" + 
+												"      <div class=\"container\">\r\n" + 
+												"        <br><br>\r\n" + 
+												"        <h1 class=\"header center white-text text-lighten-2\"><b>"+imood.moodname+"</b></h1>\r\n" + 
+												"        <div class=\"row center\">\r\n" + 
+												"        </div>\r\n" + 
+												"        <div class=\"row center\">\r\n" + 
+												"        </div>\r\n" + 
+												"        <br><br>\r\n" + 
+												"\r\n" + 
+												"      </div>\r\n" + 
+												"    </div>\r\n" ;
+					if(imood.moodimage != null && imood.moodimage != "" ) {
+						stringToSendToWebBrowser +=	"    <div class=\"parallax\"><img src=\""+imood.moodimage+"\" alt=\"Artist Image\"></div>\r\n" +
+													"  </div> ";
+					}else {
+						stringToSendToWebBrowser +=	"    <div class=\"parallax\"><img src=\"https://static.pingendo.com/img-placeholder-3.svg\" alt=\"Artist Image\"></div>\r\n" +
+													"  </div> ";			
+					}
+					stringToSendToWebBrowser+=	"  <div class=\"container\">\r\n" + 
+												"    <div class=\"section\">\r\n" + 
+												"\r\n" + 
+												"      <div class=\"row\">\r\n" + 
+												"        <div class=\"col s12 center\">\r\n" + 
+												"          <h3><i class=\"mdi-content-send black-text\"></i></h3>\r\n" + 
+												"          <h4>Artist Information</h4><br>\r\n" + 
+												"          <p class=\"left-align light\">"+imood.mooddescription+"</p>\r\n" + 
+												"        </div>\r\n" + 
+												"      </div>\r\n" + 
+												"\r\n" + 
+												"    </div>\r\n" + 
+												"  </div>";    
+
+			if (imood.songID == null) {
+				stringToSendToWebBrowser += 	"  <div class=\"container\">\r\n" + 
+												"    <div class=\"section\">\r\n" + 
+												"\r\n" + 
+												"      <div class=\"row\">\r\n" + 
+												"        <div class=\"col s12 center\">\r\n" + 
+												"          <h3><i class=\"mdi-content-send black-text\"></i></h3>\r\n" + 
+												"          <h4>"+imood.moodname+" Songs</h4><br>\r\n" + 
+												"          <a href = \"song.html\"<h4 class=\"left-align blue-text text-darken-2\">no songs for this artist in the database,click here to add one?</h4></a>\r\n" + 
+												"        </div>\r\n" + 
+												"      </div>\r\n" + 
+												"\r\n" + 
+												"    </div>\r\n" + 
+												"  </div>";    	
+			}else {
+				stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n" + 
+											"    <div class=\"section\">\r\n" + 
+											"\r\n" + 
+											"      <div class=\"row\">\r\n" + 
+											"        <div class=\"col s12 center\">\r\n" + 
+											"          <h3><i class=\"mdi-content-send black-text\"></i></h3>\r\n" + 
+											"          <h4>"+imood.moodname+" Songs</h4><br>\r\n" + 
+											"        </div>\r\n" + 
+											"      </div>\r\n" + 
+											"\r\n" + 
+											"    </div>\r\n" + 
+											"  </div>\r\n"; 
+				stringToSendToWebBrowser +=	"  <div class=\"container\">\r\n";
+				for(int i = 0; i < songkeys.size();i++) {  
+					String songId = songkeys.get(i);
+					isong = songs.get(songId);
+					String songName = isong.uniqueID;
+
+					for(int j = 0; j < imood.songID.size() ;j++) {
+						String moodsong = imood.songID.get(j);
+						if(songName.equalsIgnoreCase(moodsong)) {
+							
+							stringToSendToWebBrowser +=	"      <div class=\"row\">\r\n" +
+										"    <div class=\"col s10 offset-s1 m6 l4\">\r\n" + 
+										"      <div class=\"card small\">\r\n" + 
+										"        <div class=\"card-image\">\r\n" + 
+										"          <img src=\""+isong.songImage+"\">\r\n" + 
+										"          <span class=\"card-title\">"+imood.moodname+"</span>\r\n" + 
+										"        </div>\r\n" + 
+										"        <div class=\"card-content\">\r\n" + 
+										"          <p class = \"flow-text\">"+isong.songtitle+"</p>\r\n" + 
+										"        </div>\r\n" + 
+										"        <div class=\"card-action\">\r\n" + 
+										"          <a href=\"../songpage?song="+isong.uniqueID+"\">click to View</a>\r\n" + 
+										"        </div>\r\n" + 
+										"      </div>\r\n" + 
+										"    </div>";
+							
+							
+						}
+					}
+				}
+				stringToSendToWebBrowser +=				"    </div>\r\n" +
+														"   </div>\r\n" +
+														"   </div>\r\n" +
+														"   </div>\r\n" +
+														"  </div>";
+
+			}
 			
-        	ArrayList<String> pageimages = new ArrayList<String>();
-        	pageimages.add("images/homepage/1.gif");
-        	pageimages.add("images/homepage/2.gif");
-        	pageimages.add("images/homepage/3.gif");
-        	pageimages.add("images/homepage/4.gif");
-        	pageimages.add("images/homepage/5.gif");
-        	pageimages.add("images/homepage/6.gif");//( max - min )) + min 
-        	int randomimage = rn.nextInt(pageimages.size());
-        	String stringToSendToWebBrowser = PageElements.header()+PageElements.Navbar()+PageElements.Search()+
-        			"    <div class=\"row\">\r\n" + 
-        			"\r\n" + 
-        			"      <div class=\"col s12 m6 l6\"> <!Right Hand Side Panel-->\r\n" + 
-        		    "<h3 class=\"flow-text \"> <br> </h3>\r\n" +
-        			"<img class=\"materialboxed\" width=\"100%\" src=\""+pageimages.get(randomimage)+"\">"+
-        			"   </div>\r\n" + 
-        			"\r\n" + 
-        			"      <div class=\"col s12 m6 l6 \"> <!-- Left Hand Panel -->\r\n" + 
-        			"  <div>\r\n" + 
-        			"    <h1 class=\"center-align\">Our Picks</h1>\r\n" + 
-        			"  </div>\r\n" + 
-        			"   <div>\r\n" + 
-        			"    <h3 class=\"flow-text \">We picked out some songs and moods you might like, click on the tabs below to try them out.<br> Support the site by buying some of the fresh apparel from the store.</h3>\r\n" + 
-        			"  </div>\r\n" + 
-        			" <ul id=\"tabs-swipe-demo swipeable\" class=\"tabs\">\r\n" + 
-        			"    <li class=\"tab col s3\"><a href=\"#test-swipe-1\">Mood</a></li>\r\n" + 
-        			"    <li class=\"tab col s3\"><a class=\"active\" href=\"#test-swipe-2\">Artist</a></li>\r\n" + 
-        			"    <li class=\"tab col s3\"><a href=\"#test-swipe-3\">Song</a></li>\r\n" + 
-        			"    <li class=\"tab col s3\"><a href=\"#test-swipe-4\">Product</a></li>\r\n" + 
-        			"  </ul>\r\n" + 
-        			//card 1
-        			"  <div id=\"test-swipe-1\" class=\"col s12  black-text center-align\">"+
-        			"   <div>\r\n" + 
-        			"    <h4 class=\"black-text center-align\">"+imood.moodname+"</h4>\r\n" + 
-        			"  </div>\r\n" + 
-        			"	<a href = \"moodpage.html?mood="+imood.moodname+"\"><img class=\"circle\" width=\"30%\" src=\""+imood.moodimage+"\"></a>"+
-        			"   <div>\r\n" + 
-        			"    <p class=\"flow-text\">"+imood.shortmooddescription+"<br>Click the image above to visit this mood!</p>\r\n" + 
-        			"  </div>\r\n" + 
-        			" </div>\r\n" +
-        			//end card 1
-        			//card 2
-        			"  <div id=\"test-swipe-2\" class=\"col s12 black-text center-align\">"+
-        			"   <div>\r\n" + 
-        			"    <h4 class=\"black-text center-align\">"+iartist.artistName+"</h4>\r\n" + 
-        			"  </div>\r\n" + 
-        			"	<a href = \"artistpage.html?artist="+iartist.uniqueID+"\"><img class=\"circle\" width=\"30%\" src=\""+iartist.artistImage+"\"></a>"+
-        			"   <div>\r\n" + 
-        			"    <p class=\"flow-text\"><br>Click the image above to visit this Artist!</p>\r\n" + 
-        			"  </div>\r\n" + 
-        			" </div>\r\n" +
-        			//end card 2
-        			//card 3
-        			"  <div id=\"test-swipe-3\" class=\"col s12 black-text center-align\">"+
-        			"   <div>\r\n" + 
-        			"    <h4 class=\"black-text center-alignt\">"+isong.songtitle+"</h4>\r\n" + 
-        			"  </div>\r\n" + 
-        			"	<a href = \"songpage?song="+isong.uniqueID+"\"><img class=\"circle\" width=\"30%\" src=\""+isong.songImage+"\"></a>"+
-        			"   <div>\r\n" + 
-        			"    <p class=\"flow-text\"><br>Click the image above to visit this track!</p>\r\n" + 
-        			"  </div>\r\n" + 
-        			" </div>\r\n" +
-        			//end card 3
-        			//card 4
-        			"  <div id=\"test-swipe-4\" class=\"col s12 black-text center-align\">"+
-        			"   <div>\r\n" + 
-        			"    <h4 class=\"black-text center-align\">"+iproduct.title+"</h4>\r\n" + 
-        			"  </div>\r\n" + 
-        			"	<a href = \"productpage?prodID="+iproduct.uniqueid+"\"><img class=\"circle\" width=\"30%\" src=\""+iproduct.filePathToImage+"\"></a>"+
-        			"   <div>\r\n" + 
-        			"    <p class=\"flow-text\"><br>why not buy some of  our merch!</p>\r\n" + 
-        			"  </div>\r\n" + 
-        			" </div>\r\n" +
-        			//end card 4
-        			"      </div>\r\n" + 
-        			"\r\n" + 
-        			"    </div>"+
-        			"        <!-- Footer -->\r\n" + PageElements.scripts()+ PageElements.footer()+
-        	
-        			"  <!-- Footer -->\r\n" + 
-        			"\r\n" + 
-        			"        \r\n" + 
-        			"    </head>\r\n" + 
-        			"</html>";
-        	
-        	
+			stringToSendToWebBrowser +=			"    </div>\r\n" +
+												"    </div>\r\n" +
+												"  </div>\n" + PageElements.scripts()+ PageElements.footer();
+			stringToSendToWebBrowser +="</body>\n" + 
+					"\n" + 
+					"</html>";
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 
         	return true;
