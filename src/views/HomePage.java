@@ -41,9 +41,9 @@ public class HomePage extends DynamicWebPage
 			Random rn = new Random();
 			//Random Mood
 			if(moodkeys.size() > 0) {
-			int random = rn.nextInt(moodkeys.size());
-			String randommoodid = moodkeys.get(random);
-			imood = moods.get(randommoodid);
+				int random = rn.nextInt(moodkeys.size());
+				String randommoodid = moodkeys.get(random);
+				imood = moods.get(randommoodid);
 			}else {
 				Mood imood0 = new Mood();
 				imood0.moodname = "Ecstatic";	

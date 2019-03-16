@@ -100,7 +100,7 @@ public class Webapp extends DynamicWebPage
 						
 								
 									  if(imood.moodimage != null && imood.moodimage != "" ) {
-											stringToSendToWebBrowser +="<div class=\"col s3\"><img class=\"circle responsive-img\" src=\""+imood.moodimage+"\">";
+											stringToSendToWebBrowser +="<a href = \"../moodpage.html?mood="+imood.moodname+"\">"+"<div class=\"col s3\"><img class=\"circle responsive-img\" src=\""+imood.moodimage+"\"></a>";
 										}else {
 											stringToSendToWebBrowser +=" div class=\"col s3\"> <img class=\"circle responsive-img\" src=\"https://static.pingendo.com/img-placeholder-1.svg\" width=\"150\" alt=\"Card image cap\">\n" ;
 										}
