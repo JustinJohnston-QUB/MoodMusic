@@ -121,7 +121,7 @@ public class HomePage extends DynamicWebPage
         	pageimages.add("images/homepage/5.gif");
         	pageimages.add("images/homepage/6.gif");//( max - min )) + min 
         	int randomimage = rn.nextInt(pageimages.size());
-        	String stringToSendToWebBrowser = PageElements.header()+PageElements.Navbar()+PageElements.Search()+
+        	String stringToSendToWebBrowser = PageElements.header()+"<body>\n"+PageElements.Navbar()+PageElements.Search()+
         			"    <div class=\"row \">\r\n" + 
         			"\r\n" + 
         			"      <div class=\"col s12 m6 l6 \"> <!Right Hand Side Panel-->\r\n" + 

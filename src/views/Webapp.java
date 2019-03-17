@@ -438,7 +438,16 @@ public class Webapp extends DynamicWebPage
 					String moodName = moodkeys.get(i);
 					imood = moods.get(moodName);
 					if (imood.moodname.toLowerCase().contains(searchTerm.toLowerCase())) {
-						searchresult += "<a href = \"../moodpage.html?mood="+imood.moodname+"\"><h5 class=\"blue-text text-darken-2\">"+imood.moodname+"</h5></a>\n";
+						searchresult += "<a href = \"../moodpage.html?mood="+imood.moodname+"\">"+
+											"<div class = \"col s12 z-depth-1  \">"+
+											"	<div class = \"col s3.hide-on-small-only\" >"+
+											"		<img src =\""+imood.moodimage+"\" height = \"150px\">\n"+
+											"	</div>"+
+											"	<div class = \"col s9\">"+
+											"		<h5 class=\"black-text\">"+imood.moodname+"<br></h5>\n"+
+											"		<p class=\"black-text truncate\">"+imood.mooddescription+"</p>"+
+											"	</div>"+
+											"</div></a>";
 						resultcount++;
 					}        				
 				}
@@ -498,7 +507,16 @@ public class Webapp extends DynamicWebPage
 					String artistUniqueID = artistkeys.get(i);
 					iartist = artists.get(artistUniqueID);
 					if (iartist.artistName.toLowerCase().contains(searchTerm.toLowerCase())) {
-						searchresult += "<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\"><h5 class=\"blue-text text-darken-2\">"+iartist.artistName+"</h5></a>\n";
+						searchresult += "<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\">"+
+										"<div class = \"col s12 z-depth-1  \">"+
+										"	<div class = \"col s3.hide-on-small-only\" >"+
+										"		<img src =\""+iartist.artistImage+"\" height = \"150px\">\n"+
+										"	</div>"+
+										"	<div class = \"col s9\">"+
+										"		<h5 class=\"black-text\">"+iartist.artistName+"<br></h5>\n"+
+										"		<p class=\"black-text truncate\">"+iartist.artistDescription+"</p>"+
+										"	</div>"+
+										"</div></a>";
 						resultcount++;
 					}        				
 				}
