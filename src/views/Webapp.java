@@ -508,8 +508,8 @@ public class Webapp extends DynamicWebPage
 					iartist = artists.get(artistUniqueID);
 					if (iartist.artistName.toLowerCase().contains(searchTerm.toLowerCase())) {
 						searchresult += "<a href = \"../artistpage.html?artist="+iartist.uniqueID+"\">"+
-										"<div class = \"col s12 z-depth-1  \">"+
-										"	<div class = \"col s3.hide-on-small-only\" >"+
+										"<div class = \"col s12 z-depth-1\" >"+
+										"	<div class = \"col s3.hide-on-small-only\">"+
 										"		<img src =\""+iartist.artistImage+"\" height = \"150px\">\n"+
 										"	</div>"+
 										"	<div class = \"col s9\">"+
@@ -586,7 +586,16 @@ public class Webapp extends DynamicWebPage
 								for(int j = 0; j < iartist.artistSongs.size() ;j++) {
 									String artistSong = iartist.artistSongs.get(j);
 									if(artistSong.equalsIgnoreCase(isong.uniqueID.toLowerCase())) {
-										searchresult += " - " + iartist.artistName + "</h5></a>";
+										searchresult += "<a href = \"../songpage?song=="+isong.uniqueID+"\">"+
+														"<div class = \"col s12 z-depth-1\" >"+
+														"	<div class = \"col s3.hide-on-small-only\">"+
+														"		<img src =\""+isong.songImage+"\" height = \"150px\">\n"+
+														"	</div>"+
+														"	<div class = \"col s9\">"+
+														"		<h5 class=\"black-text\">"+isong.songtitle+"<br></h5>\n"+
+														"		<p class=\"black-text truncate\">"+iartist.artistName+"</p>"+
+														"	</div>"+
+														"</div></a>";
 									}
 								}
 							}
