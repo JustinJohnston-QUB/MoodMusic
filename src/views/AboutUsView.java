@@ -84,7 +84,8 @@ public class AboutUsView extends DynamicWebPage{
 					"\r\n" + 
 					""
 					+ "<a target=\"_blank\" title=\"follow me on facebook\" href=\"https://www.facebook.com/PLACEHOLDER\"><img alt=\"follow me on facebook\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png\" border=0></a>"
-					+ "            <p class=\"light left-align\">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>\r\n" + 
+					+ "            <p class=\"light left-align\">Hey, my name's Justin and this is my profile! My favourite type of music is mumble rap"
+					+ ", especially Lil Pump. If I'm not in my home studio, I'm listening to the rage playlist trying to get inspiration.</p>\r\n" + 
 					"          </div>\r\n" + 
 					"        </div>\r\n" + 
 					"\r\n" + 
@@ -98,7 +99,9 @@ public class AboutUsView extends DynamicWebPage{
 					"\r\n" + 
 					""
 					+ "<a target=\"_blank\" title=\"follow me on facebook\" href=\"https://www.facebook.com/PLACEHOLDER\"><img alt=\"follow me on facebook\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png\" border=0></a>"
-					+ "            <p class=\"light left-align\">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>\r\n" + 
+					+ "            <p class=\"light left-align\">My name is Karolis and nothing gets me more in my feelings than the Melancoly Mood."
+					+ "There's nothing better than staring out the rainy window of a train watching the world pass as the music"
+					+ "flows down my face.</p>\r\n" + 
 					"          </div>\r\n" + 
 					"        </div>\r\n" + 
 					"      </div>\r\n" + 

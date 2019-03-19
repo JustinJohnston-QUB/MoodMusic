@@ -54,16 +54,7 @@ public class Store extends DynamicWebPage
 							"      <img src=\"../images/sampleDeal.png\">\r\n" + 
 							"    </a>\r\n" + 
 							"    <a class=\"carousel-item\" href=\"#two!\">\r\n" + 
-							"      <img src=\"../images/sampleDeal.png\">\r\n" + 
-							"    </a>\r\n" + 
-							"    <a class=\"carousel-item\" href=\"#three!\">\r\n" + 
-							"      <img src=\"../images/sampleDeal.png\">\r\n" + 
-							"    </a>\r\n" + 
-							"    <a class=\"carousel-item\" href=\"#four!\">\r\n" + 
-							"      <img src=\"../images/sampleDeal.png\">\r\n" + 
-							"    </a>\r\n" + 
-							"    <a class=\"carousel-item\" href=\"#five!\">\r\n" + 
-							"      <img src=\"../images/sampleDeal.png\">\r\n" + 
+							"      <img src=\"../images/sampleDeal2.png\">\r\n" + 
 							"    </a>\r\n" + 
 							"  </div>" + 
 							"<div class=\"container\">\r\n" + 
