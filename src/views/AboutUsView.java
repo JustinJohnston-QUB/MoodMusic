@@ -28,9 +28,26 @@ public class AboutUsView extends DynamicWebPage{
 	{
 		if(toProcess.path.equalsIgnoreCase("indexview"))
 		{
-			String stringToSendToWebBrowser = PageElements.header()+
-					"\r\n" + 
-					"<body >\r\n" + PageElements.Navbar()+PageElements.Search()+
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
+			String stringToSendToWebBrowser = "";
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += PageElements.Search()+
 					"\r\n" + 
 					"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
 					"    <div class=\"section no-pad-bot\">\r\n" + 

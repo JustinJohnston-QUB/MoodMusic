@@ -232,7 +232,7 @@ public class Registration extends DynamicWebPage
 			newUser.setPassword(toProcess.params.get("password"));
 			newUser.email = toProcess.params.get("email");
 			
-			MVMap<String, User> users = db.s.openMap("User");
+			MVMap<String, User> users = db.s.openMap("Users");
 			
 			if(users.containsKey(newUser.username))
 			{

@@ -133,7 +133,7 @@ public class LoginSubmit extends DynamicWebPage
 			stringToSendToWebBrowser += "  <body onload='saveLoginCookie()'>\n";
 			//stringToSendToWebBrowser += "  <body>\n";
 			stringToSendToWebBrowser += "    <h1>Login Complete<h1>\n";
-			stringToSendToWebBrowser += "    <h1><a href='Index.html'>Click here to go to the Front Page</a><h1>\n";
+			stringToSendToWebBrowser += "    <h1><a href='homepage'>Click here to proceed to the homepage!</a><h1>\n";
 			stringToSendToWebBrowser += "  </body>\n";
 			stringToSendToWebBrowser += "</html>\n";
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );

@@ -22,7 +22,8 @@ public class Store extends DynamicWebPage
 	{
 		if(toProcess.path.equalsIgnoreCase("store"))
 		{				
-
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
 
 			MVMap<String, Product> products = db.s.openMap("products");
 			List<String> productKeys = products.keyList();

@@ -31,11 +31,30 @@ public class Webapp extends DynamicWebPage
 		if(toProcess.path.equalsIgnoreCase("webapp"))
 
 		{
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
 			MVMap<String, Mood> moods= db.s.openMap("Mood");
 			List<String> moodkeys = moods.keyList() ;
 			Mood imood = new Mood();
-			String stringToSendToWebBrowser = PageElements.header()  +
-					"<body >\n" + PageElements.Navbar()+
+			
+String stringToSendToWebBrowser = "";
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += 
 
 					"  <div class=\"col s12\" style=\">\n" + 
 					"    <div class=\"container\">\n" + 
@@ -140,14 +159,32 @@ public class Webapp extends DynamicWebPage
 			//Page with form for adding songs       	
 
 		}else if(toProcess.path.equalsIgnoreCase("song.html")){
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password");
+			String stringToSendToWebBrowser = "";
 			MVMap<String, Artist> artists= db.s.openMap("Artist");
 			List<String> artistkeys = artists.keyList() ;
 			Artist iartist = new Artist();
 			MVMap<String, Mood> moods= db.s.openMap("Mood");
 			List<String> moodkeys = moods.keyList() ;
 			Mood imood = new Mood();
-			String stringToSendToWebBrowser = PageElements.header() +
-					"<body>\n" + PageElements.Navbar()+ PageElements.Search()+
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += PageElements.Search()+
 					"    <div class=\"row\">\r\n" + 
         			"\r\n" + 
         			"      <div class=\"col s12 m6 l6\"> <!Right Hand Side Panel-->\r\n" + 
@@ -219,8 +256,25 @@ public class Webapp extends DynamicWebPage
 
 			//Page with form for adding Artists           	
 		}else if(toProcess.path.equalsIgnoreCase("artist.html")){
-			String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-					PageElements.header()+ "<body>\n"  + PageElements.Navbar()+ PageElements.Search()+
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password");
+			String stringToSendToWebBrowser = "";
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += PageElements.Search()+
 					"    <div class=\"row\">\r\n" + 
         			"\r\n" + 
         			"      <div class=\"col s12 m6 l6\"> <!Right Hand Side Panel-->\r\n" + 
@@ -262,6 +316,9 @@ public class Webapp extends DynamicWebPage
 
 			//Page which adds songs to the database        	
 		}else if(toProcess.path.equalsIgnoreCase("addsong.html")) {
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password");
+			String stringToSendToWebBrowser = "";
 			MVMap<String, Mood> moods= db.s.openMap("Mood");
 			List<String> moodkeys = moods.keyList() ;
 			Mood imood = new Mood();
@@ -302,7 +359,23 @@ public class Webapp extends DynamicWebPage
 			moods.put(mood1.moodname, mood1);
 			db.commit();
 			//"songpage.html?song ="+isong.uniqueID
-			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>song Added</h2>\n";
 			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
@@ -321,6 +394,9 @@ public class Webapp extends DynamicWebPage
 
 			//Page which adds Artists to the database             		
 		}else if(toProcess.path.equalsIgnoreCase("addartist.html")) {
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
+			String stringToSendToWebBrowser = "";
 			Artist iartist = new Artist();
 			iartist.uniqueID= "Artist_"+System.currentTimeMillis();
 			iartist.artistName = toProcess.params.get("artistname");	
@@ -334,7 +410,22 @@ public class Webapp extends DynamicWebPage
 			iartist.artistImage = "images/artistimages/"+iartist.uniqueID+extension;
 			artists.put(iartist.uniqueID, iartist);
 			db.commit();
-			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>artist Added</h2>\n";
 			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
@@ -353,6 +444,9 @@ public class Webapp extends DynamicWebPage
 
 			//Search results page              		
 		}else if(toProcess.path.equalsIgnoreCase("search.html")){
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
+			String stringToSendToWebBrowser = "";
 			String searchTerm = toProcess.params.get("Search").toLowerCase();
 			Song isong = new Song();
 			Artist iartist = new Artist();
@@ -363,7 +457,23 @@ public class Webapp extends DynamicWebPage
 			MVMap<String, Mood> moods= db.s.openMap("Mood");
 			List<String> moodkeys = moods.keyList() ;
 			Mood imood = new Mood();
-			String stringToSendToWebBrowser = PageElements.header()+"<body>" + PageElements.Navbar()+ 
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += 
 					"  <div class=\"col s12\" style=\">\n" + 
 					"    <div class=\"container\">\n" + 
 					"      <div class=\"row\">\n" + 
@@ -630,6 +740,9 @@ public class Webapp extends DynamicWebPage
 
 			// page which displays songs          	
 		}else if(toProcess.path.equalsIgnoreCase("songpage")) {
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
+			String stringToSendToWebBrowser = "";
 
 			String song;
 			song = toProcess.params.get("song").toLowerCase();
@@ -694,9 +807,24 @@ public class Webapp extends DynamicWebPage
 									"			<iframe src=\"http://www.youtube.com/embed/"+ youtubevideono.trim() +"\"></iframe>"+
 									"      </div>\r\n" + 
 									"        ";	
-			}	
+			}
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
 
-			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search();
+			stringToSendToWebBrowser += PageElements.Search();
 					
 			stringToSendToWebBrowser +=
 										"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
@@ -858,6 +986,9 @@ public class Webapp extends DynamicWebPage
 			return true;
 			// page which displays artists            	
 		}else if(toProcess.path.equalsIgnoreCase("artistpage.html")) {
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password");
+			String stringToSendToWebBrowser = "";
 			String artist;
 			artist = toProcess.params.get("artist").toLowerCase();
 			Song isong = new Song();
@@ -872,7 +1003,22 @@ public class Webapp extends DynamicWebPage
 					iartist = artists.get(artistUniqueID);
 				}
 			}
-			String stringToSendToWebBrowser = 	PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += 	PageElements.Search()+
 												"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
 												"    <div class=\"section no-pad-bot\">\r\n" + 
 												"      <div class=\"container\">\r\n" + 
@@ -1036,6 +1182,9 @@ public class Webapp extends DynamicWebPage
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;
 		}else if(toProcess.path.equalsIgnoreCase("addmood.html")) {
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password");
+			String stringToSendToWebBrowser = "";
 			Mood imood = new Mood();
 			imood.moodname = toProcess.params.get("moodname");	
 			imood.moodimage = toProcess.params.get("moodimage");
@@ -1049,7 +1198,22 @@ public class Webapp extends DynamicWebPage
 			imood.moodimage = "images/moodimages/"+imood.moodname+extension;
 			moods.put(imood.moodname, imood);
 			db.commit();
-			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>Mood added</h2>\n";
 			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
@@ -1063,6 +1227,9 @@ public class Webapp extends DynamicWebPage
 
 
 		}else if(toProcess.path.equalsIgnoreCase("moodpage.html")) {
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password");
+			String stringToSendToWebBrowser = "";
         	String mood;
 			mood = toProcess.params.get("mood").toLowerCase();
 			Song isong = new Song();
@@ -1080,7 +1247,22 @@ public class Webapp extends DynamicWebPage
 					imood = moods.get(moodUniqueID);
 				}
 			}
-			String stringToSendToWebBrowser = 	PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += 	PageElements.Search()+
 												"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
 												"    <div class=\"section no-pad-bot\">\r\n" + 
 												"      <div class=\"container\">\r\n" + 
@@ -1190,8 +1372,27 @@ public class Webapp extends DynamicWebPage
 
         	return true;
 		}else if(toProcess.path.equalsIgnoreCase("mood.html")){
-			String stringToSendToWebBrowser = "<!DOCTYPE html>\n" + 
-					PageElements.header()+ "<body>\n"  + PageElements.Navbar()+ PageElements.Search()+
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password");
+			String stringToSendToWebBrowser = "";
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			
+			stringToSendToWebBrowser += PageElements.Search()+
 					"\n" + 
 					"<div class=\"container\">\n" + 
 					"  <div class=\"row\">\n" + 
@@ -1228,6 +1429,9 @@ public class Webapp extends DynamicWebPage
 			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
 			return true;      	
 		}else if(toProcess.path.equalsIgnoreCase("addartistimages.html")) {
+			String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password");
+			String stringToSendToWebBrowser = "";
 			MVMap<String, Artist> artists= db.s.openMap("Artist");
 			Artist iartist = artists.get(toProcess.params.get("artistid"));
 			String newimage = toProcess.params.get("addartistimages");
@@ -1246,7 +1450,23 @@ public class Webapp extends DynamicWebPage
 			}
 			artists.put(iartist.uniqueID, iartist);
 			db.commit();
-			String stringToSendToWebBrowser = PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += PageElements.Search()+
 					"<body>\n" + 
 					"	<h2>Image Added</h2>\n";
 			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();

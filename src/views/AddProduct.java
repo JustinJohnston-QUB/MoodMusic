@@ -21,6 +21,7 @@ public class AddProduct extends DynamicWebPage
 
 		if(toProcess.path.equalsIgnoreCase("addproduct"))
 		{
+			
 
 
 			//start of html and imports of materialize cs

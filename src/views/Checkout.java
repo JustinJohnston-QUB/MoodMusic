@@ -17,6 +17,8 @@ public class Checkout extends DynamicWebPage
 	{
         if(toProcess.path.equalsIgnoreCase("checkout.html"))
         {
+			
+			
       
         	
         	String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 

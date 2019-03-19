@@ -20,7 +20,8 @@ public class ProductPage extends DynamicWebPage
 
 	public boolean process(WebRequest toProcess)
 	{
-		
+		String username = toProcess.cookies.get("username"); 
+		String password = toProcess.cookies.get("password"); 
 		MVMap<String, Product> products = db.s.openMap("products");
 		List<String> productKeys = products.keyList();
 		
@@ -32,9 +33,24 @@ public class ProductPage extends DynamicWebPage
 		if(toProcess.path.equalsIgnoreCase("productpage")) {
 			String productID = toProcess.params.get("prodID").toLowerCase();
 			Product product = products.get(productID);
-
-			String stringToSendToWebBrowser = PageElements.header();
-			stringToSendToWebBrowser += PageElements.Navbar();
+			
+            String stringToSendToWebBrowser = "";
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
 			
 			stringToSendToWebBrowser +=
 					"  <!--Main body of content-->\r\n" + 

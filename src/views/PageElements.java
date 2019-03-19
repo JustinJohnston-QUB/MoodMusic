@@ -1,5 +1,10 @@
 package views;
 
+import org.h2.mvstore.MVMap;
+
+import model.User;
+import web.WebRequest;
+
 public class PageElements {
 	
 	public PageElements() {
@@ -47,8 +52,7 @@ public class PageElements {
 	
 	public static String Navbar() {
 		
-
-	 String stringToSendToWebBrowser = 
+	  String stringToSendToWebBrowser = 
 			 "<ul id=\"dropdown1\" class=\"dropdown-content\">\r\n" + 
 			 "  <li><a href=\"song.html\">Add Song</a></li>\r\n" + 
 			 "  <li><a href=\"artist.html\">Add Artist</a></li>\r\n" + 
@@ -75,8 +79,54 @@ public class PageElements {
 					"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger orange \"><i class=\"material-icons\">menu</i></a>\r\n" + 
 					"    </div>\r\n" +
 					"  </nav>\r\n";
+		
 	
 	return stringToSendToWebBrowser;
+	}
+	
+	public static String NavBarLoggedIn(WebRequest toProcess) {
+		
+		String stringToSendToWebBrowser = "";
+		String username = toProcess.cookies.get("username"); 
+		String password = toProcess.cookies.get("password"); 
+//		
+//		//username == null indicates that the user hasn't logged in
+		if(username!=null)
+		{
+			         stringToSendToWebBrowser = 
+					 "<ul id=\"dropdown1\" class=\"dropdown-content\">\r\n" + 
+					 "  <li><a href=\"song.html\">Add Song</a></li>\r\n" + 
+					 "  <li><a href=\"artist.html\">Add Artist</a></li>\r\n" + 
+					 "</ul>" +
+					"  <nav class=\"orange\" role=\"navigation\">\r\n" + 
+							"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
+							"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
+							"		<li><a href=\"webapp\">Music</a></li>\r\n" + 
+							"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown1\">Contribute<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
+							"		<li><a href=\"store\">Store</a></li>\r\n" + 
+							"		<li><a href=\"indexview\">About Us</a></li>\r\n" + 
+							"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown1\">"+username.toString()+"<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
+							"" +
+							"      </ul>\r\n" + 
+							"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
+							"		<li><a href=\"homepage\">home</a></li>\r\n" + 
+							"		<li><a href=\"webapp\">Music</a></li>\r\n" +
+							"		<li><a href=\"song.html\">Add Song</a></li>\r\n" +
+							"		<li><a href=\"artist.html\">Add Artist</a></li>\r\n" +
+							"		<li><a href=\"store\">Store</a></li>\r\n" + 
+							"		<li><a href=\"indexview\">About Us</a></li>\r\n" +
+							"      </ul>\r\n" + 
+							"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger orange \"><i class=\"material-icons\">menu</i></a>\r\n" + 
+							"    </div>\r\n" +
+							"  </nav>\r\n";
+			
+		}
+		
+		
+		
+		return stringToSendToWebBrowser;
+		
+		
 	}
 	
 	public static String Search() {

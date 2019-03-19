@@ -26,6 +26,8 @@ public class HomePage extends DynamicWebPage
 	{
         if(toProcess.path.equalsIgnoreCase("homepage"))
         {
+        	String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
          	MVMap<String, Product> products= db.s.openMap("products");
         	List<String> productkeys = products.keyList() ;
         	Product iproduct = new Product();
@@ -122,6 +124,120 @@ public class HomePage extends DynamicWebPage
         	pageimages.add("images/homepage/5.gif");
         	pageimages.add("images/homepage/6.gif");//( max - min )) + min 
         	int randomimage = rn.nextInt(pageimages.size());
+        	
+        	if(username!=null)
+        	{
+        		String stringToSendToWebBrowser = PageElements.header()+"<body>\n"+"<ul id=\"dropdown1\" class=\"dropdown-content\">\r\n" + 
+        				 "  <li><a href=\"song.html\">Add Song</a></li>\r\n" + 
+        				 "  <li><a href=\"artist.html\">Add Artist</a></li>\r\n" + 
+        				 "</ul>" +
+        				 " <ul id='dropdown2' class='dropdown-content'>\r\n"+
+ 					    "<li><a href=\"myaccount\">My account</a></li>\r\n"+
+ 					    "<li class=\"divider\" tabindex=\"-1\"></li>\r\n"+
+ 					   " <li><a href=\"logout\">Logout</a></li>\r\n"+
+ 					  "</ul>"+
+        				"  <nav class=\"orange\" role=\"navigation\">\r\n" + 
+        						"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
+        						"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
+        						"		<li><a href=\"webapp\">Music</a></li>\r\n" + 
+        						"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown1\">Contribute<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
+        						"		<li><a href=\"store\">Store</a></li>\r\n" + 
+        						"		<li><a href=\"indexview\">About Us</a></li>\r\n" + 
+        						"		<li><i class=\"material-icons\">account_circle</i></li>\r\n" + 
+        						"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown2\">"+username.toString()+"<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
+        						"" +
+        						"      </ul>\r\n" + 
+        						"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 
+        						"		<li><a href=\"homepage\">home</a></li>\r\n" + 
+        						"		<li><a href=\"webapp\">Music</a></li>\r\n" +
+        						"		<li><a href=\"song.html\">Add Song</a></li>\r\n" +
+        						"		<li><a href=\"artist.html\">Add Artist</a></li>\r\n" +
+        						"		<li><a href=\"store\">Store</a></li>\r\n" + 
+        						"		<li><a href=\"indexview\">About Us</a></li>\r\n" +
+        						"      </ul>\r\n" + 
+        						"      <a href=\"#\" data-target=\"nav-mobile\" class=\"sidenav-trigger orange \"><i class=\"material-icons\">menu</i></a>\r\n" + 
+        						"    </div>\r\n" +
+        						"  </nav>\r\n"+
+        						PageElements.Search()+
+            			"    <div class=\"row \">\r\n" + 
+            			"\r\n" + 
+            			"      <div class=\"col s12 m6 l6 \"> <!Right Hand Side Panel-->\r\n" + 
+            			"<img class=\"materialboxed\" width=\"100%\" src=\""+pageimages.get(randomimage)+"\">"+
+            			"   </div>\r\n" + 
+            			"\r\n" + 
+            			"      <div class=\"col s12 m6 l6  \"> <!-- Left Hand Panel -->\r\n" + 
+            			"  <div>\r\n" + 
+            			"    <h1 class=\"orange white-text center-align \">Our Picks</h1>\r\n" + 
+            			"  </div>\r\n" + 
+            			"   <div>\r\n" + 
+            			"    <h3 class=\"flow-text \">We picked out some songs and moods you might like, click on the tabs below to try them out.<br> Support the site by buying some of the fresh apparel from the store.</h3>\r\n" + 
+            			"  </div>\r\n" + 
+            			" <ul id=\"tabs\" class=\"tabs\">\r\n" + 
+            			"    <li class=\"tab col s3\"><a  class=\"active\" href=\"#test-swipe-1\">Mood</a></li>\r\n" + 
+            			"    <li class=\"tab col s3\"><a href=\"#test-swipe-2\">Artist</a></li>\r\n" + 
+            			"    <li class=\"tab col s3\"><a href=\"#test-swipe-3\">Song</a></li>\r\n" + 
+            			"    <li class=\"tab col s3\"><a href=\"#test-swipe-4\">Merch</a></li>\r\n" + 
+            			"  </ul>\r\n" + 
+            			//card 1
+            			"  <div id=\"test-swipe-1\" class=\"col s12  black-text center-align\">"+
+            			"   <div>\r\n" + 
+            			"    <h4 class=\"black-text center-align\">"+imood.moodname+"</h4>\r\n" + 
+            			"  </div>\r\n" + 
+            			"	<a href = \"moodpage.html?mood="+imood.moodname+"\"><img class=\"circle\" width=\"30%\" src=\""+imood.moodimage+"\"></a>"+
+            			"   <div>\r\n" + 
+            			"    <p class=\"flow-text\">"+imood.shortmooddescription+"<br>Click the image above to visit this mood!</p>\r\n" + 
+            			"  </div>\r\n" + 
+            			" </div>\r\n" +
+            			//end card 1
+            			//card 2
+            			"  <div id=\"test-swipe-2\" class=\"col s12 black-text center-align\">"+
+            			"   <div>\r\n" + 
+            			"    <h4 class=\"black-text center-align\">"+iartist.artistName+"</h4>\r\n" + 
+            			"  </div>\r\n" + 
+            			"	<a href = \"artistpage.html?artist="+iartist.uniqueID+"\"><img class=\"circle\" width=\"30%\" src=\""+iartist.artistImage+"\"></a>"+
+            			"   <div>\r\n" + 
+            			"    <p class=\"flow-text\"><br>Click the image above to visit this Artist!</p>\r\n" + 
+            			"  </div>\r\n" + 
+            			" </div>\r\n" +
+            			//end card 2
+            			//card 3
+            			"  <div id=\"test-swipe-3\" class=\"col s12 black-text center-align\">"+
+            			"   <div>\r\n" + 
+            			"    <h4 class=\"black-text center-alignt\">"+isong.songtitle+"</h4>\r\n" + 
+            			"  </div>\r\n" + 
+            			"	<a href = \"songpage?song="+isong.uniqueID+"\"><img class=\"circle\" width=\"30%\" src=\""+isong.songImage+"\"></a>"+
+            			"   <div>\r\n" + 
+            			"    <p class=\"flow-text\"><br>Click the image above to visit this track!</p>\r\n" + 
+            			"  </div>\r\n" + 
+            			" </div>\r\n" +
+            			//end card 3
+            			//card 4
+            			"  <div id=\"test-swipe-4\" class=\"col s12 black-text center-align\">"+
+            			"   <div>\r\n" + 
+            			"    <h4 class=\"black-text center-align\">"+iproduct.title+"</h4>\r\n" + 
+            			"  </div>\r\n" + 
+            			"	<a href = \"productpage?prodID="+iproduct.uniqueid+"\"><img class=\"circle\" width=\"30%\" src=\""+iproduct.filePathToImage+"\"></a>"+
+            			"   <div>\r\n" + 
+            			"    <p class=\"flow-text\"><br>Voted fans favourite product!</p>\r\n" + 
+            			"  </div>\r\n" + 
+            			" </div>\r\n" +
+            			//end card 4
+            			"      </div>\r\n" + 
+            			"\r\n" + 
+            			"    </div>"+
+            			"        <!-- Footer -->\r\n" + PageElements.scripts()+ PageElements.footer()+
+            	
+            			"  <!-- Footer -->\r\n" + 
+            			"\r\n" + 
+            			"        \r\n" + 
+            			"    </head>\r\n" + 
+            			"</html>";
+            	
+            	
+            	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+        		
+        	}
+        	else {
         	String stringToSendToWebBrowser = PageElements.header()+"<body>\n"+PageElements.Navbar()+PageElements.Search()+
         			"    <div class=\"row \">\r\n" + 
         			"\r\n" + 
@@ -199,6 +315,8 @@ public class HomePage extends DynamicWebPage
         	
         	
         	toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+        	}
+        	
 
         	return true;
 

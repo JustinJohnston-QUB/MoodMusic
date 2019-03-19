@@ -26,6 +26,8 @@ public class Test extends DynamicWebPage
 	{
         if(toProcess.path.equalsIgnoreCase("test"))
         {
+        	String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
         	String mood;
 			mood = toProcess.params.get("mood").toLowerCase();
 			Song isong = new Song();
@@ -43,7 +45,25 @@ public class Test extends DynamicWebPage
 					imood = moods.get(moodUniqueID);
 				}
 			}
-			String stringToSendToWebBrowser = 	PageElements.header() + PageElements.Navbar()+ PageElements.Search()+
+			
+          String stringToSendToWebBrowser = "";
+			
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
+			stringToSendToWebBrowser += 	PageElements.Search()+
 												"  <div id=\"index-banner\" class=\"parallax-container\">\r\n" + 
 												"    <div class=\"section no-pad-bot\">\r\n" + 
 												"      <div class=\"container\">\r\n" + 
