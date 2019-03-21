@@ -31,6 +31,12 @@ public class Store extends DynamicWebPage
 			if (productKeys.size() == 0) {
 				Product tshirt = new Product();
 				tshirt.filePathToImage = "../images/tshirt1.png"; 
+				tshirt.description = "A grey t-shirt with the feelin it logo, stylish and classy. perfect for those formal occasions";
+				tshirt.price = "19.99";
+				tshirt.uniqueid = "tshirt_"+System.currentTimeMillis();
+				tshirt.title = "Grey Branded T-Shirt";
+				products.put(tshirt.uniqueid, tshirt);
+				db.commit();
 			}
 
 
