@@ -38,7 +38,7 @@ public class Store extends DynamicWebPage
 			//start of html and imports of materialize cs
 			String stringToSendToWebBrowser = PageElements.header();
 			//navbar
-			stringToSendToWebBrowser += PageElements.Navbar();
+			stringToSendToWebBrowser += PageElements.NavBarLoggedIn(toProcess);;
 
 
 			//Carousel

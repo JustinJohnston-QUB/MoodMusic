@@ -98,6 +98,10 @@ public class PageElements {
 					 "  <li><a href=\"song.html\">Add Song</a></li>\r\n" + 
 					 "  <li><a href=\"artist.html\">Add Artist</a></li>\r\n" + 
 					 "</ul>" +
+					 "<ul id=\"dropdown2\" class=\"dropdown-content\">\r\n" + 
+					 "  <li><a href=\"account\">My account</a></li>\r\n" + 
+					 "  <li><a href=\"logout\">Log out</a></li>\r\n" + 
+					 "</ul>" +
 					"  <nav class=\"orange\" role=\"navigation\">\r\n" + 
 							"    <div class=\"nav-wrapper container\"><a id=\"logo-container\" href=\"homepage\" class=\"brand-logo\">Feelin' It</a>\r\n" + 
 							"      <ul class=\"right hide-on-med-and-down\">\r\n" + 
@@ -105,7 +109,7 @@ public class PageElements {
 							"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown1\">Contribute<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
 							"		<li><a href=\"store\">Store</a></li>\r\n" + 
 							"		<li><a href=\"indexview\">About Us</a></li>\r\n" + 
-							"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown1\">"+username.toString()+"<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
+							"      <li><a class=\"dropdown-trigger\" href=\"#!\" data-target=\"dropdown2\">"+username.toString()+"<i class=\"material-icons right\">arrow_drop_down</i></a></li>\r\n" + 
 							"" +
 							"      </ul>\r\n" + 
 							"      <ul id=\"nav-mobile\" class=\"sidenav\">\r\n" + 

@@ -1,4 +1,6 @@
 package views;
+import org.h2.mvstore.MVMap;
+
 import model.User;
 
 import storage.DatabaseInterface;
@@ -124,6 +126,52 @@ public class Login extends DynamicWebPage
 //
         	return true;
         }
+        
+        else if (toProcess.path.equalsIgnoreCase("logout")) {
+        
+        String username = toProcess.cookies.get("username"); 
+		String password = toProcess.cookies.get("password"); 
+//	   toProcess.cookies.clear();
+			
+				String stringToSendToWebBrowser = "";
+				stringToSendToWebBrowser += "<!DOCTYPE html>\n";
+				stringToSendToWebBrowser += "<html>\n";
+				stringToSendToWebBrowser += "  <head>\n";
+				stringToSendToWebBrowser += "    <title>Session Error</title>\n";
+				stringToSendToWebBrowser += "    <meta charset=\"utf-8\">\n";
+				stringToSendToWebBrowser += "    <meta  name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/css/font-awesome.min.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/css/blocks.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <!--[if lt IE 9]>\n";
+				stringToSendToWebBrowser += "      <script src=\"/js/html5shiv.js\"></script>\n";
+				stringToSendToWebBrowser += "      <script src=\"/js/respond.min.js\"></script>\n";
+				stringToSendToWebBrowser += "    <![endif]-->\n";
+				stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/jquery-1.11.1.min.js\"></script>\n";
+				stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/bootstrap.min.js\"></script>\n";
+				stringToSendToWebBrowser += "  <script>\n";
+				stringToSendToWebBrowser += "      function clearLoginCookie()\n";
+				stringToSendToWebBrowser += "      {\n";
+				stringToSendToWebBrowser += "          document.cookie='username=;expires=' + new Date(0).toGMTString();\n";
+				stringToSendToWebBrowser += "          document.cookie='password=;expires=' + new Date(0).toGMTString();\n";
+				stringToSendToWebBrowser += "      }\n";
+				stringToSendToWebBrowser += "  </script>\n";
+				stringToSendToWebBrowser += "  </head>\n";
+				
+
+				
+				stringToSendToWebBrowser += "  <body onload=\"clearLoginCookie()\">\n";
+				stringToSendToWebBrowser += "    <h1>Logged out successfully!<h1>\n";
+				stringToSendToWebBrowser += "    <h1><a href='/homepage'>Click here to continue</a><h1>\n";
+				stringToSendToWebBrowser += "  </body>\n";
+				stringToSendToWebBrowser += "</html>\n";
+				toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+				return true;
+
+			
+		}
         return false;
 	}
 
