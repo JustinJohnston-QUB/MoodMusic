@@ -1450,32 +1450,11 @@ String stringToSendToWebBrowser = "";
 			}
 			artists.put(iartist.uniqueID, iartist);
 			db.commit();
-			
-			if(username!=null)
-			{
-				stringToSendToWebBrowser = PageElements.header()+
-						"\r\n" + 
-						"<body >\r\n" +
-				PageElements.NavBarLoggedIn(toProcess);
-				
-			}
-			else {
-				stringToSendToWebBrowser = PageElements.header()+
-						"\r\n" + 
-						"<body >\r\n" +
-				PageElements.Navbar();
-				
-			}
-			stringToSendToWebBrowser += PageElements.Search()+
-					"<body>\n" + 
-					"	<h2>Image Added</h2>\n";
-			stringToSendToWebBrowser += PageElements.scripts()+ PageElements.footer();
-			stringToSendToWebBrowser +=
-					"</body>\n" + 
-							"</html>\n" + 
-							"";
-			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
-			return true;          		
+			String url = "/artistpage.html?artist="+iartist.uniqueID;
+			toProcess.r = new WebResponse( WebResponse.HTTP_REDIRECT, WebResponse.MIME_HTML,
+					stringToSendToWebBrowser);
+			toProcess.r.addHeader( "Location", url );
+			return true;
 		}
 
 		return false;   
