@@ -117,7 +117,7 @@ public class AboutUsView extends DynamicWebPage{
 					""
 					+ "<a target=\"_blank\" title=\"follow me on facebook\" href=\"https://www.facebook.com/PLACEHOLDER\"><img alt=\"follow me on facebook\" src=\"https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png\" border=0></a>"
 					+ "            <p class=\"light left-align\">My name is Karolis and nothing gets me more in my feelings than the Melancoly Mood."
-					+ "There's nothing better than staring out the rainy window of a train watching the world pass as the music"
+					+ "There's nothing better than staring out the rainy window of a train watching the world pass as the music "
 					+ "flows down my face.</p>\r\n" + 
 					"          </div>\r\n" + 
 					"        </div>\r\n" + 
