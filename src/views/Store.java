@@ -34,11 +34,24 @@ public class Store extends DynamicWebPage
 			}
 
 
-
+			String stringToSendToWebBrowser ="";
 			//start of html and imports of materialize cs
-			String stringToSendToWebBrowser = PageElements.header();
 			//navbar
-			stringToSendToWebBrowser += PageElements.NavBarLoggedIn(toProcess);;
+			if(username!=null)
+			{
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.NavBarLoggedIn(toProcess);
+				
+			}
+			else {
+				stringToSendToWebBrowser = PageElements.header()+
+						"\r\n" + 
+						"<body >\r\n" +
+				PageElements.Navbar();
+				
+			}
 
 
 			//Carousel
