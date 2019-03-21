@@ -19,7 +19,19 @@ public class Login extends DynamicWebPage
 	{
         if(toProcess.path.equalsIgnoreCase("login"))
         {
-        	
+        	MVMap<String, User> users = db.s.openMap("Users");
+        	int totalUsers = users.size();
+        	int onlineUsers;
+        	String username = toProcess.cookies.get("username"); 
+        	if(username!=null)
+        	{
+        		onlineUsers = 1;
+        	}
+        	else {
+        	    onlineUsers = 0;
+        	}
+        	int offlineUsers = totalUsers - onlineUsers;
+   	
         	String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
 					"<html lang=\"en\">\r\n" + 
 					"\r\n" + 
@@ -49,9 +61,9 @@ public class Login extends DynamicWebPage
 					"\r\n" + 
 					"                      \r\n" + 
 					"                      <div class=\"collection\" style=\"width:470px\">\r\n" + 
-					"                          <a class=\"collection-item\"><span class=\"new badge\" data-badge-caption=\"\" id=\"onlineUsers\">4</span>Online Users</a>\r\n" + 
-					"                          <a class=\"collection-item\"><span class=\"new badge\" data-badge-caption=\"\" id=\"offlineUsers\" style=\"background-color:crimson\">4</span>Offline Users</a>\r\n" + 
-					"                          <a class=\"collection-item\"><span class=\"new badge\" data-badge-caption=\"\" id=\"totalUsers\" style=\"background-color:blue\">4</span>Total Users</a>\r\n" + 
+					"                          <a class=\"collection-item\"><span class=\"new badge\" data-badge-caption=\"\" id=\"onlineUsers\">"+onlineUsers+"</span>Online Users</a>\r\n" + 
+					"                          <a class=\"collection-item\"><span class=\"new badge\" data-badge-caption=\"\" id=\"offlineUsers\" style=\"background-color:crimson\">"+offlineUsers+"</span>Offline Users</a>\r\n" + 
+					"                          <a class=\"collection-item\"><span class=\"new badge\" data-badge-caption=\"\" id=\"totalUsers\" style=\"background-color:blue\">"+totalUsers+"</span>Total Users</a>\r\n" + 
 					"                        </div>\r\n" + 
 					"                                  \r\n" + 
 					"              \r\n" + 
@@ -172,6 +184,102 @@ public class Login extends DynamicWebPage
 
 			
 		}
+        
+        else if(toProcess.path.equalsIgnoreCase("myaccount"))
+        {
+        	User currentUser = new User();
+        	String username = toProcess.cookies.get("username"); 
+			String password = toProcess.cookies.get("password"); 
+			
+			
+			
+			MVMap<String, User> users = db.s.openMap("Users");
+			currentUser = users.get(username);
+			
+			
+			
+			
+			
+			
+			 
+
+        	String stringToSendToWebBrowser = "<!DOCTYPE html>\r\n" + 
+					"<html lang=\"en\">\r\n" + 
+					"\r\n" + 
+					"<head>\r\n" + 
+					"  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n" + 
+					"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1.0\" />\r\n" + 
+					"  <title>Store</title>\r\n" + 
+					"\r\n" + 
+					"  <!-- CSS  -->\r\n" + 
+					"  <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\r\n" + 
+					"  <link href=\"../css/materialize.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\" />\r\n" + 
+					"  <link href=\"../css/style.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\" />\r\n" + 
+					"</head>\r\n" + 
+					"\r\n" + 
+					"<body>\r\n";
+        	
+        	//Nav Bar 
+			stringToSendToWebBrowser += PageElements.Navbar();
+
+			//Main body
+			stringToSendToWebBrowser +=
+					"    <!--Account Management-->\r\n" + 
+					"<div class=\"row\"></div>\r\n" + 
+					" <div class=\"card-panel teal lighten-2\" style=\"width:10000px\"><h2 class=\"header\" style=\"color:#1565c0\"><b>My Account</b></h2></div>\r\n" + 
+					"</div>\r\n" + 
+					"                    \r\n" + 
+					"  <form role=\"form\">\r\n" + 
+					"      <div class=\"form-group editField\">\r\n" + 
+					"          <label for=\"name\">First Name</label>\r\n" + 
+					"          <div class=\"input-group\">\r\n" + 
+					"              <input type=\"text\" class=\"form-control editField\" value=\""+currentUser.firstname+"\" readonly>\r\n" + 
+					"              <label for=\"name\">Surname</label>\r\n" + 
+					"              <input type=\"text\" class=\"form-control editField\" value=\""+currentUser.surname+"\" readonly>\r\n" + 
+					"              <label for=\"name\">Username</label>\r\n" + 
+					"              <input type=\"text\" class=\"form-control editField\" value=\""+username+"\" readonly>\r\n" + 
+					"              <label for=\"name\">Password</label>\r\n" + 
+					"              <input type=\"password\" class=\"form-control editField\" value=\""+password+"\" readonly>\r\n" + 
+					"              <label for=\"name\">Email</label>\r\n" + 
+					"              <input type=\"text\" class=\"form-control editField\" value=\""+currentUser.email+"\" readonly>\r\n" + 
+					"          </div>\r\n" + 
+					"      </div>\r\n" + 
+					"      \r\n" + 
+					"      <div class='row text-center'>\r\n" + 
+					"          <a class=\"btn btn-danger editBtn\">Edit Off</a>\r\n" + 
+					"      </div>\r\n" + 
+					"      <label for=\"name\">Plase Confirm Your Password</label>\r\n" + 
+					"              <input type=\"Password\" class=\"form-control passConf\" value=\"\" id=\"passwordConfirm\" readonly>\r\n" + 
+					"\r\n" + 
+					"  </form><br>\r\n" + 
+					"  <a class=\"btn-large\">Save Changes</a>\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"\r\n" + 
+					"  \r\n" + 
+					" \r\n";
+
+			//footer
+			stringToSendToWebBrowser+= PageElements.footer();
+			//scripts
+			stringToSendToWebBrowser += PageElements.scripts();
+			stringToSendToWebBrowser += 
+					"</body>\r\n" + 
+							"\r\n" + 
+							"</html>\r\n" + 
+							"\r\n" + 
+							"\r\n" + 
+							"    \r\n" + 
+							"" + 
+							"</html>";
+
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;
+					
+					
+        	
+        }
         return false;
 	}
 

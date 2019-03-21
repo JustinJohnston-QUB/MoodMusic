@@ -215,7 +215,28 @@ public class PageElements {
 				+ "  $(document).ready(function(){\r\n" + 
 				"    $('.tabs').tabs();\r\n" + 
 				"  });"+
-				"  </script>";
+				"  </script>\r\n"+
+				"  <script>\r\n" + 
+				"  \r\n" + 
+				"  $(document).ready(function () {\r\n" + 
+				"\r\n" + 
+				"    $('.editBtn').click(function () {\r\n" + 
+				"        if ($('.editField').is('[readonly]')) { //checks if it is already on readonly mode\r\n" + 
+				"            $('.editField').prop('readonly', false);//turns the readonly off\r\n" + 
+				"            $('.editBtn').html('Edit On'); //Changes the text of the button\r\n" + 
+				"            $('.editBtn').css(\"background\", \"green\"); //changes the background of the button\r\n" + 
+				"            $('.editBtn').css(\"border\", \"green\"); //changes the border of the button\r\n" + 
+				"        } else { //else we do other things\r\n" + 
+				"            $('.editField').prop('readonly', true);\r\n" + 
+				"            $('.editBtn').html('Edit Off');\r\n" + 
+				"            $('.passConf').prop('readonly', false);\r\n" + 
+				"\r\n" + 
+				"            $('.editBtn').css(\"background\", \"red\");\r\n" + 
+				"        }\r\n" + 
+				"    });\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"});</script>";;
 		
 		return stringToSendToWebBrowser;
 	}
