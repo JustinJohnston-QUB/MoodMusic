@@ -298,7 +298,9 @@ public class Login extends DynamicWebPage
 		    currentUser.username = toProcess.params.get("username");
 		    currentUser.setPassword(toProcess.params.get("password"));
 		    currentUser.email = toProcess.params.get("email");
-		    toProcess.cookies.clear();
+		    users.put(currentUser.username, currentUser);
+			db.commit();
+			toProcess.cookies.clear();
 		    
 		    String stringToSendToWebBrowser = "";
 			stringToSendToWebBrowser += "<!DOCTYPE html>\n";
@@ -318,6 +320,13 @@ public class Login extends DynamicWebPage
 			stringToSendToWebBrowser += "    <![endif]-->\n";
 			stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/jquery-1.11.1.min.js\"></script>\n";
 			stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/bootstrap.min.js\"></script>\n";
+			stringToSendToWebBrowser += "  <script>\n";
+			stringToSendToWebBrowser += "      function clearLoginCookie()\n";
+			stringToSendToWebBrowser += "      {\n";
+			stringToSendToWebBrowser += "          document.cookie='username=;expires=' + new Date(0).toGMTString();\n";
+			stringToSendToWebBrowser += "          document.cookie='password=;expires=' + new Date(0).toGMTString();\n";
+			stringToSendToWebBrowser += "      }\n";
+			stringToSendToWebBrowser += "  </script>\n";
 			stringToSendToWebBrowser += "  </head>\n";
 			stringToSendToWebBrowser += "  <body>\n";
 			stringToSendToWebBrowser += "    <h1>Changes have been saved successfully<h1>\n";
