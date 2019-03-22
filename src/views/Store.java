@@ -31,10 +31,11 @@ public class Store extends DynamicWebPage
 			if (productKeys.size() == 0) {
 				Product tshirt = new Product();
 				tshirt.filePathToImage = "../images/tshirt1.png"; 
-				tshirt.description = "A grey t-shirt with the feelin it logo, stylish and classy. perfect for those formal occasions";
-				tshirt.price = "19.99";
-				tshirt.uniqueid = "tshirt_"+System.currentTimeMillis();
-				tshirt.title = "Grey Branded T-Shirt";
+				tshirt.description = "Our first ever T-Shirt! When we decided to open our merch store we thought of three principles; clean, striking and affordable. So why not cop a Straight T-Shirt today. Sizes: S, M, L, XL"	;
+				tshirt.price = "9.99";
+				tshirt.uniqueid = "product_"+System.currentTimeMillis();
+				tshirt.title = "Straight T-Shirt";
+				tshirt.paypalBtn = "BNY7ML6LGKLDN";
 				products.put(tshirt.uniqueid, tshirt);
 				db.commit();
 			}
@@ -70,7 +71,8 @@ public class Store extends DynamicWebPage
 							"      <h5 class=\"black-text\">Support our emotion based music site <br /> and look damn good doing it! </h5>\r\n" + 
 							"\r\n" + 
 							"    </div>\r\n" + 
-							"    <a class=\"carousel-item\" href=\"#one!\">\r\n" + 
+
+							"    <a class=\"carousel-item\">\r\n" + 
 							"      <img src=\"../images/sampleDeal.png\">\r\n" + 
 							"    </a>\r\n" + 
 							"    <a class=\"carousel-item\" href=\"#two!\">\r\n" + 

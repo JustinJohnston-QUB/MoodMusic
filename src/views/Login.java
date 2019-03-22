@@ -220,7 +220,7 @@ public class Login extends DynamicWebPage
 					"<body>\r\n";
         	
         	//Nav Bar 
-			stringToSendToWebBrowser += PageElements.Navbar();
+			stringToSendToWebBrowser += PageElements.NavBarLoggedIn(toProcess);
 
 			//Main body
 			stringToSendToWebBrowser +=
@@ -229,19 +229,19 @@ public class Login extends DynamicWebPage
 					" <div class=\"card-panel teal lighten-2\" style=\"width:10000px\"><h2 class=\"header\" style=\"color:#1565c0\"><b>My Account</b></h2></div>\r\n" + 
 					"</div>\r\n" + 
 					"                    \r\n" + 
-					"  <form role=\"form\">\r\n" + 
+					"  <form role=\"form\" action=\"savechanges\" method=\"GET\">\r\n" + 
 					"      <div class=\"form-group editField\">\r\n" + 
 					"          <label for=\"name\">First Name</label>\r\n" + 
 					"          <div class=\"input-group\">\r\n" + 
-					"              <input type=\"text\" class=\"form-control editField\" value=\""+currentUser.firstname+"\" readonly>\r\n" + 
+					"              <input type=\"text\" class=\"form-control editField\" name=\"firstname\" value=\""+currentUser.firstname+"\" readonly>\r\n" + 
 					"              <label for=\"name\">Surname</label>\r\n" + 
-					"              <input type=\"text\" class=\"form-control editField\" value=\""+currentUser.surname+"\" readonly>\r\n" + 
+					"              <input type=\"text\" class=\"form-control editField\" name=\"surname\" value=\""+currentUser.surname+"\" readonly>\r\n" + 
 					"              <label for=\"name\">Username</label>\r\n" + 
-					"              <input type=\"text\" class=\"form-control editField\" value=\""+username+"\" readonly>\r\n" + 
+					"              <input type=\"text\" class=\"form-control editField\" name=\"username\" value=\""+username+"\" readonly>\r\n" + 
 					"              <label for=\"name\">Password</label>\r\n" + 
-					"              <input type=\"password\" class=\"form-control editField\" value=\""+password+"\" readonly>\r\n" + 
+					"              <input type=\"password\" class=\"form-control editField\" name=\"password\" value=\""+password+"\" readonly>\r\n" + 
 					"              <label for=\"name\">Email</label>\r\n" + 
-					"              <input type=\"text\" class=\"form-control editField\" value=\""+currentUser.email+"\" readonly>\r\n" + 
+					"              <input type=\"text\" class=\"form-control editField\" name=\"email\" value=\""+currentUser.email+"\" readonly>\r\n" + 
 					"          </div>\r\n" + 
 					"      </div>\r\n" + 
 					"      \r\n" + 
@@ -249,10 +249,10 @@ public class Login extends DynamicWebPage
 					"          <a class=\"btn btn-danger editBtn\">Edit Off</a>\r\n" + 
 					"      </div>\r\n" + 
 					"      <label for=\"name\">Plase Confirm Your Password</label>\r\n" + 
-					"              <input type=\"Password\" class=\"form-control passConf\" value=\"\" id=\"passwordConfirm\" readonly>\r\n" + 
+					"              <input type=\"Password\" class=\"form-control passConf\" value=\"\" name=\"passwordConfirm\" readonly>\r\n" + 
 					"\r\n" + 
+					"            <button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Save Changes\r\n" + 
 					"  </form><br>\r\n" + 
-					"  <a class=\"btn-large\">Save Changes</a>\r\n" + 
 					"\r\n" + 
 					"\r\n" + 
 					"\r\n" + 
@@ -280,7 +280,86 @@ public class Login extends DynamicWebPage
 					
         	
         }
-        return false;
+        else if(toProcess.path.equalsIgnoreCase("savechanges"))
+        {
+        String usernameLoggedIn = toProcess.cookies.get("username"); ; 
+        String confirmPassword = toProcess.params.get("passwordConfirm");
+        User currentUser = new User();
+        
+        MVMap<String, User> users = db.s.openMap("Users");
+        
+        currentUser = users.get(usernameLoggedIn);
+        
+        	
+		if(confirmPassword.contains(currentUser.getPassword()))
+		{
+			currentUser.firstname = toProcess.params.get("firstname");
+		    currentUser.surname = toProcess.params.get("surname");
+		    currentUser.username = toProcess.params.get("username");
+		    currentUser.setPassword(toProcess.params.get("password"));
+		    currentUser.email = toProcess.params.get("email");
+		    toProcess.cookies.clear();
+		    
+		    String stringToSendToWebBrowser = "";
+			stringToSendToWebBrowser += "<!DOCTYPE html>\n";
+			stringToSendToWebBrowser += "<html>\n";
+			stringToSendToWebBrowser += "  <head>\n";
+			stringToSendToWebBrowser += "    <title>SignUpSubmit</title>\n";
+			stringToSendToWebBrowser += "    <meta charset=\"utf-8\">\n";
+			stringToSendToWebBrowser += "    <meta  name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
+			stringToSendToWebBrowser += "    <link href=\"/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">\n";
+			stringToSendToWebBrowser += "    <link href=\"/css/font-awesome.min.css\" rel=\"stylesheet\">\n";
+			stringToSendToWebBrowser += "    <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700\" rel=\"stylesheet\">\n";
+			stringToSendToWebBrowser += "    <link href=\"https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic\" rel=\"stylesheet\">\n";
+			stringToSendToWebBrowser += "    <link href=\"/css/blocks.css\" rel=\"stylesheet\">\n";
+			stringToSendToWebBrowser += "    <!--[if lt IE 9]>\n";
+			stringToSendToWebBrowser += "      <script src=\"/js/html5shiv.js\"></script>\n";
+			stringToSendToWebBrowser += "      <script src=\"/js/respond.min.js\"></script>\n";
+			stringToSendToWebBrowser += "    <![endif]-->\n";
+			stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/jquery-1.11.1.min.js\"></script>\n";
+			stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/bootstrap.min.js\"></script>\n";
+			stringToSendToWebBrowser += "  </head>\n";
+			stringToSendToWebBrowser += "  <body>\n";
+			stringToSendToWebBrowser += "    <h1>Changes have been saved successfully<h1>\n";
+			stringToSendToWebBrowser += "    <h1><a href='/myaccount'>Click here to continue</a><h1>\n";
+			stringToSendToWebBrowser += "  </body>\n";
+			stringToSendToWebBrowser += "</html>\n";
+			toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+			return true;
+		}
+	
+		else {
+			 String stringToSendToWebBrowser = "";
+				stringToSendToWebBrowser += "<!DOCTYPE html>\n";
+				stringToSendToWebBrowser += "<html>\n";
+				stringToSendToWebBrowser += "  <head>\n";
+				stringToSendToWebBrowser += "    <title>SignUpSubmit</title>\n";
+				stringToSendToWebBrowser += "    <meta charset=\"utf-8\">\n";
+				stringToSendToWebBrowser += "    <meta  name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/css/font-awesome.min.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <link href=\"/css/blocks.css\" rel=\"stylesheet\">\n";
+				stringToSendToWebBrowser += "    <!--[if lt IE 9]>\n";
+				stringToSendToWebBrowser += "      <script src=\"/js/html5shiv.js\"></script>\n";
+				stringToSendToWebBrowser += "      <script src=\"/js/respond.min.js\"></script>\n";
+				stringToSendToWebBrowser += "    <![endif]-->\n";
+				stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/jquery-1.11.1.min.js\"></script>\n";
+				stringToSendToWebBrowser += "    <script type=\"text/javascript\" src=\"/js/bootstrap.min.js\"></script>\n";
+				stringToSendToWebBrowser += "  </head>\n";
+				stringToSendToWebBrowser += "  <body>\n";
+				stringToSendToWebBrowser += "    <h1>Password was incorrect, changes have not been made!<h1>\n";
+				stringToSendToWebBrowser += "    <h1><a href='/myaccount'>Click here to try again</a><h1>\n";
+				stringToSendToWebBrowser += "  </body>\n";
+				stringToSendToWebBrowser += "</html>\n";
+				toProcess.r = new WebResponse( WebResponse.HTTP_OK, WebResponse.MIME_HTML, stringToSendToWebBrowser );
+				return true;
+		}
+
+        
+	}
+	return false;
 	}
 
 }
